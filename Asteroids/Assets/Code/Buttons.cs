@@ -20,9 +20,9 @@ public class Buttons : MonoBehaviour {
 		SceneManager.LoadScene ("Survival");
 	}
 
-	public void ButtonHistory()
+	public void ButtonStory()
 	{
-		SceneManager.LoadScene ("History");
+		SceneManager.LoadScene ("Story");
 	}
 
 	public void ButtonMainMenu()

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
 	private string language;
 	private bool music;
+	private float alertLevel = 50;
 
 	// Use this for initialization
 	void Awake()
@@ -33,6 +34,11 @@ public class GameManager : MonoBehaviour {
 		return music;
 	}
 
+	public float GetAlertLevel()
+	{
+		return alertLevel;
+	}
+
 	public void ChangeLanguage(int value)
 	{
 		switch (value) {
@@ -50,6 +56,6 @@ public class GameManager : MonoBehaviour {
 
 	public void SetSound(bool change)
 	{
-			music = change;
+		music = change;
 	}
 }
