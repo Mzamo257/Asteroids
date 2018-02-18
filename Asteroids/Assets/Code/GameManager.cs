@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Start () {
+		language = "English";
 		SceneManager.LoadSceneAsync("Menu", LoadSceneMode.Single);
 	}
 	

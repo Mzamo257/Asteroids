@@ -121,30 +121,4 @@ public class Menu : MonoBehaviour {
 		settings.text = "Configuration";
 		credits.text = "Crédits";
 	}
-
-	private void MenuPauseLanguage()
-	{
-		Text resume = GameObject.Find("Resume").GetComponent<Text>();
-		Text mainMenu = GameObject.Find("MainMenu").GetComponent<Text>();
-		Text exit = GameObject.Find("Exit").GetComponent<Text>();
-
-		switch (language.value)
-		{
-		case 0:
-			resume.text = "Resume";
-			resume.text = "Main Menu";
-			resume.text = "Exit Game";
-			break;
-		case 1:
-			resume.text = "Reanudar";
-			resume.text = "Menú Principal";
-			resume.text = "Salir del juego";
-			break;
-		case 2:
-			resume.text = "Resume";
-			resume.text = "Main Menu";
-			resume.text = "Exit Game";
-			break;
-		}
-	}
 }
