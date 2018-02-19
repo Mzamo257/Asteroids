@@ -16,6 +16,8 @@ public class Menu : MonoBehaviour {
 	public Text music;
 	public Text settings;
 	public Text credits;
+	public Transform spaceship;
+	public Transform center;
 	#endregion
 
 	#region Private Attributes
@@ -56,6 +58,11 @@ public class Menu : MonoBehaviour {
 		{
 			sound.isOn = gmScript.GetSound ();
 		}*/
+	}
+
+	void Update()
+	{
+		spaceship.RotateAround (center.position, Vector3.down, 10*Time.deltaTime); 
 	}
 
 	public void DropdownLanguage()
