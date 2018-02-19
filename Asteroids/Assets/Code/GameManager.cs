@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour {
 
 	private string language;
 	private bool music;
-	private float alertLevel = 50;
+	private float spaceshipLife = 50;
+	private float damage = 80;
 
 	// Use this for initialization
 	void Awake()
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Start () {
+		language = "English";
 		SceneManager.LoadSceneAsync("Menu", LoadSceneMode.Single);
 	}
 	
@@ -34,9 +36,9 @@ public class GameManager : MonoBehaviour {
 		return music;
 	}
 
-	public float GetAlertLevel()
+	public float GetSpaceshipLife()
 	{
-		return alertLevel;
+		return spaceshipLife;
 	}
 
 	public void ChangeLanguage(int value)
@@ -57,5 +59,10 @@ public class GameManager : MonoBehaviour {
 	public void SetSound(bool change)
 	{
 		music = change;
+	}
+
+	public float GetDamage()
+	{
+		return damage;
 	}
 }

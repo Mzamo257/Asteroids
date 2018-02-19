@@ -28,7 +28,7 @@ public class Buttons : MonoBehaviour {
 	public void ButtonMainMenu()
 	{
 		SceneManager.LoadScene ("Menu");
-		Time.timeScale = 1.0f;
+		//Time.timeScale = 1.0f;
 	}
 
 	public void ButtonResume()

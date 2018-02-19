@@ -16,6 +16,8 @@ public class Menu : MonoBehaviour {
 	public Text music;
 	public Text settings;
 	public Text credits;
+	public Transform spaceship;
+	public Transform center;
 	#endregion
 
 	#region Private Attributes
@@ -56,6 +58,11 @@ public class Menu : MonoBehaviour {
 		{
 			sound.isOn = gmScript.GetSound ();
 		}*/
+	}
+
+	void Update()
+	{
+		spaceship.RotateAround (center.position, Vector3.down, 10*Time.deltaTime); 
 	}
 
 	public void DropdownLanguage()
@@ -120,31 +127,5 @@ public class Menu : MonoBehaviour {
 		music.text = "Musique /Son";
 		settings.text = "Configuration";
 		credits.text = "Crédits";
-	}
-
-	private void MenuPauseLanguage()
-	{
-		Text resume = GameObject.Find("Resume").GetComponent<Text>();
-		Text mainMenu = GameObject.Find("MainMenu").GetComponent<Text>();
-		Text exit = GameObject.Find("Exit").GetComponent<Text>();
-
-		switch (language.value)
-		{
-		case 0:
-			resume.text = "Resume";
-			resume.text = "Main Menu";
-			resume.text = "Exit Game";
-			break;
-		case 1:
-			resume.text = "Reanudar";
-			resume.text = "Menú Principal";
-			resume.text = "Salir del juego";
-			break;
-		case 2:
-			resume.text = "Resume";
-			resume.text = "Main Menu";
-			resume.text = "Exit Game";
-			break;
-		}
 	}
 }
