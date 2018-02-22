@@ -26,16 +26,13 @@ public class HUD : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		//Mathf.Lerp (damage, gmScript.GetSpaceshipLife (), 0.1f);
-		if (damage > 0) {
-			damage -= 0.1f;
-		} else
-			damage = 0;
+		if (damage > 0)	damage -= 10 * Time.deltaTime;
+	
 	}
 
 	void OnGUI()
 	{
-		GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize / 8, /*gmScript.GetSpaceshipLife() +*/ damage / 100 * (iconSize * 4), iconSize / 4), alertBars [3], ScaleMode.StretchToFill);
+		GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize / 8, damage / 100 * (iconSize * 4), iconSize / 4), alertBars [3], ScaleMode.StretchToFill);
 		GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize / 8, gmScript.GetSpaceshipLife () / 100 * (iconSize * 4), iconSize / 4), alertBars [2], ScaleMode.StretchToFill);
 		GUI.DrawTexture (new Rect (iconSize + iconSize / 2, 0, iconSize * 4, iconSize / 2), alertBars [1], ScaleMode.ScaleToFit);
 		GUI.DrawTexture (new Rect (iconSize, 0, iconSize/1.5f, iconSize/1.5f), alertBars [0], ScaleMode.ScaleToFit);

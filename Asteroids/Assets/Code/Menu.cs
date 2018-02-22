@@ -18,6 +18,8 @@ public class Menu : MonoBehaviour {
 	public Text credits;
 	public Transform spaceship;
 	public Transform center;
+
+	public float spaceshipVelocity;
 	#endregion
 
 	#region Private Attributes
@@ -62,7 +64,7 @@ public class Menu : MonoBehaviour {
 
 	void Update()
 	{
-		spaceship.RotateAround (center.position, Vector3.down, 10*Time.deltaTime); 
+		spaceship.RotateAround (center.position, Vector3.down, spaceshipVelocity*Time.deltaTime); 
 	}
 
 	public void DropdownLanguage()
