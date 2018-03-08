@@ -26,8 +26,8 @@ public class AsteroidCollisionManager : MonoBehaviour {
         Debug.Log(health);
 
         //
-        if (particleSystem != null)
-            particleSystem.Play();
+        /*if (particleSystem != null)
+            particleSystem.Play();*/
 
         // 
         if(health <= 0)
