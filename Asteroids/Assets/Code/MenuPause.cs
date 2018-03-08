@@ -41,9 +41,9 @@ public class MenuPause : MonoBehaviour {
 			break;
 		case "Français":
 			pause.text = "Pause";
-			resume.text = "Resume";
-			mainMenu.text = "Main Menu";
-			exit.text = "Exit Game";
+			resume.text = "Reprendre";
+			mainMenu.text = "Menu Principal";
+			exit.text = "Jeu de Sortie";
 			break;
 		}
 	}

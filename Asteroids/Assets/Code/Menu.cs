@@ -100,9 +100,9 @@ public class Menu : MonoBehaviour {
 
 	private void MenuEnglish()
 	{
-		play.text = "New Game";
-		cont.text = "Continue";
-		exit.text = "Exit Game";
+		play.text = "Survival";
+		cont.text = "Story";
+		exit.text = "Exit";
 		lang.text = "Language";
 		music.text = "Music/Sound";
 		settings.text = "Settings";
@@ -111,8 +111,8 @@ public class Menu : MonoBehaviour {
 
 	private void MenuSpanish()
 	{
-		play.text = "Nueva Partida";
-		cont.text = "Continuar";
+		play.text = "Supervivencia";
+		cont.text = "Historia";
 		exit.text = "Salir del juego";
 		lang.text = "Idioma";
 		music.text = "Musica/Sonido";
@@ -122,8 +122,8 @@ public class Menu : MonoBehaviour {
 
 	private void MenuFrench()
 	{
-		play.text = "Nouveau Jeu";
-		cont.text = "Continuer";
+		play.text = "Survie";
+		cont.text = "Récit";
 		exit.text = "Jeu de Sortie";
 		lang.text = "Langage";
 		music.text = "Musique /Son";
