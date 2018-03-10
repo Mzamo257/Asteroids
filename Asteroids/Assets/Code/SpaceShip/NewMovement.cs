@@ -13,8 +13,10 @@ public class NewMovement : MonoBehaviour {
 	private bool first_Movement = false;
 	private float currentUpdateTime;
 
-	// Use this for initialization
-	void Start () {
+    private Vector3 adjustedDirection; // Here for testing
+
+    // Use this for initialization
+    void Start () {
 		
 		rb = gameObject.GetComponent<Rigidbody> ();
 	
@@ -37,13 +39,17 @@ public class NewMovement : MonoBehaviour {
 		} 
 		else if(second_Movement && currentUpdateTime > updateTime)
 		{
-			rb.AddForce (adjust_Direction (velocity, posNextWayPoint_Relative).normalized * force, ForceMode.Impulse);
+            adjustedDirection = adjust_Direction(velocity, posNextWayPoint_Relative).normalized;
+            rb.AddForce (adjustedDirection * force, ForceMode.Impulse);
+            // TODO: Guardar un valor de orientación
+            // Y hacer una transición más limpia con Slerp
+            transform.LookAt(adjustedDirection);
 			currentUpdateTime = 0;
 		}
 			
-		//Debug.DrawRay (transform.position, rb.velocity, Color.black);
-		//Debug.DrawRay (transform.position,adjust_Direction (velocity, posNextWayPoint_Relative) , Color.green);
-		//Debug.DrawRay (transform.position, posNextWayPoint_Relative, Color.white);
+		Debug.DrawRay (transform.position, rb.velocity, Color.red);
+		Debug.DrawRay (transform.position, adjust_Direction (velocity, posNextWayPoint_Relative) , Color.green);
+		Debug.DrawRay (transform.position, posNextWayPoint_Relative, Color.white);
 
 		if ((transform.position - nextWayPoint.position).magnitude <= 2) {
 			//cojo el siguiente wayPoint

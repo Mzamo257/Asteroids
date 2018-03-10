@@ -6,13 +6,15 @@ public class AsteroidManager : MonoBehaviour {
 
     private GameObject[] asteroids;
     // private List<GameObject> asteroids;
+    private GameObject spaceShip;
 
 	// Use this for initialization
 	void Start () {
         // Method 1: 
         // Asteroids in the scene by hand and got by FindGameObjectsWithTag
         asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
-        Debug.Log(asteroids.Length);
+        //
+        spaceShip = GameObject.Find("Viper");
 	}
 	
 	// Update is called once per frame
@@ -33,7 +35,7 @@ public class AsteroidManager : MonoBehaviour {
         {
             // Check if any of them is out of screen
             if (CheckOutOfCamera(asteroids[i])) {
-                asteroids[i].transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+                asteroids[i].transform.position = DetermineZoneToAppear();
                 asteroids[i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
             }
         }
@@ -48,6 +50,20 @@ public class AsteroidManager : MonoBehaviour {
     {
         Vector3 screenPoint = Camera.main.WorldToViewportPoint(asteroid.transform.position);
         return screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    Vector3 DetermineZoneToAppear()
+    {
+        float randomX = Random.value;
+        float randomY = Random.value;
+        float zDistance = (spaceShip.transform.position - Camera.main.transform.position).magnitude;
+        float randomZ = (Random.value * 10.0f) + zDistance + 5.0f;
+        Vector3 worldPoint = Camera.main.ViewportToWorldPoint(new Vector3(randomX, randomY, randomZ));
+        return worldPoint;
     }
 
     #endregion
