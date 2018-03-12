@@ -43,7 +43,7 @@ public class NewMovement : MonoBehaviour {
             rb.AddForce (adjustedDirection * force, ForceMode.Impulse);
             // TODO: Guardar un valor de orientación
             // Y hacer una transición más limpia con Slerp
-            transform.LookAt(adjustedDirection);
+			transform.LookAt(posNextWayPoint_Relative);
 			currentUpdateTime = 0;
 		}
 			

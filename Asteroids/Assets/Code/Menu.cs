@@ -100,24 +100,24 @@ public class Menu : MonoBehaviour {
 
 	private void MenuEnglish()
 	{
-		play.text = "Survival";
-		cont.text = "Story";
-		exit.text = "Exit";
+		play.text = "SURVIVAL";
+		cont.text = "STORY";
+		exit.text = "EXIT";
 		lang.text = "Language";
 		music.text = "Music/Sound";
-		settings.text = "Settings";
-		credits.text = "Credits";
+		settings.text = "SETTINGS";
+		credits.text = "CREDITS";
 	}
 
 	private void MenuSpanish()
 	{
-		play.text = "Supervivencia";
-		cont.text = "Historia";
-		exit.text = "Salir del juego";
+		play.text = "SUPERVIVENCIA";
+		cont.text = "HISTORIA";
+		exit.text = "SALIR DEL JUEGO";
 		lang.text = "Idioma";
 		music.text = "Musica/Sonido";
-		settings.text = "Configuración";
-		credits.text = "Créditos";
+		settings.text = "CONFIGURACION";
+		credits.text = "CREDITOS";
 	}
 
 	private void MenuFrench()
