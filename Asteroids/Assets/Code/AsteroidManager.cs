@@ -35,8 +35,7 @@ public class AsteroidManager : MonoBehaviour {
         {
             // Check if any of them is out of screen
             if (CheckOutOfCamera(asteroids[i])) {
-                asteroids[i].transform.position = DetermineZoneToAppear();
-                asteroids[i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+                asteroids[i].SetActive(false);
             }
         }
     }
@@ -64,6 +63,23 @@ public class AsteroidManager : MonoBehaviour {
         float randomZ = (Random.value * 10.0f) + zDistance + 5.0f;
         Vector3 worldPoint = Camera.main.ViewportToWorldPoint(new Vector3(randomX, randomY, randomZ));
         return worldPoint;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void ActivateAsteroid()
+    {
+        for(int i = 0; i < asteroids.Length; i++)
+        {
+            if (!asteroids[i].activeInHierarchy){
+                asteroids[i].SetActive(true);
+                asteroids[i].transform.position = DetermineZoneToAppear();
+                asteroids[i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+                return;
+            }
+        }
+        Debug.Log("All asteroids in use");
     }
 
     #endregion

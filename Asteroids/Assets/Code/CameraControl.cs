@@ -18,7 +18,9 @@ public class CameraControl : MonoBehaviour {
 		Vector3 idealPos = targetPlayer.TransformPoint(camOffset);
 		transform.position = idealPos;
 		Vector3 targetPos = targetPlayer.TransformPoint(targetOffset);
-		transform.LookAt(targetPos, Vector3.up);
+        //transform.LookAt(targetPos, Vector3.up);
+        Quaternion objectiveRotation = Quaternion.LookRotation(targetPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, objectiveRotation, 0.2f);
 	}
 
 	void Update()
