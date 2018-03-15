@@ -41,6 +41,8 @@ public class SpaceshipMovement : MonoBehaviour {
 		if (!first_Movement) {
 			rb.AddForce (posNextWayPoint_Relative.normalized * force, ForceMode.Impulse);
 			first_Movement = true;
+			previousRotation = nextRotation;
+			nextRotation = Quaternion.LookRotation (posNextWayPoint_Relative);
 		} 
 		else if(second_Movement && currentUpdateTime > updateTime)
 		{
@@ -54,6 +56,7 @@ public class SpaceshipMovement : MonoBehaviour {
 			currentUpdateTime = 0;
 		}
 			
+		Debug.Log (rb.velocity);
 		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
 
 		Debug.DrawRay (transform.position, rb.velocity, Color.red);
