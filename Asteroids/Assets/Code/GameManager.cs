@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 
 	private string language;
 	private bool music;
-	private float spaceshipLife = 50;
+	private float spaceshipLife = 100;
 	private float damage = 80;
 
 	// Use this for initialization
