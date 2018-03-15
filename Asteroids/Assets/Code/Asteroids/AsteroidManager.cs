@@ -36,6 +36,7 @@ public class AsteroidManager : MonoBehaviour {
             // Check if any of them is out of screen
             if (CheckOutOfCamera(asteroids[i])) {
                 asteroids[i].SetActive(false);
+                ActivateAsteroid();
             }
         }
     }

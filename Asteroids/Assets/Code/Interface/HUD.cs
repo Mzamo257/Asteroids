@@ -20,13 +20,13 @@ public class HUD : MonoBehaviour {
 
 		iconSize = Screen.height * iconSizeRate;
 
-		damage = 80.0f;
+		damage = gmScript.GetSpaceshipLife();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (damage > 0)	damage -= 10 * Time.deltaTime;
+		if (damage > gmScript.GetSpaceshipLife())	damage -= 10 * Time.deltaTime;
 	
 	}
 

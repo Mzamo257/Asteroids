@@ -8,10 +8,16 @@ public class GameManager : MonoBehaviour {
 	private string language;
 	private bool music;
 	private float spaceshipLife = 100;
-	private float damage = 80;
 
-	// Use this for initialization
-	void Awake()
+    private float spaceshipCurrentLife;
+    //private float damage = 0;
+
+    public float SpaceCurrentLife {
+        get { return spaceshipCurrentLife; }
+    }
+
+    // Use this for initialization
+    void Awake()
 	{
 		DontDestroyOnLoad (transform.gameObject);
 	}
@@ -19,6 +25,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		language = "English";
 		SceneManager.LoadSceneAsync("Menu", LoadSceneMode.Single);
+        spaceshipCurrentLife = spaceshipLife;
 	}
 	
 	// Update is called once per frame
@@ -41,6 +48,16 @@ public class GameManager : MonoBehaviour {
 		return spaceshipLife;
 	}
 
+    public void DamageSpaceShip( float damage)
+    {
+        spaceshipLife -= damage;
+        spaceshipLife = Mathf.Max(0, spaceshipLife);
+        if(spaceshipLife == 0)
+        {
+            // Aquí el gameover
+        }
+    }
+
 	public void ChangeLanguage(int value)
 	{
 		switch (value) {
@@ -61,8 +78,8 @@ public class GameManager : MonoBehaviour {
 		music = change;
 	}
 
-	public float GetDamage()
+	/*public float GetDamage()
 	{
 		return damage;
-	}
+	}*/
 }
