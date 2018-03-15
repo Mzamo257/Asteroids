@@ -50,7 +50,7 @@ public class SpaceshipMovement : MonoBehaviour {
             // Y hacer una transición más limpia con Slerp
 
 			previousRotation = nextRotation;
-			nextRotation = Quaternion.LookRotation (adjustedDirection);
+			nextRotation = Quaternion.LookRotation (posNextWayPoint_Relative);
 			currentUpdateTime = 0;
 		}
 			
