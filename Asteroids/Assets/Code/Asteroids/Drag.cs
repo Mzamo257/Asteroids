@@ -45,7 +45,7 @@ public class Drag : MonoBehaviour {
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, zToUse));
 		Vector3 direction = mouseWorldPos - objectPos;
 		float dist = direction.magnitude;
-		Debug.Log (direction + ", " + dist);
+		//Debug.Log (direction + ", " + dist);
 		rb.AddForce(direction*force, ForceMode.Impulse);
 	}
 
@@ -65,7 +65,7 @@ public class Drag : MonoBehaviour {
         float randomZ = Random.value;
 
         rb.AddForce(new Vector3(randomX, randomY, randomZ), ForceMode.Impulse);
-        Debug.Log(new Vector3(randomX, randomY, randomZ));
+//        Debug.Log(new Vector3(randomX, randomY, randomZ));
     }
 
 }

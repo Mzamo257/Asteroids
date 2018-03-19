@@ -7,6 +7,7 @@ public class SpaceshipMovement : MonoBehaviour {
 	public Transform nextWayPoint;
 	public float updateTime;
 	public float force;
+	public float maxSpeed;
 
 	private Rigidbody rb;
 	private bool second_Movement = false;
@@ -38,6 +39,8 @@ public class SpaceshipMovement : MonoBehaviour {
 
 		//Debug.Log (Angle_resultant);
 
+		rb.velocity = Vector3.ClampMagnitude (rb.velocity , maxSpeed);
+
 		if (!first_Movement) {
 			rb.AddForce (posNextWayPoint_Relative.normalized * force, ForceMode.Impulse);
 			first_Movement = true;
@@ -48,6 +51,7 @@ public class SpaceshipMovement : MonoBehaviour {
 		{
             adjustedDirection = adjust_Direction(velocity, posNextWayPoint_Relative).normalized;
             rb.AddForce (adjustedDirection * force, ForceMode.Impulse);
+
             // TODO: Guardar un valor de orientación
             // Y hacer una transición más limpia con Slerp
 
@@ -56,15 +60,14 @@ public class SpaceshipMovement : MonoBehaviour {
 			currentUpdateTime = 0;
 		}
 			
-		Debug.Log (rb.velocity);
+		Debug.Log ("velocity" + rb.velocity);
 		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
 
-		Debug.DrawRay (transform.position, rb.velocity, Color.red);
-		Debug.DrawRay (transform.position, adjust_Direction (velocity, posNextWayPoint_Relative) , Color.green);
-		Debug.DrawRay (transform.position, posNextWayPoint_Relative, Color.white);
+		//Debug.DrawRay (transform.position, rb.velocity, Color.red);
+		//Debug.DrawRay (transform.position, adjust_Direction (velocity, posNextWayPoint_Relative) , Color.green);
+		//Debug.DrawRay (transform.position, posNextWayPoint_Relative, Color.white);
 
-		if ((transform.position - nextWayPoint.position).magnitude <= 2) {
-			//cojo el siguiente wayPoint
+		if ((transform.position - nextWayPoint.position).magnitude <= 2) {			
 			SetNextWayPoint();
 
 			first_Movement = true;

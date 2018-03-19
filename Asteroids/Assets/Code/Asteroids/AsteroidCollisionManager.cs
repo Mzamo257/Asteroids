@@ -23,7 +23,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
         float otherObjectMass = collision.rigidbody.mass;
         // Usamos la velocidad relativa de la colisión para determinar el daño
         health -= (collision.relativeVelocity.magnitude * otherObjectMass);
-        Debug.Log(health);
+       // Debug.Log(health);
 
         //
         /*if (particleSystem != null)

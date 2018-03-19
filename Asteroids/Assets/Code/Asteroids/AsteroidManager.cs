@@ -80,7 +80,7 @@ public class AsteroidManager : MonoBehaviour {
                 return;
             }
         }
-        Debug.Log("All asteroids in use");
+       // Debug.Log("All asteroids in use");
     }
 
     #endregion

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WayPoint : MonoBehaviour {
 
+	public bool finalWayPoint;
 	public Transform nextWayPoint;
 
 }
