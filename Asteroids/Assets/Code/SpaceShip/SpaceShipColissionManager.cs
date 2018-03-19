@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpaceShipColissionManager : MonoBehaviour {
+	#region Public Attributes
+	#endregion
 
-    private GameManager gameMgr;
+	#region Private Attributes
+	private GameManager gameMgr;
+	#endregion
 
+	#region MonoDevelop Methods
 	// Use this for initialization
 	void Start () {
         gameMgr = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -15,7 +20,9 @@ public class SpaceShipColissionManager : MonoBehaviour {
 	void Update () {
 
 	}
+	#endregion
 
+	#region User Methods
     private void OnCollisionEnter(Collision collision)
     {
         // Debug.Log("Spaceship collision");
@@ -29,4 +36,6 @@ public class SpaceShipColissionManager : MonoBehaviour {
             particleSystem.Play();*/
 
     }
+	#endregion
+
 }

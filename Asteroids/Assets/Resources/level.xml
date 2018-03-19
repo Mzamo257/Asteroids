@@ -1,0 +1,19 @@
+<LEVELS>
+	<DESCRIPTIONS>
+		<DESCRIPTION name="velocity_Spaceship">
+			
+		</DESCRIPTION>
+		<DESCRIPTION name="numberOf_Waypoints">
+			
+		</DESCRIPTION>
+		<DESCRIPTION name="numberOf_Asteroids">
+			
+		</DESCRIPTION>
+		<DESCRIPTION name="velocityAsteroids">
+			
+		</DESCRIPTION>
+		<DESCRIPTION name="lifeKit">
+			
+		</DESCRIPTION>
+	</DESCRIPTIONS>
+</LEVELS>

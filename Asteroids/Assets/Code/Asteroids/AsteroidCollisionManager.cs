@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AsteroidCollisionManager : MonoBehaviour {
+	#region Public Attributes
+	public float health = 100;
+	#endregion
 
-    public float health = 100;
+	#region Private Attributes
+	private ParticleSystem particleSystem;
+	#endregion
 
-    private ParticleSystem particleSystem;
-
+	#region MonoDevelop Methods
 	// Use this for initialization
 	void Start () {
-        particleSystem = gameObject.GetComponent<ParticleSystem>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		particleSystem = gameObject.GetComponent<ParticleSystem>();
 	}
 
+	// Update is called once per frame
+	void Update () {
+
+	}
+	#endregion
+
+	#region User Methods
     private void OnCollisionEnter(Collision collision)
     {
         float otherObjectMass = collision.rigidbody.mass;
@@ -36,4 +42,6 @@ public class AsteroidCollisionManager : MonoBehaviour {
         }
             
     }
+	#endregion
+
 }

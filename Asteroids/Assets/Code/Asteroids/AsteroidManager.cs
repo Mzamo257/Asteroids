@@ -3,85 +3,121 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AsteroidManager : MonoBehaviour {
+	#region Public Attributes
+	public List<GameObject> asteroidsPrefabs;
+	public int numAsteroids;
+	#endregion
 
-    private GameObject[] asteroids;
-    // private List<GameObject> asteroids;
-    private GameObject spaceShip;
+	#region Private Attributes
+	// private List<GameObject> asteroids;
+	private List<GameObject>[] asteroids;
+	private GameObject spaceShip;
+	private float counter;
+	#endregion
 
+	#region MonoDevelop Methods
 	// Use this for initialization
 	void Start () {
-        // Method 1: 
-        // Asteroids in the scene by hand and got by FindGameObjectsWithTag
-        asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
-        //
-        spaceShip = GameObject.Find("Viper");
+		// Method 1: 
+		// Asteroids in the scene by hand and got by FindGameObjectsWithTag
+		//asteroidsPrefabs = GameObject.FindGameObjectsWithTag("Asteroid");
+		//
+		spaceShip = GameObject.Find("Viper");
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-        // TODO: Mover este chequeo a una corrutina
-        CheckAsteroids();
+		// TODO: Mover este chequeo a una corrutina
+		counter += Time.deltaTime;
+		if (counter >= 0.5) {
+			//CheckAsteroids();
+			counter = 0;
+			spamAsteroids ();
+		}
+	}
+	#endregion
+
+	#region User Methods
+
+	/// <summary>
+	/// Haz una pasada comprobando los asteriodes
+	/// De momento que estén en pantalla
+	/// </summary>
+	void CheckAsteroids()
+	{
+		for(int i = 0; i < asteroidsPrefabs.Count; i++)
+		{
+			for (int j = 0; j < numAsteroids; j++) {
+				// Check if any of them is out of screen
+				if (asteroids[i][j].activeInHierarchy && CheckOutOfCamera(asteroids[i][j])) {
+
+					asteroids[i][j].SetActive(false);
+				}
+			}
+		}
 	}
 
-    #region User Methods
+	/// <summary>
+	/// Check if the asteroid is out of the camera
+	/// </summary>
+	/// <param name="asteroid"></param>
+	/// <returns></returns>
+	bool CheckOutOfCamera(GameObject asteroid)
+	{
+		Vector3 screenPoint = Camera.main.WorldToViewportPoint(asteroid.transform.position);
+		return screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1;
+	}
 
-    /// <summary>
-    /// Haz una pasada comprobando los asteriodes
-    /// De momento que estén en pantalla
-    /// </summary>
-    void CheckAsteroids()
-    {
-        for(int i = 0; i < asteroids.Length; i++)
-        {
-            // Check if any of them is out of screen
-            if (CheckOutOfCamera(asteroids[i])) {
-                asteroids[i].SetActive(false);
-                ActivateAsteroid();
-            }
-        }
-    }
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
+	Vector3 DetermineZoneToAppear()
+	{
+		float randomX = Random.value;
+		float randomY = Random.value;
+		float zDistance = (spaceShip.transform.position - Camera.main.transform.position).magnitude;
+		float randomZ = (Random.value * 10.0f) + zDistance + 5.0f;
+		Vector3 worldPoint = Camera.main.ViewportToWorldPoint(new Vector3(randomX, randomY, randomZ));
+		return worldPoint;
+	}
 
-    /// <summary>
-    /// Check if the asteroid is out of the camera
-    /// </summary>
-    /// <param name="asteroid"></param>
-    /// <returns></returns>
-    bool CheckOutOfCamera(GameObject asteroid)
-    {
-        Vector3 screenPoint = Camera.main.WorldToViewportPoint(asteroid.transform.position);
-        return screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1;
-    }
+	/// <summary>
+	/// 
+	/// </summary>
+	public void ActivateAsteroid(int index)
+	{
+		for(int i = 0; i < asteroids[index].Count; i++)
+		{
+			if (!asteroids[index][i].activeInHierarchy){
+				asteroids[index][i].SetActive(true);
+				asteroids[index][i].transform.position = DetermineZoneToAppear();
+				asteroids[index][i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+				return;
+			}
+		}
+		// Debug.Log("All asteroids in use");
+	}
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    Vector3 DetermineZoneToAppear()
-    {
-        float randomX = Random.value;
-        float randomY = Random.value;
-        float zDistance = (spaceShip.transform.position - Camera.main.transform.position).magnitude;
-        float randomZ = (Random.value * 10.0f) + zDistance + 5.0f;
-        Vector3 worldPoint = Camera.main.ViewportToWorldPoint(new Vector3(randomX, randomY, randomZ));
-        return worldPoint;
-    }
+	public void establishAsteoidPools()
+	{
+		asteroids = new List<GameObject>[asteroidsPrefabs.Count];
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public void ActivateAsteroid()
-    {
-        for(int i = 0; i < asteroids.Length; i++)
-        {
-            if (!asteroids[i].activeInHierarchy){
-                asteroids[i].SetActive(true);
-                asteroids[i].transform.position = DetermineZoneToAppear();
-                asteroids[i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
-                return;
-            }
-        }
-       // Debug.Log("All asteroids in use");
-    }
+		for (int i = 0; i < asteroidsPrefabs.Count; i++) {
 
-    #endregion
+			for (int j = 0; j < numAsteroids; j++) {
+				asteroids [i].Add (Instantiate (asteroidsPrefabs [i]));
+				asteroids [i] [j].SetActive (false);
+			}
+		}
+	}
+
+	public void spamAsteroids(){
+		for (int i = 0; i < 10; i++) {
+			int randomIndex = (int)(Random.value * asteroidsPrefabs.Count);
+			ActivateAsteroid (randomIndex);
+		}
+	}
+
+	#endregion
 }

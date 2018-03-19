@@ -3,25 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Drag : MonoBehaviour {
-	Vector3 dist;
-	float posX;
-	float posY;
-	bool selected;
+	
+	#region Public Attributes
 	public Material cubo1;
 	public Material cubo2;
 	private Rigidbody rb;
 	public float force=0.1f;
-    public Vector3 newCenterOfMass;
-    public Vector3 impulse;
+	public Vector3 newCenterOfMass;
+	public Vector3 impulse;
+
 	//public Vector3 torque;
 
+	#endregion
+
+	#region Private Attributes
+	private Vector3 dist;
+	private float posX;
+	private float posY;
+	private bool selected;
+	#endregion
+
+	#region MonoDevelop Methods
 	// Use this for initialization
 	void Start () {
 		selected = false;
 		rb = gameObject.GetComponent<Rigidbody> ();
-        rb.centerOfMass = newCenterOfMass;
-        addRandomTorque();
-        addRandomForce();
+		rb.centerOfMass = newCenterOfMass;
+		addRandomTorque();
+		addRandomForce();
 		//rb.AddTorque(torque, ForceMode.Impulse);
 	}
 
@@ -33,7 +42,9 @@ public class Drag : MonoBehaviour {
 			launchAsteroid();
 		}
 	}
+	#endregion
 
+	#region User Methods
 	void OnMouseDown(){
 		selected = true;
 		gameObject.GetComponent<MeshRenderer> ().material = cubo2;
@@ -49,24 +60,24 @@ public class Drag : MonoBehaviour {
 		rb.AddForce(direction*force, ForceMode.Impulse);
 	}
 
-    void addRandomTorque()
-    {
-        float randomX = Random.value * 10 - 5;
-        float randomY = Random.value * 10 - 5;
-        float randomZ = Random.value * 10 - 5;
+	void addRandomTorque()
+	{
+		float randomX = Random.value * 10 - 5;
+		float randomY = Random.value * 10 - 5;
+		float randomZ = Random.value * 10 - 5;
 
-        rb.AddTorque(new Vector3(randomX, randomY, randomZ), ForceMode.Impulse);
-    }
+		rb.AddTorque(new Vector3(randomX, randomY, randomZ), ForceMode.Impulse);
+	}
 
-    void addRandomForce()
-    {
-        float randomX = Random.value;
-        float randomY = Random.value;
-        float randomZ = Random.value;
+	void addRandomForce()
+	{
+		float randomX = Random.value;
+		float randomY = Random.value;
+		float randomZ = Random.value;
 
-        rb.AddForce(new Vector3(randomX, randomY, randomZ), ForceMode.Impulse);
-//        Debug.Log(new Vector3(randomX, randomY, randomZ));
-    }
-
+		rb.AddForce(new Vector3(randomX, randomY, randomZ), ForceMode.Impulse);
+		//        Debug.Log(new Vector3(randomX, randomY, randomZ));
+	}
+	#endregion
 }
 
