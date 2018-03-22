@@ -23,6 +23,7 @@ public class AsteroidManager : MonoBehaviour {
 		//asteroidsPrefabs = GameObject.FindGameObjectsWithTag("Asteroid");
 		//
 		spaceShip = GameObject.Find("Viper");
+        establishAsteoidPools();
 	}
 
 	// Update is called once per frame
@@ -30,7 +31,7 @@ public class AsteroidManager : MonoBehaviour {
 		// TODO: Mover este chequeo a una corrutina
 		counter += Time.deltaTime;
 		if (counter >= 0.5) {
-			//CheckAsteroids();
+			CheckAsteroids();
 			counter = 0;
 			spamAsteroids ();
 		}
@@ -104,8 +105,8 @@ public class AsteroidManager : MonoBehaviour {
 		asteroids = new List<GameObject>[asteroidsPrefabs.Count];
 
 		for (int i = 0; i < asteroidsPrefabs.Count; i++) {
-
-			for (int j = 0; j < numAsteroids; j++) {
+            asteroids[i] = new List<GameObject>();
+            for (int j = 0; j < numAsteroids; j++) {
 				asteroids [i].Add (Instantiate (asteroidsPrefabs [i]));
 				asteroids [i] [j].SetActive (false);
 			}
@@ -115,6 +116,7 @@ public class AsteroidManager : MonoBehaviour {
 	public void spamAsteroids(){
 		for (int i = 0; i < 10; i++) {
 			int randomIndex = (int)(Random.value * asteroidsPrefabs.Count);
+            Debug.Log(asteroids[randomIndex].Count);
 			ActivateAsteroid (randomIndex);
 		}
 	}
