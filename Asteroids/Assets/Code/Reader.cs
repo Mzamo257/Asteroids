@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
 
-public class NewBehaviourScript {
+public static class Reader {
 
 	#region Public Attributes
 	#endregion
@@ -17,37 +17,30 @@ public class NewBehaviourScript {
 
 	#region User Methods
 
-	public static string[] GetTextXML(string category, string subCategory, string name)
+	public static Level getDataFromXML(string level_Name)
 	{
-		string[] textToReturn;
-		XmlDocument xml_d;
-		XmlNode objectToUse;
-		XmlNodeList xmlDescription;
+		Level level = new Level ();
+		XmlDocument xml_doc = new XmlDocument();
+		xml_doc.Load ("Assets/Resources/level.xml");
+		XmlNode level_info;
 
-		GameManager gmScript = GameObject.Find ("GameManager").GetComponent<GameManager> ();
-		string language = gmScript.GetLanguage ();
-		TextAsset textasset = (TextAsset)Resources.Load(language, typeof(TextAsset));
 
-		xml_d = new XmlDocument();
-		xml_d.LoadXml(textasset.text);
-
-		//Search if it is the correct ID or name
-		string route = "MAIN/" + category + "/" + subCategory + "[@name='" + name + "']";
-		objectToUse = xml_d.SelectSingleNode(route);
-
-		if (objectToUse != null) 
+		level_info = xml_doc.SelectSingleNode ("LEVELS/LEVEL[@name='" +level_Name+ "']");
+		if (level_info != null) 
 		{
-			xmlDescription = ((XmlElement)objectToUse).GetElementsByTagName ("texto");
-			textToReturn = new string[xmlDescription.Count];
-			int j = 0;
-			foreach (XmlNode node in xmlDescription) 
-			{
-				textToReturn [j] = node.InnerText;
-				j++;
-			}
-			return textToReturn;
-		} 
+			
+			level.force_Spaceship = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[0].InnerText);
+			level.max_Speed_Spaceship = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[1].InnerText);
+			level.numberOf_Waypoints = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[2].InnerText);
+			level.numberOf_Asteroids = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[3].InnerText);
+			level.force_Asteroids = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[4].InnerText);
+			level.lifeKit = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[5].InnerText);
+
+		}
+
 		return null;
+
+
 	}
 	#endregion
 }

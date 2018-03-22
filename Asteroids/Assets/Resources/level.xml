@@ -1,19 +1,10 @@
 <LEVELS>
-	<DESCRIPTIONS>
-		<DESCRIPTION name="velocity_Spaceship">
-			
-		</DESCRIPTION>
-		<DESCRIPTION name="numberOf_Waypoints">
-			
-		</DESCRIPTION>
-		<DESCRIPTION name="numberOf_Asteroids">
-			
-		</DESCRIPTION>
-		<DESCRIPTION name="velocityAsteroids">
-			
-		</DESCRIPTION>
-		<DESCRIPTION name="lifeKit">
-			
-		</DESCRIPTION>
-	</DESCRIPTIONS>
+	<LEVEL name = "LEVEL1">
+		<VARIABLE name="force_Spaceship">1</VARIABLE>
+		<VARIABLE name="max_Speed_Spaceship">5</VARIABLE>
+		<VARIABLE name="numberOf_Waypoints">5</VARIABLE>
+		<VARIABLE name="numberOf_Asteroids">10</VARIABLE>
+		<VARIABLE name="force_Asteroids">3</VARIABLE>
+		<VARIABLE name="lifeKit">10</VARIABLE>
+	</LEVEL>
 </LEVELS>

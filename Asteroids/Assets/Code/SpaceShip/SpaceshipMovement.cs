@@ -68,7 +68,7 @@ public class SpaceshipMovement : MonoBehaviour {
 			currentUpdateTime = 0;
 		}
 
-		Debug.Log ("velocity" + rb.velocity);
+//		Debug.Log ("velocity" + rb.velocity);
 		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
 
 		//Debug.DrawRay (transform.position, rb.velocity, Color.red);

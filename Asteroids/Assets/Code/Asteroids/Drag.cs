@@ -5,10 +5,9 @@ using UnityEngine;
 public class Drag : MonoBehaviour {
 	
 	#region Public Attributes
+	public float force = 0.1f;
 	public Material cubo1;
 	public Material cubo2;
-	private Rigidbody rb;
-	public float force=0.1f;
 	public Vector3 newCenterOfMass;
 	public Vector3 impulse;
 
@@ -21,6 +20,7 @@ public class Drag : MonoBehaviour {
 	private float posX;
 	private float posY;
 	private bool selected;
+	private Rigidbody rb;
 	#endregion
 
 	#region MonoDevelop Methods
