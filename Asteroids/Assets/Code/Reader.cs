@@ -17,9 +17,9 @@ public static class Reader {
 
 	#region User Methods
 
-	public static Level getDataFromXML(string level_Name)
+	public static data_Level getDataFromXML(string level_Name)
 	{
-		Level level = new Level ();
+		data_Level level = new data_Level ();
 		XmlDocument xml_doc = new XmlDocument();
 		xml_doc.Load ("Assets/Resources/level.xml");
 		XmlNode level_info;
@@ -36,10 +36,10 @@ public static class Reader {
 			level.force_Asteroids = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[4].InnerText);
 			level.lifeKit = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[5].InnerText);
 
+
 		}
 
-		return null;
-
+		return level;
 
 	}
 	#endregion

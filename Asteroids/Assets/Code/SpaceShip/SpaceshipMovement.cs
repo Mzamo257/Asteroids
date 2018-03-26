@@ -6,7 +6,7 @@ public class SpaceshipMovement : MonoBehaviour {
 
 
 	#region Public Attributes
-	public Transform nextWayPoint;
+	//public Transform nextWayPoint;
 	public float updateTime;
 	public float force;
 	public float maxSpeed;
@@ -14,6 +14,9 @@ public class SpaceshipMovement : MonoBehaviour {
 	#endregion
 
 	#region Private Attributes
+	private level_Manager level_manager;
+	private int current_wayPoint = 0;
+	private Vector3 pos_current_wayPoint;
 	private Rigidbody rb;
 	private bool second_Movement = false;
 	private bool first_Movement = false;
@@ -33,13 +36,13 @@ public class SpaceshipMovement : MonoBehaviour {
 		rb = gameObject.GetComponent<Rigidbody> ();
 		previousRotation = new Quaternion();
 		nextRotation = new Quaternion();
-
+		pos_current_wayPoint = level_manager.getWaypoint (current_wayPoint).transform.position;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		Vector3 velocity = rb.velocity;
-		Vector3 posNextWayPoint_Relative = nextWayPoint.position - transform.position;
+		Vector3 posNextWayPoint_Relative = pos_current_wayPoint - transform.position;
 
 		currentUpdateTime += Time.deltaTime;
 
@@ -75,8 +78,11 @@ public class SpaceshipMovement : MonoBehaviour {
 		//Debug.DrawRay (transform.position, adjust_Direction (velocity, posNextWayPoint_Relative) , Color.green);
 		//Debug.DrawRay (transform.position, posNextWayPoint_Relative, Color.white);
 
-		if ((transform.position - nextWayPoint.position).magnitude <= 2) {			
-			SetNextWayPoint();
+		if ((transform.position - pos_current_wayPoint).magnitude <= 2) {			
+			//SetNextWayPoint();
+
+			current_wayPoint++;
+			pos_current_wayPoint = level_manager.getWaypoint (current_wayPoint).transform.position;
 
 			first_Movement = true;
 			second_Movement = true;
@@ -92,9 +98,9 @@ public class SpaceshipMovement : MonoBehaviour {
 		return (obj - pos);
 	}
 
-	void SetNextWayPoint()
+	/*void SetNextWayPoint()
 	{
-		nextWayPoint = nextWayPoint.GetComponent<WayPoint>().nextWayPoint;
-	}
+		nextWayPoint = level_manager.getWaypoint (current_wayPoint).GetComponent<WayPoint>().nextWayPoint;
+	}*/
 	#endregion
 }

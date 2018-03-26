@@ -124,7 +124,7 @@ public class AsteroidManager : MonoBehaviour {
 	public void spamAsteroids(){
 		for (int i = 0; i < 40; i++) {
 			int randomIndex = (int)(Random.value * asteroidsPrefabs.Count);
-            Debug.Log(asteroids[randomIndex].Count);
+//            Debug.Log(asteroids[randomIndex].Count);
 			ActivateAsteroid (randomIndex, 30.0f);
 		}
 	}
@@ -133,7 +133,7 @@ public class AsteroidManager : MonoBehaviour {
         for (int i = 0; i < 10; i++)
         {
             int randomIndex = (int)(Random.value * asteroidsPrefabs.Count);
-            Debug.Log(asteroids[randomIndex].Count);
+         //   Debug.Log(asteroids[randomIndex].Count);
             ActivateAsteroid(randomIndex, 10.0f);
         }
     }

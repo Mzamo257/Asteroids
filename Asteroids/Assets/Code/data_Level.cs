@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level {
+public class data_Level {
 	#region Public Attributes
 	public int force_Spaceship;
 	public int max_Speed_Spaceship;
