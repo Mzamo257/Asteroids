@@ -115,6 +115,7 @@ public class AsteroidManager : MonoBehaviour {
             asteroids[i] = new List<GameObject>();
             for (int j = 0; j < numAsteroids; j++) {
 				asteroids [i].Add (Instantiate (asteroidsPrefabs [i]));
+                asteroids[i][j].GetComponent<AsteroidCollisionManager>().AsteroidMgr = this;
 				asteroids [i] [j].SetActive (false);
 			}
 		}

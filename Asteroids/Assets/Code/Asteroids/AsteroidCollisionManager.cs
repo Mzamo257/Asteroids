@@ -9,11 +9,16 @@ public class AsteroidCollisionManager : MonoBehaviour {
 
 	#region Private Attributes
 	private ParticleSystem particleSystem;
-	#endregion
+    private AsteroidManager asteroidMgr;
+    #endregion
 
-	#region MonoDevelop Methods
-	// Use this for initialization
-	void Start () {
+    #region Properties
+    public AsteroidManager AsteroidMgr { set { asteroidMgr = value; } }
+    #endregion
+
+    #region MonoDevelop Methods
+    // Use this for initialization
+    void Start () {
 		particleSystem = gameObject.GetComponent<ParticleSystem>();
 	}
 
@@ -39,6 +44,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
         if(health <= 0)
         {
             gameObject.SetActive(false);
+            // asteroidMgr.ActivateAsteroid();
         }
             
     }

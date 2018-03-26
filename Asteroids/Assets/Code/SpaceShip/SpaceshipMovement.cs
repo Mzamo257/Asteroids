@@ -36,6 +36,7 @@ public class SpaceshipMovement : MonoBehaviour {
 		rb = gameObject.GetComponent<Rigidbody> ();
 		previousRotation = new Quaternion();
 		nextRotation = new Quaternion();
+        level_manager = GameObject.Find("Level Manager").GetComponent<level_Manager>();
 		pos_current_wayPoint = level_manager.getWaypoint (current_wayPoint).transform.position;
 	}
 
@@ -82,7 +83,17 @@ public class SpaceshipMovement : MonoBehaviour {
 			//SetNextWayPoint();
 
 			current_wayPoint++;
-			pos_current_wayPoint = level_manager.getWaypoint (current_wayPoint).transform.position;
+            GameObject nextWaypoint = level_manager.getWaypoint(current_wayPoint);
+
+            if (pos_current_wayPoint == null)
+            {
+                Debug.Log("Victory");
+            }
+            else
+            {
+                pos_current_wayPoint = nextWaypoint.transform.position;
+            }
+            
 
 			first_Movement = true;
 			second_Movement = true;

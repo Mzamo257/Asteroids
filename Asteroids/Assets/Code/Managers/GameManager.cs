@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour {
         if(spaceshipLife == 0)
         {
             // Aquí el gameover
+            Debug.Log("Game Over");
         }
     }
 
