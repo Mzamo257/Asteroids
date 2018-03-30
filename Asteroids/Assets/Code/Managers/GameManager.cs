@@ -3,48 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// List of the game modes
+/// </summary>
+public enum GameMode
+{
+    Invalid = -1,
+
+    Survival,
+    Story,
+    Competitive,
+
+    Count
+}
+
+/// <summary>
+/// Game manager class
+/// </summary>
 public class GameManager : MonoBehaviour {
 
     #region Public Attributes
-    public enum GameMode
-    {
-        Invalid = -1,
-
-        Survival,
-        Story,
-        Competitive,
-
-        Count
-    }
+    
     #endregion
 
     #region Private Attributes
     private string language;
 	private bool music;
-	private List<data_Level> levels_List;
+	private List<BaseLevelData> levels_List;
 
-	private int current_Level;
+	private int currentLevel;
     //private float damage = 0;
-    private GameMode gameMode;
+    private GameMode currentGameMode;
     
 	#endregion
 
 	#region Properties
 
 
-	public int Current_Level {
-		get { return current_Level; }
+	public int CurrentLevel {
+		get { return currentLevel; }
 	}
 
-	public data_Level current_Level_data
+	public BaseLevelData CurrentLevelData
 	{
-		get{ return levels_List[current_Level]; }
+		get{ return levels_List[currentLevel]; }
 	}
 
 	public bool mute {
 		get{ return music; }
 	}
 		
+    public GameMode CurrentGameMode
+    {
+        get { return currentGameMode; }
+        set { currentGameMode = value; }
+    }
 
 	#endregion
 
@@ -59,7 +72,7 @@ public class GameManager : MonoBehaviour {
 		language = "English";
 		SceneManager.LoadSceneAsync("Menu", LoadSceneMode.Single);
 		//Create the levels
-		levels_List = new List<data_Level>();
+		levels_List = new List<BaseLevelData>();
 		for(int i = 0; i< 2; i++)
 		{
 			levels_List.Add(Reader.getDataFromXML ("LEVEL1"));
@@ -83,30 +96,7 @@ public class GameManager : MonoBehaviour {
 	{
 		return music;
 	}
-
-    public void DamageSpaceShip( float damage)
-    {
-		spaceshipCurrentLife -= damage;
-		spaceshipCurrentLife = Mathf.Max(0, spaceshipCurrentLife);
-		if(spaceshipCurrentLife == 0)
-        {
-            // Aquí el gameover/victoria
-            switch (gameMode)
-            {
-                case GameMode.Survival:
-                    Debug.Log("Victory");
-                    break;
-                case GameMode.Story:
-                    Debug.Log("Defeat");
-                    break;
-                case GameMode.Competitive:
-                    Debug.Log("Player Asteroid wins");
-                    break;
-            }
-            SceneManager.LoadScene("Menu");
-        }
-    }
-
+    
 	public void ChangeLanguage(int value)
 	{
 		switch (value) {

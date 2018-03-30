@@ -17,9 +17,9 @@ public static class Reader {
 
 	#region User Methods
 
-	public static data_Level getDataFromXML(string level_Name)
+	public static BaseLevelData getDataFromXML(string level_Name)
 	{
-		data_Level level = new data_Level ();
+		BaseLevelData level = new BaseLevelData ();
 		XmlDocument xml_doc = new XmlDocument();
 		xml_doc.Load ("Assets/Resources/level.xml");
 		XmlNode level_info;

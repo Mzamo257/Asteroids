@@ -15,8 +15,8 @@ public class SpaceshipMovement : MonoBehaviour {
 	#endregion
 
 	#region Private Attributes
-	private level_Manager level_manager;
-	private int current_wayPoint = 0;
+	private SurvivalLevelManager level_manager;
+	//private int current_wayPoint = 0;
 	private Vector3 pos_current_wayPoint;
 	private Rigidbody rb;
 	private bool second_Movement = false;
@@ -30,8 +30,6 @@ public class SpaceshipMovement : MonoBehaviour {
 	#endregion
 
 	#region Properties Attributes
-	public int CurrentWaypoint
-	{ get { return current_wayPoint; } }
 	#endregion
 
 	#region MonoDevelop Methods
@@ -42,8 +40,8 @@ public class SpaceshipMovement : MonoBehaviour {
 		rb = gameObject.GetComponent<Rigidbody> ();
 		previousRotation = new Quaternion();
 		nextRotation = new Quaternion();
-        level_manager = GameObject.Find("Level Manager").GetComponent<level_Manager>();
-		pos_current_wayPoint = level_manager.getWaypoint (current_wayPoint).transform.position;
+        level_manager = GameObject.Find("Level Manager").GetComponent<SurvivalLevelManager>();
+		pos_current_wayPoint = level_manager.CurrentWaypoint.transform.position;
 	}
 
 	// Update is called once per frame
@@ -85,23 +83,17 @@ public class SpaceshipMovement : MonoBehaviour {
 		//Debug.DrawRay (transform.position, adjust_Direction (velocity, posNextWayPoint_Relative) , Color.green);
 		//Debug.DrawRay (transform.position, posNextWayPoint_Relative, Color.white);
 
-		if ((transform.position - pos_current_wayPoint).magnitude <= 2) {			
-			//SetNextWayPoint();
+		if ((transform.position - pos_current_wayPoint).magnitude <= 2) {
+            //SetNextWayPoint();
 
-			current_wayPoint++;
-            GameObject nextWaypoint = level_manager.getWaypoint(current_wayPoint);
+            level_manager.AdvanceWaypoint();
+            GameObject nextWaypoint = level_manager.CurrentWaypoint;
 
-			if (nextWaypoint == null)
-            {
-                Debug.Log("Victory");
-				SceneManager.LoadScene ("Menu");
-            }
-            else
+			if (nextWaypoint != null)
             {
                 pos_current_wayPoint = nextWaypoint.transform.position;
             }
             
-
 			first_Movement = true;
 			second_Movement = true;
 		}

@@ -8,12 +8,14 @@ public class SpaceShipColissionManager : MonoBehaviour {
 
 	#region Private Attributes
 	private GameManager gameMgr;
+    private BaseLevelManager levelMgr;
 	#endregion
 
 	#region MonoDevelop Methods
 	// Use this for initialization
 	void Start () {
-        gameMgr = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameMgr = FindObjectOfType<GameManager>();
+        levelMgr = FindObjectOfType<BaseLevelManager>();
 	}
 	
 	// Update is called once per frame
@@ -28,7 +30,7 @@ public class SpaceShipColissionManager : MonoBehaviour {
         // Debug.Log("Spaceship collision");
         float otherObjectMass = collision.rigidbody.mass;
         // Usamos la velocidad relativa de la colisión para determinar el daño
-        gameMgr.DamageSpaceShip(collision.relativeVelocity.magnitude * otherObjectMass);
+        levelMgr.DamageSpaceShip(collision.relativeVelocity.magnitude * otherObjectMass);
         // Debug.Log(health);
 
         //

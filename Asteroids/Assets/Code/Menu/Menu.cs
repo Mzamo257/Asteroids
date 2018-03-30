@@ -38,7 +38,7 @@ public class Menu : MonoBehaviour {
 	{
 		gameManager = GameObject.Find ("GameManager");
 		gmScript = gameManager.GetComponent<GameManager> ();
-		/*if (language) 
+        /*if (language) 
 		{		
 			switch (gmScript.GetLanguage ()) 
 			{
@@ -60,6 +60,9 @@ public class Menu : MonoBehaviour {
 		{
 			sound.isOn = gmScript.GetSound ();
 		}*/
+
+        //
+        Time.timeScale = 1.0f;
 	}
 
 	void Update()

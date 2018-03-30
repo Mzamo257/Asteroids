@@ -14,7 +14,7 @@ public abstract class HUD : MonoBehaviour {
 	protected float iconSize;
 	protected GameObject gameManager;
 	protected GameManager gmScript;
-	protected level_Manager levelMgr;
+	protected BaseLevelManager levelMgr;
 	protected SpaceshipMovement waypoint;
 	#endregion
 
@@ -25,26 +25,26 @@ public abstract class HUD : MonoBehaviour {
 		gameManager = GameObject.Find ("GameManager");
 		gmScript = gameManager.GetComponent<GameManager> ();
 
-		levelMgr = FindObjectOfType<level_Manager> ();
+		levelMgr = FindObjectOfType<BaseLevelManager> ();
 		waypoint = FindObjectOfType <SpaceshipMovement>();
 
 		iconSize = Screen.height * iconSizeRate;
 
-		damage = gmScript.SpaceCurrentLife;
+		damage = levelMgr.SpaceCurrentLife;
 	}
 	
 	// Update is called once per frame
 	protected virtual void Update () 
 	{
-		if (damage > gmScript.SpaceCurrentLife)	damage -= 10 * Time.deltaTime;
+		if (damage > levelMgr.SpaceCurrentLife)	damage -= 10 * Time.deltaTime;
 	
 	}
 
 	protected virtual void OnGUI()
 	{
 		//Healthbar
-		GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize / 6, damage / gmScript.SpaceMaxLife * (iconSize * 2.9f), iconSize / 3), alertBars [3], ScaleMode.StretchToFill);
-		GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize / 6, gmScript.SpaceCurrentLife / gmScript.SpaceMaxLife * (iconSize * 2.9f), iconSize / 3), alertBars [2], ScaleMode.StretchToFill);
+		GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize / 6, damage / levelMgr.SpaceMaxLife * (iconSize * 2.9f), iconSize / 3), alertBars [3], ScaleMode.StretchToFill);
+		GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize / 6, levelMgr.SpaceCurrentLife / levelMgr.SpaceMaxLife * (iconSize * 2.9f), iconSize / 3), alertBars [2], ScaleMode.StretchToFill);
 		GUI.DrawTexture (new Rect (iconSize + iconSize / 2, 13, iconSize * 3, iconSize / 2), alertBars [1], ScaleMode.StretchToFill);
 		GUI.DrawTexture (new Rect (iconSize, 0, iconSize/1.5f, iconSize/1.5f), alertBars [0], ScaleMode.ScaleToFit);
 	}
