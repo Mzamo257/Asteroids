@@ -5,17 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-	#region Public Attributes
-	#endregion
+    #region Public Attributes
+    public enum GameMode
+    {
+        Invalid = -1,
 
-	#region Private Attributes
-	private string language;
+        Survival,
+        Story,
+        Competitive,
+
+        Count
+    }
+    #endregion
+
+    #region Private Attributes
+    private string language;
 	private bool music;
-	private float spaceshipLife = 100;
+	private float spaceshipLife = 1000;
 	private List<data_Level> levels_List;
     private float spaceshipCurrentLife;
 	private int current_Level;
     //private float damage = 0;
+    private GameMode gameMode;
+    
 	#endregion
 
 	#region Properties
@@ -82,8 +94,20 @@ public class GameManager : MonoBehaviour {
         spaceshipLife = Mathf.Max(0, spaceshipLife);
         if(spaceshipLife == 0)
         {
-            // Aquí el gameover
-            Debug.Log("Game Over");
+            // Aquí el gameover/victoria
+            switch (gameMode)
+            {
+                case GameMode.Survival:
+                    Debug.Log("Victory");
+                    break;
+                case GameMode.Story:
+                    Debug.Log("Defeat");
+                    break;
+                case GameMode.Competitive:
+                    Debug.Log("Player Asteroid wins");
+                    break;
+            }
+            SceneManager.LoadScene("Menu");
         }
     }
 
