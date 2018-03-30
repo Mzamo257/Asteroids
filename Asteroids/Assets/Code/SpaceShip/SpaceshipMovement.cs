@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpaceshipMovement : MonoBehaviour {
 
@@ -26,6 +27,11 @@ public class SpaceshipMovement : MonoBehaviour {
 
 	private Quaternion previousRotation;
 	private Quaternion nextRotation;
+	#endregion
+
+	#region Properties Attributes
+	public int CurrentWaypoint
+	{ get { return current_wayPoint; } }
 	#endregion
 
 	#region MonoDevelop Methods
@@ -85,9 +91,10 @@ public class SpaceshipMovement : MonoBehaviour {
 			current_wayPoint++;
             GameObject nextWaypoint = level_manager.getWaypoint(current_wayPoint);
 
-            if (pos_current_wayPoint == null)
+			if (nextWaypoint == null)
             {
                 Debug.Log("Victory");
+				SceneManager.LoadScene ("Menu");
             }
             else
             {

@@ -21,6 +21,7 @@ public class HUDstory : HUD {
 	protected override void OnGUI()
 	{
 		base.OnGUI ();
-		GUI.Label (new Rect (Screen.width * 9 / 10, Screen.height / 20, Screen.width/10, Screen.height/10), "2" + " / " + "10");
+		GUI.Label (new Rect (Screen.width * 9 / 10, Screen.height / 20, Screen.width/10, Screen.height/10), "num marcianos" + " / " + "num total marcianos");
+		GUI.Label (new Rect (Screen.width * 7 / 10, Screen.height / 20, Screen.width/10, Screen.height/10), "numero basura" + " / " + "numero total basura");
 	}
 }

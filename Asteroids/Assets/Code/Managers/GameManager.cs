@@ -21,9 +21,8 @@ public class GameManager : MonoBehaviour {
     #region Private Attributes
     private string language;
 	private bool music;
-	private float spaceshipLife = 1000;
 	private List<data_Level> levels_List;
-    private float spaceshipCurrentLife;
+
 	private int current_Level;
     //private float damage = 0;
     private GameMode gameMode;
@@ -31,9 +30,7 @@ public class GameManager : MonoBehaviour {
 	#endregion
 
 	#region Properties
-	public float SpaceCurrentLife {
-		get { return spaceshipCurrentLife; }
-	}
+
 
 	public int Current_Level {
 		get { return current_Level; }
@@ -43,6 +40,12 @@ public class GameManager : MonoBehaviour {
 	{
 		get{ return levels_List[current_Level]; }
 	}
+
+	public bool mute {
+		get{ return music; }
+	}
+		
+
 	#endregion
 
 	#region MonoDevelop Methods
@@ -55,8 +58,6 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		language = "English";
 		SceneManager.LoadSceneAsync("Menu", LoadSceneMode.Single);
-        spaceshipCurrentLife = spaceshipLife;
-
 		//Create the levels
 		levels_List = new List<data_Level>();
 		for(int i = 0; i< 2; i++)
@@ -83,16 +84,11 @@ public class GameManager : MonoBehaviour {
 		return music;
 	}
 
-	public float GetSpaceshipLife()
-	{
-		return spaceshipLife;
-	}
-
     public void DamageSpaceShip( float damage)
     {
-        spaceshipLife -= damage;
-        spaceshipLife = Mathf.Max(0, spaceshipLife);
-        if(spaceshipLife == 0)
+		spaceshipCurrentLife -= damage;
+		spaceshipCurrentLife = Mathf.Max(0, spaceshipCurrentLife);
+		if(spaceshipCurrentLife == 0)
         {
             // Aquí el gameover/victoria
             switch (gameMode)
