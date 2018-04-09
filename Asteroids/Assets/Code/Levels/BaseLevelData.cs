@@ -6,7 +6,7 @@ public class BaseLevelData {
 	#region Public Attributes
 	public int force_Spaceship;
 	public int max_Speed_Spaceship;
-	public int numberOf_Waypoints;
+	// public int numberOf_Waypoints;
 	public int numberOf_Asteroids;
 	public int force_Asteroids;
 	public float lifeKit;

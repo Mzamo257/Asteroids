@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
 	public int CurrentLevel {
 		get { return currentLevel; }
 	}
-
+    // TODO: Manage it with the different level types
 	public BaseLevelData CurrentLevelData
 	{
 		get{ return levels_List[currentLevel]; }

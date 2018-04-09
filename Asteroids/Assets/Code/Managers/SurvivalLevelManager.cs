@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SurvivalLevelManager : BaseLevelManager {
 
+    #region Private Attributes
+    protected SurvivalLevelData levelData;
     protected List<GameObject> list_of_wayPoints;
     protected int currentWaypoint;
+    #endregion
 
     #region Properties
     public int NumWaypoints
@@ -25,11 +28,13 @@ public class SurvivalLevelManager : BaseLevelManager {
     }
     #endregion
 
+    #region MonoBehaviour Methods
     // Use this for initialization
     protected override void Start () {
         base.Start();
         //
         gameManager.CurrentGameMode = GameMode.Survival;
+        level_data = gameManager.CurrentLevelData;
         // Debug.Log("Number of waypoints: " + level_data.numberOf_Waypoints);
         //create waypoints
         list_of_wayPoints = new List<GameObject>();
@@ -46,6 +51,10 @@ public class SurvivalLevelManager : BaseLevelManager {
     protected override void Update () {
 		
 	}
+
+    #endregion
+
+    #region Methods
 
     public GameObject getWaypoint(int position)
     {
@@ -64,4 +73,6 @@ public class SurvivalLevelManager : BaseLevelManager {
             SceneManager.LoadScene("Menu");
         }
     }
+
+    #endregion
 }

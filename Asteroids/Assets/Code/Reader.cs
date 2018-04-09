@@ -16,7 +16,7 @@ public static class Reader {
 	#endregion
 
 	#region User Methods
-
+    // TODO: Hacer funciones diferentes para los diferentes niveles
 	public static BaseLevelData getDataFromXML(string level_Name)
 	{
 		BaseLevelData level = new BaseLevelData ();
@@ -25,7 +25,7 @@ public static class Reader {
 		XmlNode level_info;
 
 
-		level_info = xml_doc.SelectSingleNode ("LEVELS/LEVEL[@name='" +level_Name+ "']");
+		level_info = xml_doc.SelectSingleNode ("LEVELS/SURVIVAL/LEVEL[@name='" +level_Name+ "']");
 		if (level_info != null) 
 		{
 			
