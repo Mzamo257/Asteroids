@@ -64,4 +64,16 @@ public class SurvivalLevelManager : BaseLevelManager {
             SceneManager.LoadScene("Menu");
         }
     }
+
+	public float calculateDistance()
+	{
+		float distance = 0;
+		for (int i = NumWaypoints-1; i > currentWaypoint; i--) 
+		{
+			distance += (list_of_wayPoints [i].transform.position - list_of_wayPoints [i-1].transform.position).magnitude;;
+		}
+
+		distance += (list_of_wayPoints [currentWaypoint].transform.position - ship.transform.position).magnitude;
+		return distance;
+	}
 }

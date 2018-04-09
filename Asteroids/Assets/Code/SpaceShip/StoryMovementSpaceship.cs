@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class SpaceshipMovement : BaseSpaceship {
+public class StoryMovementSpaceship : BaseSpaceship {
 
-	#region Public Attribute
+	#region Public Attributes
+	//public Transform nextWayPoint;
+	public float updateTime;
+	public float force;
+	public float maxSpeed;
 
 	#endregion
 
 	#region Private Attributes
-	private SurvivalLevelManager level_manager;
+	private StorylLevelManager level_manager;
 	private Vector3 pos_current_wayPoint;
+
 	#endregion
 
 	#region Properties Attributes
@@ -23,18 +27,20 @@ public class SpaceshipMovement : BaseSpaceship {
 	protected override void Start () {
 
 		base.Start ();
-		level_manager = GameObject.Find("Level Manager").GetComponent<SurvivalLevelManager>();
+		level_manager = GameObject.Find("Level Manager").GetComponent<StoryLevelManager>();
 		pos_current_wayPoint = level_manager.CurrentWaypoint.transform.position;
 	}
 
 	// Update is called once per frame
 	protected override void Update () {
 		velocity = rb.velocity;
-		Vector3 posNextWayPoint_Relative = pos_current_wayPoint - transform.position;
+		posNextWayPoint_Relative = pos_current_wayPoint - transform.position;
 
 		currentUpdateTime += Time.deltaTime;
 
 		float Angle_resultant = Vector3.Angle (velocity, posNextWayPoint_Relative);
+
+		//Debug.Log (Angle_resultant);
 
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity , maxSpeed);
 
@@ -57,12 +63,21 @@ public class SpaceshipMovement : BaseSpaceship {
 			currentUpdateTime = 0;
 		}
 
+		//		Debug.Log ("velocity" + rb.velocity);
 		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
 
-		if ((transform.position - pos_current_wayPoint).magnitude <= 2) {
+		Debug.DrawRay (transform.position, rb.velocity, Color.red);
+		Debug.DrawRay (transform.position, adjust_Direction (velocity, posNextWayPoint_Relative) , Color.green);
+		Debug.DrawRay (transform.position, posNextWayPoint_Relative, Color.white);
 
-			level_manager.AdvanceWaypoint();
-			GameObject nextWaypoint = level_manager.CurrentWaypoint;
+		if ((transform.position - pos_current_wayPoint).magnitude <= 2) {
+			//SetNextWayPoint();
+
+			//Este deberá de ser el de la collección de waypoint del levelManager del story
+			//si ese array esta lleno la direccion hacia el del numero 0
+			//si esta vacio sigo con la velocidad que llevaba y direccion
+			//level_manager.AdvanceWaypoint();
+		//	GameObject nextWaypoint = level_manager.CurrentWaypoint;
 
 			if (nextWaypoint != null)
 			{
@@ -73,6 +88,7 @@ public class SpaceshipMovement : BaseSpaceship {
 			second_Movement = true;
 		}
 	}
+
 	#endregion
 
 
