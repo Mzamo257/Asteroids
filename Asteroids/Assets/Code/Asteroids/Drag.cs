@@ -5,7 +5,7 @@ using UnityEngine;
 public class Drag : MonoBehaviour {
 	
 	#region Public Attributes
-	public float force = 0.1f;
+	public float force;
 	public Material cubo1;
 	public Material cubo2;
 	public Vector3 newCenterOfMass;
@@ -71,9 +71,9 @@ public class Drag : MonoBehaviour {
 
 	void addRandomForce()
 	{
-		float randomX = Random.value;
-		float randomY = Random.value;
-		float randomZ = Random.value;
+		float randomX = Random.value * 10 - 5;
+		float randomY = Random.value * 10 - 5;
+		float randomZ = Random.value * 10 - 5;
 
 		rb.AddForce(new Vector3(randomX, randomY, randomZ), ForceMode.Impulse);
 		//        Debug.Log(new Vector3(randomX, randomY, randomZ));
