@@ -9,7 +9,6 @@ public class BaseLevelData {
 	// public int numberOf_Waypoints;
 	public int numberOf_Asteroids;
 	public int force_Asteroids;
-	public float lifeKit;
 	#endregion
 
 	#region Private Attributes

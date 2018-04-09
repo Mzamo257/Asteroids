@@ -5,6 +5,7 @@ using UnityEngine;
 public class StoryLevelManager : BaseLevelManager {
 
     #region Private Attributes
+    protected StoryLevelData levelData;
     protected List<GameObject> playerWayPoints;
     #endregion
 
@@ -14,10 +15,12 @@ public class StoryLevelManager : BaseLevelManager {
         base.Start();
         // Set the game mode
         gameManager.CurrentGameMode = GameMode.Story;
+        //
+        levelData = gameManager.CurrentStoryLevelData;
         // Set the little aliens
-        for(int i = 0; i < 5/*THis from level data*/; i++)
+        for(int i = 0; i < levelData.numberOfAliens; i++)
         {
-
+            Debug.Log("Spawning little alien");
         }
     }
 

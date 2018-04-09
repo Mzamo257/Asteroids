@@ -13,7 +13,7 @@ public class StoryMovementSpaceship : BaseSpaceship {
 	#endregion
 
 	#region Private Attributes
-	private StorylLevelManager level_manager;
+	private StoryLevelManager level_manager;
 	private Vector3 pos_current_wayPoint;
 
 	#endregion
@@ -27,8 +27,8 @@ public class StoryMovementSpaceship : BaseSpaceship {
 	protected override void Start () {
 
 		base.Start ();
-		level_manager = GameObject.Find("Level Manager").GetComponent<StoryLevelManager>();
-		pos_current_wayPoint = level_manager.CurrentWaypoint.transform.position;
+		level_manager = FindObjectOfType<StoryLevelManager>();
+        pos_current_wayPoint = Vector3.zero; /*level_manager.CurrentWaypoint.transform.position;*/
 	}
 
 	// Update is called once per frame
@@ -79,10 +79,10 @@ public class StoryMovementSpaceship : BaseSpaceship {
 			//level_manager.AdvanceWaypoint();
 		//	GameObject nextWaypoint = level_manager.CurrentWaypoint;
 
-			if (nextWaypoint != null)
+			/*if (nextWaypoint != null)
 			{
 				pos_current_wayPoint = nextWaypoint.transform.position;
-			}
+			}*/
 
 			first_Movement = true;
 			second_Movement = true;

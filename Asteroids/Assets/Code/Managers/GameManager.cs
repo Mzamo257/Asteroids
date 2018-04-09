@@ -29,9 +29,11 @@ public class GameManager : MonoBehaviour {
     #region Private Attributes
     private string language;
 	private bool music;
-	private List<BaseLevelData> levels_List;
+	private List<SurvivalLevelData> survivalLevelList;
+    private List<StoryLevelData> storyLevelList;
 
-	private int currentLevel;
+	private int currentSurvivalLevel;
+    private int currentStoryLevel;
     //private float damage = 0;
     private GameMode currentGameMode;
     
@@ -41,15 +43,19 @@ public class GameManager : MonoBehaviour {
 
 
 	public int CurrentLevel {
-		get { return currentLevel; }
+		get { return currentSurvivalLevel; }
 	}
     // TODO: Manage it with the different level types
-	public BaseLevelData CurrentLevelData
+	public SurvivalLevelData CurrentSurvivalLevelData
 	{
-		get{ return levels_List[currentLevel]; }
+		get{ return survivalLevelList[currentSurvivalLevel]; }
 	}
+    public StoryLevelData CurrentStoryLevelData
+    {
+        get { return storyLevelList[currentStoryLevel]; }
+    }
 
-	public bool mute {
+    public bool mute {
 		get{ return music; }
 	}
 		
@@ -72,12 +78,19 @@ public class GameManager : MonoBehaviour {
 		language = "English";
 		SceneManager.LoadSceneAsync("Menu", LoadSceneMode.Single);
 		//Create the levels
-		levels_List = new List<BaseLevelData>();
+        // Survival ones
+		survivalLevelList = new List<SurvivalLevelData>();
 		for(int i = 0; i< 2; i++)
 		{
-			levels_List.Add(Reader.getDataFromXML ("LEVEL1"));
+			survivalLevelList.Add(Reader.getSurvivalLevelDataFromXML ("LEVEL1"));
 		}
-	}
+        // Story ones
+        storyLevelList = new List<StoryLevelData>();
+        for (int i = 0; i < 2; i++)
+        {
+            storyLevelList.Add(Reader.getStoryLevelDataFromXML("LEVEL1"));
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

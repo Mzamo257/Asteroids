@@ -9,6 +9,7 @@ public class SurvivalLevelManager : BaseLevelManager {
     protected SurvivalLevelData levelData;
     protected List<GameObject> list_of_wayPoints;
     protected int currentWaypoint;
+    
     #endregion
 
     #region Properties
@@ -34,11 +35,12 @@ public class SurvivalLevelManager : BaseLevelManager {
         base.Start();
         //
         gameManager.CurrentGameMode = GameMode.Survival;
-        level_data = gameManager.CurrentLevelData;
+        levelData = gameManager.CurrentSurvivalLevelData;
+        
         // Debug.Log("Number of waypoints: " + level_data.numberOf_Waypoints);
         //create waypoints
         list_of_wayPoints = new List<GameObject>();
-        for (int i = 0; i < level_data.numberOf_Waypoints; i++)
+        for (int i = 0; i < levelData.numberOfWaypoints; i++)
         {
             Vector3 wayPoint_position = new Vector3(0, 0, 100 * i);
             GameObject new_WayPoint = Instantiate(wayPoint_prefab, wayPoint_position, Quaternion.identity);
@@ -74,19 +76,18 @@ public class SurvivalLevelManager : BaseLevelManager {
         }
     }
 
-<<<<<<< HEAD
-    #endregion
-=======
-	public float calculateDistance()
-	{
-		float distance = 0;
-		for (int i = NumWaypoints-1; i > currentWaypoint; i--) 
-		{
-			distance += (list_of_wayPoints [i].transform.position - list_of_wayPoints [i-1].transform.position).magnitude;;
-		}
+    public float calculateDistance()
+    {
+        float distance = 0;
+        for (int i = NumWaypoints - 1; i > currentWaypoint; i--)
+        {
+            distance += (list_of_wayPoints[i].transform.position - list_of_wayPoints[i - 1].transform.position).magnitude; ;
+        }
 
-		distance += (list_of_wayPoints [currentWaypoint].transform.position - ship.transform.position).magnitude;
-		return distance;
-	}
->>>>>>> aea0a0b1e38e855bc00bdcd24c9ab882ff277e33
+        distance += (list_of_wayPoints[currentWaypoint].transform.position - ship.transform.position).magnitude;
+        return distance;
+    }
+
+    #endregion
+
 }
