@@ -74,5 +74,19 @@ public class SurvivalLevelManager : BaseLevelManager {
         }
     }
 
+<<<<<<< HEAD
     #endregion
+=======
+	public float calculateDistance()
+	{
+		float distance = 0;
+		for (int i = NumWaypoints-1; i > currentWaypoint; i--) 
+		{
+			distance += (list_of_wayPoints [i].transform.position - list_of_wayPoints [i-1].transform.position).magnitude;;
+		}
+
+		distance += (list_of_wayPoints [currentWaypoint].transform.position - ship.transform.position).magnitude;
+		return distance;
+	}
+>>>>>>> aea0a0b1e38e855bc00bdcd24c9ab882ff277e33
 }

@@ -34,13 +34,13 @@ public class AsteroidManager : MonoBehaviour {
 		if (counter >= 0.01) {
 			CheckAsteroids();
 			counter = 0;
-            Vector3 posSpaceShip = Camera.main.WorldToViewportPoint(spaceShip.transform.position);
+            Vector3 posSpaceShip = spaceShip.transform.position;
             // TODO: Revise that
-            if (posSpaceShip.z==0)
+			if (posSpaceShip.z==(-20))
             {
-                startAsteroids();
+                spamAsteroids(10.0f);
             }
-			spamAsteroids ();
+			spamAsteroids (50.0f);
 		}
 	}
 	#endregion
@@ -122,22 +122,13 @@ public class AsteroidManager : MonoBehaviour {
 	}
     
     //spamea asteroides aleatorios
-	public void spamAsteroids(){
+	public void spamAsteroids(float dist){
 		for (int i = 0; i < 40; i++) {
 			int randomIndex = (int)(Random.value * asteroidsPrefabs.Count);
-//            Debug.Log(asteroids[randomIndex].Count);
-			ActivateAsteroid (randomIndex, 30.0f);
+			ActivateAsteroid (randomIndex, dist);
 		}
 	}
 
-    public void startAsteroids(){
-        for (int i = 0; i < 10; i++)
-        {
-            int randomIndex = (int)(Random.value * asteroidsPrefabs.Count);
-         //   Debug.Log(asteroids[randomIndex].Count);
-            ActivateAsteroid(randomIndex, 10.0f);
-        }
-    }
 
     #endregion
 }

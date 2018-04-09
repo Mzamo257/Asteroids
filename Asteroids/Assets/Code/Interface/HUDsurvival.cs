@@ -5,12 +5,18 @@ using UnityEngine;
 public class HUDsurvival : HUD {
 
     private SurvivalLevelManager survivalLevelMgr;
+	private float totalDistance;
+	private float finalPosition;
+
 
 	// Use this for initialization
 	protected override void Start () {
 		base.Start ();
         //survivalLevelMgr = FindObjectOfType<SurvivalLevelManager>();
         survivalLevelMgr = levelMgr as SurvivalLevelManager;
+
+		totalDistance = survivalLevelMgr.calculateDistance();
+		finalPosition = Screen.height * 2 / 10;
     }
 	
 	// Update is called once per frame
@@ -34,6 +40,11 @@ public class HUDsurvival : HUD {
 			GUI.DrawTexture (new Rect (Screen.width * 8.7f / 10, Screen.height * 2 / 10 + positionY * i, iconSize / 2, iconSize / 3), progress [1], ScaleMode.ScaleToFit);
 		}
 		//Spaceship
-		GUI.DrawTexture (new Rect (Screen.width * 8.8f / 10, Screen.height * 2 / 10 + iconSize * 3, iconSize / 2.8f, iconSize / 2.8f), progress [0], ScaleMode.ScaleToFit);
+		GUI.DrawTexture (new Rect (Screen.width * 8.8f / 10, getProgress(), iconSize / 2.8f, iconSize / 2.8f), progress [0], ScaleMode.ScaleToFit);
+	}
+
+	private float getProgress()
+	{
+		return (finalPosition * survivalLevelMgr.calculateDistance() / totalDistance) /** (finalPosition / 100)*/;
 	}
 }
