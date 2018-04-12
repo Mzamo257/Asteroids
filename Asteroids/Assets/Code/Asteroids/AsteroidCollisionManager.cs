@@ -10,6 +10,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
 	#region Private Attributes
 	private ParticleSystem particleSystem;
     private AsteroidManager asteroidMgr;
+    private Effects soundEffectsManager;
     #endregion
 
     #region Properties
@@ -20,6 +21,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		particleSystem = gameObject.GetComponent<ParticleSystem>();
+        soundEffectsManager = FindObjectOfType<Effects>();
 	}
 
 	// Update is called once per frame
@@ -43,8 +45,15 @@ public class AsteroidCollisionManager : MonoBehaviour {
         // 
         if(health <= 0)
         {
+            // TODO: Restaurarles vida cuando salgan de la pool
+            soundEffectsManager.playEffect(2);
             gameObject.SetActive(false);
             // asteroidMgr.ActivateAsteroid();
+        }
+        else
+        {
+            int effectNumber = (int)(Random.value * 2);
+            soundEffectsManager.playEffect(effectNumber);
         }
             
     }
