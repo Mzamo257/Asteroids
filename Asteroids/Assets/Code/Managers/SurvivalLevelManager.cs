@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SurvivalLevelManager : BaseLevelManager {
+	public HUDsurvival surHud;
 
     #region Private Attributes
     protected SurvivalLevelData levelData;
     protected List<GameObject> list_of_wayPoints;
-    protected int currentWaypoint;
-    
+    protected int currentWaypoint;   
     #endregion
 
     #region Properties
@@ -74,18 +74,12 @@ public class SurvivalLevelManager : BaseLevelManager {
             Debug.Log("Defeat");
             SceneManager.LoadScene("Menu");
         }
+		surHud.updateParameters();
     }
 
     public float calculateDistance()
     {
-        float distance = 0;
-        for (int i = NumWaypoints - 1; i > currentWaypoint; i--)
-        {
-            distance += (list_of_wayPoints[i].transform.position - list_of_wayPoints[i - 1].transform.position).magnitude; ;
-        }
-
-        distance += (list_of_wayPoints[currentWaypoint].transform.position - ship.transform.position).magnitude;
-        return distance;
+        return (list_of_wayPoints[currentWaypoint].transform.position - ship.transform.position).magnitude;
     }
 
     #endregion
