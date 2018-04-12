@@ -57,6 +57,7 @@ public class Drag : MonoBehaviour {
 		Vector3 direction = mouseWorldPos - objectPos;
 		float dist = direction.magnitude;
 		//Debug.Log (direction + ", " + dist);
+		//rb.velocity=Vector3.zero;
 		rb.AddForce(direction*force, ForceMode.Impulse);
 	}
 

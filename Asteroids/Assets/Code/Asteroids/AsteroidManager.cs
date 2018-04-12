@@ -24,6 +24,7 @@ public class AsteroidManager : MonoBehaviour {
 		//
 		spaceShip = GameObject.Find("Viper");
         establishAsteoidPools();
+		//spamAsteroids(10.0f, 100);
         //startAsteroids();
 	}
 
@@ -38,9 +39,9 @@ public class AsteroidManager : MonoBehaviour {
             // TODO: Revise that
 			if (posSpaceShip.z==(-20))
             {
-                spamAsteroids(10.0f);
+                spamAsteroids(10.0f, 100);
             }
-			spamAsteroids (50.0f);
+			spamAsteroids (50.0f, 40);
 		}
 	}
 	#endregion
@@ -77,8 +78,9 @@ public class AsteroidManager : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// 
+	/// Determine the zone in which the asteroids should appears
 	/// </summary>
+	/// <param name="dist"></param>
 	/// <returns></returns>
 	Vector3 DetermineZoneToAppear(float dist)
 	{
@@ -87,12 +89,14 @@ public class AsteroidManager : MonoBehaviour {
 		float zDistance = (spaceShip.transform.position - Camera.main.transform.position).magnitude;
 		float randomZ = (Random.value * 70.0f) + zDistance + dist;
 		Vector3 worldPoint = Camera.main.ViewportToWorldPoint(new Vector3(randomX, randomY, randomZ));
+		//Vector3 worldPoint = Camera.main.transform.position + randomZ * Camera.main.transform.forward + randomX * Camera.main.transform.right + randomY * Camera.main.transform.up;
 		return worldPoint;
 	}
 
 	/// <summary>
-	/// 
+	/// Activate the asteroids from the pool, so they appear in the screen
 	/// </summary>
+	/// <param name="index"><param name="dist"></param>
 	public void ActivateAsteroid(int index, float dist)
 	{
 		for(int i = 0; i < asteroids[index].Count; i++)
@@ -122,8 +126,8 @@ public class AsteroidManager : MonoBehaviour {
 	}
     
     //spamea asteroides aleatorios
-	public void spamAsteroids(float dist){
-		for (int i = 0; i < 40; i++) {
+	public void spamAsteroids(float dist, int numAsteroids){
+		for (int i = 0; i < numAsteroids; i++) {
 			int randomIndex = (int)(Random.value * asteroidsPrefabs.Count);
 			ActivateAsteroid (randomIndex, dist);
 		}
