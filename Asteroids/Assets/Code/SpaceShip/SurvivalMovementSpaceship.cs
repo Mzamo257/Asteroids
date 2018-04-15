@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class StoryMovementSpaceship : BaseSpaceship {
+public class SurvivalMovementSpaceship : BaseSpaceship {
 
-	#region Public Attributes
+	#region Public Attribute
+
 	#endregion
 
 	#region Private Attributes
-	private StoryLevelManager level_manager;
+	private SurvivalLevelManager levelManager;
 	private float angleResultant;
 	#endregion
 
@@ -19,10 +21,9 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 	// Use this for initialization
 	protected override void Start () {
-
 		base.Start ();
-		level_manager = FindObjectOfType<StoryLevelManager>();
-        posCurrentWayPoint = Vector3.zero; /*level_manager.CurrentWaypoint.transform.position;*/
+		levelManager = GameObject.Find("Level Manager").GetComponent<SurvivalLevelManager>();
+		posCurrentWayPoint = levelManager.CurrentWaypoint.transform.position;
 	}
 
 	// Update is called once per frame
@@ -36,6 +37,7 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity , maxSpeed);
 
+		//Hay que arreglar este que es el primer empujon de la nave
 		if (!firstMovement) {
 			rb.AddForce (posNextWayPointRelative.normalized * force, ForceMode.Impulse);
 			firstMovement = true;
@@ -55,33 +57,23 @@ public class StoryMovementSpaceship : BaseSpaceship {
 			currentUpdateTime = 0;
 		}
 
-		//		Debug.Log ("velocity" + rb.velocity);
 		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
-
-		Debug.DrawRay (transform.position, rb.velocity, Color.red);
-		Debug.DrawRay (transform.position, adjustDirection (velocity, posNextWayPointRelative) , Color.green);
-		Debug.DrawRay (transform.position, posNextWayPointRelative, Color.white);
 
 		if ((transform.position - posCurrentWayPoint).magnitude <= 2) {
 
-			//Este deberá de ser el de la collección de waypoint del levelManager del story
-			//si ese array esta lleno la direccion hacia el del numero 0
-			//si esta vacio sigo con la velocidad que llevaba y direccion
-			//level_manager.AdvanceWaypoint();
-		//	GameObject nextWaypoint = level_manager.CurrentWaypoint;
+			levelManager.AdvanceWaypoint();
+			GameObject nextWaypoint = levelManager.CurrentWaypoint;
 
-			/*if (nextWaypoint != null)
+			if (nextWaypoint != null)
 			{
-				pos_current_wayPoint = nextWaypoint.transform.position;
-			}*/
+				posCurrentWayPoint = nextWaypoint.transform.position;
+			}
 
 			firstMovement = true;
 			secondMovement = true;
 		}
 	}
-
 	#endregion
-
 
 	#region User Methods
 	#endregion

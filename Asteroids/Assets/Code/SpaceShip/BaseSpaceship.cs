@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BaseSpaceship : MonoBehaviour {
 
-
 	#region Public Attributes
 	//public Transform nextWayPoint;
 	public float updateTime;
@@ -14,15 +13,16 @@ public class BaseSpaceship : MonoBehaviour {
 
 	#region Private Attributes
 	protected Rigidbody rb;
-	protected bool second_Movement = false;
-	protected bool first_Movement = false;
+	protected bool secondMovement = false;
+	protected bool firstMovement = false;
 	protected float currentUpdateTime;
 
 	protected Vector3 adjustedDirection; // Here for testing
 	protected Quaternion previousRotation;
 	protected Quaternion nextRotation;
 	protected Vector3 velocity;
-	protected Vector3 posNextWayPoint_Relative;
+	protected Vector3 posNextWayPointRelative;
+	protected Vector3 posCurrentWayPoint;
 	#endregion
 
 	#region Properties Attributes
@@ -45,7 +45,7 @@ public class BaseSpaceship : MonoBehaviour {
 
 
 	#region User Methods
-	protected Vector3 adjust_Direction(Vector3 pos, Vector3 obj)
+	protected Vector3 adjustDirection(Vector3 pos, Vector3 obj)
 	{
 		return (obj - pos);
 	}

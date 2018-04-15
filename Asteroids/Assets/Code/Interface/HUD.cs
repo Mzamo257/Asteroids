@@ -15,7 +15,6 @@ public abstract class HUD : MonoBehaviour {
 	protected GameObject gameManager;
 	protected GameManager gmScript;
 	protected BaseLevelManager levelMgr;
-	protected SpaceshipMovement waypoint;
 	#endregion
 
 
@@ -26,7 +25,6 @@ public abstract class HUD : MonoBehaviour {
 		gmScript = gameManager.GetComponent<GameManager> ();
 
 		levelMgr = FindObjectOfType<BaseLevelManager> ();
-		waypoint = FindObjectOfType <SpaceshipMovement>();
 
 		iconSize = Screen.height * iconSizeRate;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceShipColissionManager : MonoBehaviour {
+public class ColissionManagerSpaceship : MonoBehaviour {
 	#region Public Attributes
 	#endregion
 
