@@ -8,11 +8,14 @@ public class StoryMovementSpaceship : BaseSpaceship {
 	#endregion
 
 	#region Private Attributes
-	private StoryLevelManager level_manager;
+	private StoryLevelManager levelManager;
 	private float angleResultant;
+
+	private int counterWaypoints;
 	#endregion
 
 	#region Properties Attributes
+
 	#endregion
 
 	#region MonoDevelop Methods
@@ -21,19 +24,22 @@ public class StoryMovementSpaceship : BaseSpaceship {
 	protected override void Start () {
 
 		base.Start ();
-		level_manager = FindObjectOfType<StoryLevelManager>();
+		levelManager = FindObjectOfType<StoryLevelManager>();
         posCurrentWayPoint = Vector3.zero; /*level_manager.CurrentWaypoint.transform.position;*/
+		counterWaypoints = 0;
 	}
 
 	// Update is called once per frame
 	protected override void Update () {
+		
 		velocity = rb.velocity;
 		posNextWayPointRelative = posCurrentWayPoint - transform.position;
 
 		currentUpdateTime += Time.deltaTime;
 
-		angleResultant = Vector3.Angle (velocity, posNextWayPointRelative);
+		generateWaypoints (currentUpdateTime);
 
+		angleResultant = Vector3.Angle (velocity, posNextWayPointRelative);
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity , maxSpeed);
 
 		if (!firstMovement) {
@@ -46,16 +52,12 @@ public class StoryMovementSpaceship : BaseSpaceship {
 		{
 			adjustedDirection = adjustDirection(velocity, posNextWayPointRelative).normalized;
 			rb.AddForce (adjustedDirection * force, ForceMode.Impulse);
-
-			// TODO: Guardar un valor de orientación
-			// Y hacer una transición más limpia con Slerp
-
+		
 			previousRotation = nextRotation;
 			nextRotation = Quaternion.LookRotation (posNextWayPointRelative);
 			currentUpdateTime = 0;
 		}
-
-		//		Debug.Log ("velocity" + rb.velocity);
+			
 		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
 
 		Debug.DrawRay (transform.position, rb.velocity, Color.red);
@@ -67,10 +69,12 @@ public class StoryMovementSpaceship : BaseSpaceship {
 			//Este deberá de ser el de la collección de waypoint del levelManager del story
 			//si ese array esta lleno la direccion hacia el del numero 0
 			//si esta vacio sigo con la velocidad que llevaba y direccion
-			//level_manager.AdvanceWaypoint();
-		//	GameObject nextWaypoint = level_manager.CurrentWaypoint;
+			levelManager.ReachWaypoint();
 
-			/*if (nextWaypoint != null)
+			//tengo que coger el siguiente waypoint 
+			GameObject nextWaypoint = levelManager.CurrentWaypoint;
+			/*
+			if (nextWaypoint != null)
 			{
 				pos_current_wayPoint = nextWaypoint.transform.position;
 			}*/
@@ -84,5 +88,14 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 
 	#region User Methods
+	private void generateWaypoints(float counter)
+	{
+		//cambiar este counter sino creare waypoint cada dos por tres
+		if (counter < 2) {
+			levelManager.SetWaypoint( transform.position + new Vector3(0,0,100) );
+			Debug.Log ("He creado un waypoint");
+			//currentUpdateTime = 0;
+		}
+	}
 	#endregion
 }

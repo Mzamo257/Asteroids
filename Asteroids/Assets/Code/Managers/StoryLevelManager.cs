@@ -42,10 +42,11 @@ public class StoryLevelManager : BaseLevelManager {
             if (alienPrefab != null)
             {
                 Vector3 alienPosition = new Vector3(0, 0, 100 * i);
-                GameObject new_WayPoint = Instantiate(alienPrefab, alienPosition, Quaternion.identity);
-                aliens.Add(new_WayPoint);
+                GameObject newAlien = Instantiate(alienPrefab, alienPosition, Quaternion.identity);
+                aliens.Add(newAlien);
             }
         }
+		playerWayPoints = new List<GameObject>();
     }
 
     // Update is called once per frame
