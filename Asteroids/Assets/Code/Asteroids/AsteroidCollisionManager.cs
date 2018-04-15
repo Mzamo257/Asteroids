@@ -49,7 +49,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
             soundEffectsManager.playEffect(2);
             gameObject.SetActive(false);
             //asteroidMgr.ActivateAsteroid();
-			for (int i = 0; i < asteroidsPrefabs.Count; i++) 
+			/*for (int i = 0; i < asteroidsPrefabs.Count; i++) 
 			{
 				for (int j = 0; j < numAsteroids; j++)
 				{
@@ -58,7 +58,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
 						gameObject.SetActive (false);
 					}
 				}
-			}
+			}*/
         }
         else
         {

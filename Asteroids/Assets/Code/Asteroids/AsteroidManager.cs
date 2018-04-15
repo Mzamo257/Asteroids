@@ -25,7 +25,7 @@ public class AsteroidManager : MonoBehaviour {
 		//
 		spaceShip = GameObject.Find("Viper");
         establishAsteoidPools();
-		for(int i = 0; i < asteroidsPrefabs.Count; i++)
+		/*for(int i = 0; i < asteroidsPrefabs.Count; i++)
 		{
 			switch(i)
 			{
@@ -40,7 +40,7 @@ public class AsteroidManager : MonoBehaviour {
 			case 4:
 				type = 5;
 			}
-		}
+		}*/
 		//spamAsteroids(10.0f, 100);
         //startAsteroids();
 	}
