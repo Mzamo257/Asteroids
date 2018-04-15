@@ -13,6 +13,7 @@ public class AsteroidManager : MonoBehaviour {
 	private List<GameObject>[] asteroids;
 	private GameObject spaceShip;
 	private float counter;
+	private int type;
 	#endregion
 
 	#region MonoDevelop Methods
@@ -24,6 +25,22 @@ public class AsteroidManager : MonoBehaviour {
 		//
 		spaceShip = GameObject.Find("Viper");
         establishAsteoidPools();
+		for(int i = 0; i < asteroidsPrefabs.Count; i++)
+		{
+			switch(i)
+			{
+			case 0:
+				type = 1;
+			case 1:
+				type = 2;
+			case 2:
+				type = 3;
+			case 3:
+				type = 4;
+			case 4:
+				type = 5;
+			}
+		}
 		//spamAsteroids(10.0f, 100);
         //startAsteroids();
 	}
