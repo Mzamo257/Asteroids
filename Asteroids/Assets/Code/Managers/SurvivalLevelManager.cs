@@ -80,7 +80,7 @@ public class SurvivalLevelManager : BaseLevelManager {
 		surHud.updateParameters();
     }
 
-    public float calculateDistance()
+    public float calculateDistanceNextWaypoint()
     {
         return (list_of_wayPoints[currentWaypoint].transform.position - ship.transform.position).magnitude;
     }

@@ -18,7 +18,7 @@ public class HUDsurvival : HUD {
         survivalLevelMgr = levelMgr as SurvivalLevelManager;
 		positionY = iconSize * 3 / survivalLevelMgr.NumWaypoints;
 
-		totalDistance = survivalLevelMgr.calculateDistance();
+		totalDistance = survivalLevelMgr.calculateDistanceNextWaypoint();
 		finalPosition = Screen.height * 2 / 10;
 		startPosition = positionY * survivalLevelMgr.NumWaypoints + finalPosition;
     }
@@ -49,13 +49,13 @@ public class HUDsurvival : HUD {
 	private float getProgress()
 	{
 		int point = (survivalLevelMgr.NumWaypoints - survivalLevelMgr.CurrentWaypointIndex)-1;
-		float v = survivalLevelMgr.calculateDistance() / totalDistance;
+		float v = survivalLevelMgr.calculateDistanceNextWaypoint() / totalDistance;
 	
 		return Mathf.Lerp (finalPosition + positionY * point, finalPosition + positionY * (point+1), v);
 	}
 
 	public void updateParameters()
 	{
-		totalDistance = survivalLevelMgr.calculateDistance ();
+		totalDistance = survivalLevelMgr.calculateDistanceNextWaypoint ();
 	}
 }
