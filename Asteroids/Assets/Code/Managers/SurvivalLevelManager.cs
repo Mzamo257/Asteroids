@@ -47,6 +47,8 @@ public class SurvivalLevelManager : BaseLevelManager {
             list_of_wayPoints.Add(new_WayPoint);
         }
         // Debug.Log("Waypoint list length: " + list_of_wayPoints.Count);
+        //
+        surHud = FindObjectOfType<HUDsurvival>();
     }
 
     // Update is called once per frame
@@ -69,6 +71,7 @@ public class SurvivalLevelManager : BaseLevelManager {
     public void AdvanceWaypoint()
     {
         currentWaypoint++;
+        Debug.Log("Current waypoint: " + currentWaypoint + ", num of waypoints: " + list_of_wayPoints.Count);
         if(currentWaypoint > list_of_wayPoints.Count)
         {
             Debug.Log("Defeat");
