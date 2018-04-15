@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour {
 
 	private int currentSurvivalLevel;
     private int currentStoryLevel;
-    //private float damage = 0;
     private GameMode currentGameMode;
     
 	#endregion
@@ -99,7 +98,6 @@ public class GameManager : MonoBehaviour {
 	#endregion
 
 	#region User Methods
-
 	public string GetLanguage()
 	{
 		return language;
@@ -129,10 +127,5 @@ public class GameManager : MonoBehaviour {
 	{
 		music = change;
 	}
-
-	/*public float GetDamage()
-	{
-		return damage;
-	}*/
 	#endregion
 }

@@ -17,9 +17,8 @@ public class Effects : MonoBehaviour {
 
 	#region MonoDevelop Methods
 	// Use this for initialization
-	protected virtual void Start () {
-		//gameManager = GameObject.Find ("GameManager");
-		//gmScript = gameManager.GetComponent<GameManager> ();
+	protected virtual void Start () 
+	{
         gmScript = FindObjectOfType<GameManager>();
 		aS = GetComponent<AudioSource> ();
 
@@ -35,7 +34,6 @@ public class Effects : MonoBehaviour {
 	#region User Methods
 	public void playEffect(int effectNumber)
 	{
-        // Debug.Log("Trying to play");
 		if (!gmScript.mute) 
 		{
 			aS.clip = effects [effectNumber];
