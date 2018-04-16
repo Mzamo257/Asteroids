@@ -12,6 +12,8 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 	#region Private Attributes
 	private SurvivalLevelManager levelManager;
 	private float angleResultant;
+	private float maxDetectionDistance = 10.0f;
+	private RaycastHit hitInfo;
 	#endregion
 
 	#region Properties Attributes
@@ -28,15 +30,52 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 
 	// Update is called once per frame
 	protected override void Update () {
+		if (Physics.SphereCast (transform.position, maxDetectionDistance, rb.velocity, out hitInfo)) {
+			if(hitInfo.transform.tag.Equals("Asteroid"))
+			{
+				Debug.Log ("Sphere Detection");
+				if (Physics.Raycast (transform.position, rb.velocity, maxDetectionDistance)) {
+					rb.AddForce (transform.up, ForceMode.Impulse);
+					Debug.Log ("Raycast Detection");
+
+				}
+			}
+		}
+
 		velocity = rb.velocity;
-		posNextWayPointRelative = posCurrentWayPoint - transform.position;
-
 		currentUpdateTime += Time.deltaTime;
-
 		angleResultant = Vector3.Angle (velocity, posNextWayPointRelative);
-
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity , maxSpeed);
 
+		posNextWayPointRelative = posCurrentWayPoint - transform.position;
+
+		Redirect ();
+		VerticalSpeedControl ();
+		NextWaypoint ();
+
+	}
+	#endregion
+
+	#region User Methods
+	private void NextWaypoint()
+	{
+		if ((transform.position - posCurrentWayPoint).magnitude <= 2) {
+
+			levelManager.AdvanceWaypoint();
+			GameObject nextWaypoint = levelManager.CurrentWaypoint;
+
+			if (nextWaypoint != null)
+			{
+				posCurrentWayPoint = nextWaypoint.transform.position;
+			}
+
+			firstMovement = true;
+			secondMovement = true;
+		}
+	}
+
+	private void Redirect()
+	{
 		//Hay que arreglar este que es el primer empujon de la nave
 		if (!firstMovement) {
 			rb.AddForce (posNextWayPointRelative.normalized * force, ForceMode.Impulse);
@@ -59,22 +98,15 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 
 		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
 
-		if ((transform.position - posCurrentWayPoint).magnitude <= 2) {
+	}
+		
 
-			levelManager.AdvanceWaypoint();
-			GameObject nextWaypoint = levelManager.CurrentWaypoint;
-
-			if (nextWaypoint != null)
-			{
-				posCurrentWayPoint = nextWaypoint.transform.position;
-			}
-
-			firstMovement = true;
-			secondMovement = true;
+	private void VerticalSpeedControl()
+	{
+		if (rb.velocity.y > 0.1f) {
+			rb.AddForce (Vector3.down, ForceMode.Force);
+			Debug.Log ("VerticalSpeedControl");
 		}
 	}
-	#endregion
-
-	#region User Methods
 	#endregion
 }
