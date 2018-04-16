@@ -24,6 +24,8 @@ public class StoryLevelManager : BaseLevelManager {
 
     public int CaughtAliens { get { return caughtAliens; } }
 
+    public GameObject CurrentWaypoint { get { return playerWayPoints[0]; } }
+
     #endregion
 
     #region MonoBehaviour Methods
