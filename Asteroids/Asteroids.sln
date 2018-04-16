@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids.Plugins", "Asteroids.Plugins.csproj", "{ACA1A772-B05C-3D25-A3E3-7FA297C5FF0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids", "Asteroids.csproj", "{644F8B3B-773E-06CE-D89F-7ADA47CB3411}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids.Editor.Plugins", "Asteroids.Editor.Plugins.csproj", "{7E73D274-9F0E-66D1-0EEA-10A475FA1439}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACA1A772-B05C-3D25-A3E3-7FA297C5FF0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA1A772-B05C-3D25-A3E3-7FA297C5FF0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA1A772-B05C-3D25-A3E3-7FA297C5FF0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA1A772-B05C-3D25-A3E3-7FA297C5FF0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{644F8B3B-773E-06CE-D89F-7ADA47CB3411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{644F8B3B-773E-06CE-D89F-7ADA47CB3411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{644F8B3B-773E-06CE-D89F-7ADA47CB3411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{644F8B3B-773E-06CE-D89F-7ADA47CB3411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E73D274-9F0E-66D1-0EEA-10A475FA1439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E73D274-9F0E-66D1-0EEA-10A475FA1439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E73D274-9F0E-66D1-0EEA-10A475FA1439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E73D274-9F0E-66D1-0EEA-10A475FA1439}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
