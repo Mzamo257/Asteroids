@@ -511,7 +511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wayPoint_prefab: {fileID: 1253621437214496, guid: 5dd14f8a5826bec4689f8a468e9cfe48,
     type: 2}
-  surHud: {fileID: 0}
+  surHud: {fileID: 1154817448}
 --- !u!114 &373000345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +527,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  choque: []
 --- !u!82 &373000346
 AudioSource:
   m_ObjectHideFlags: 0

@@ -34,10 +34,13 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 			if(hitInfo.transform.tag.Equals("Asteroid"))
 			{
 				Debug.Log ("Sphere Detection");
-				if (Physics.Raycast (transform.position, rb.velocity, maxDetectionDistance)) {
-					rb.AddForce (transform.up, ForceMode.Impulse);
-					Debug.Log ("Raycast Detection");
+				if (Physics.Raycast (transform.position, rb.velocity, out hitInfo, maxDetectionDistance)) {
 
+					if(hitInfo.transform.tag.Equals("Asteroid"))
+					{
+						rb.AddForce (transform.up, ForceMode.Impulse);
+						Debug.Log ("Raycast Detection");
+					}
 				}
 			}
 		}

@@ -48,10 +48,14 @@ public class HUDsurvival : HUD {
 
 	private float getProgress()
 	{
-		int point = (survivalLevelMgr.NumWaypoints - survivalLevelMgr.CurrentWaypointIndex)-1;
-		float v = survivalLevelMgr.calculateDistanceNextWaypoint() / totalDistance;
+		if (survivalLevelMgr.CurrentWaypointIndex < survivalLevelMgr.NumWaypoints) {
+			
+			int point = (survivalLevelMgr.NumWaypoints - survivalLevelMgr.CurrentWaypointIndex) - 1;
+			float v = survivalLevelMgr.calculateDistanceNextWaypoint () / totalDistance;
 	
-		return Mathf.Lerp (finalPosition + positionY * point, finalPosition + positionY * (point+1), v);
+			return Mathf.Lerp (finalPosition + positionY * point, finalPosition + positionY * (point + 1), v);
+		} else
+			return finalPosition;
 	}
 
 	public void updateParameters()

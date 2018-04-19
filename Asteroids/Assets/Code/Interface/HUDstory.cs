@@ -37,7 +37,7 @@ public class HUDstory : HUD {
 		if (Input.GetMouseButtonUp(0)) {
 			Vector3 mPosition = Input.mousePosition;
 			//Debug.Log ("Minimapa: " + mPosition + " Dimension: " + minimapDimension.position);
-			if (mPosition.x >= minimapDimension.position.x && mPosition.y <= minimapDimension.position.y)
+			if (mPosition.x >= minimapDimension.position.x && mPosition.y <= minimapDimension.position.y){}
 				//Debug.Log ("He clicado en " + mPosition);
 		}
 	}

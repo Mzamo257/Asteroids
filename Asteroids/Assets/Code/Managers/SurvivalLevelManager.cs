@@ -25,7 +25,10 @@ public class SurvivalLevelManager : BaseLevelManager {
 
     public GameObject CurrentWaypoint
     {
-        get { return list_of_wayPoints[currentWaypoint]; }
+		get {  if (currentWaypoint < NumWaypoints)
+				return list_of_wayPoints [currentWaypoint];
+			else
+				return null;}
     }
     #endregion
 
@@ -77,6 +80,7 @@ public class SurvivalLevelManager : BaseLevelManager {
             Debug.Log("Defeat");
             SceneManager.LoadScene("Menu");
         }
+		else
 		surHud.updateParameters();
     }
 
