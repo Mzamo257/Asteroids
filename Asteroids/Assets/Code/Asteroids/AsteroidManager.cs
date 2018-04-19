@@ -6,6 +6,7 @@ public class AsteroidManager : MonoBehaviour {
 	#region Public Attributes
 	public List<GameObject> asteroidsPrefabs;
 	public int numAsteroids;
+	public int type;
 	#endregion
 
 	#region Private Attributes
@@ -13,7 +14,7 @@ public class AsteroidManager : MonoBehaviour {
 	private List<GameObject>[] asteroids;
 	private GameObject spaceShip;
 	private float counter;
-	private int type;
+	private int started=0;
 	#endregion
 
 	#region MonoDevelop Methods
@@ -25,22 +26,7 @@ public class AsteroidManager : MonoBehaviour {
 		//
 		spaceShip = GameObject.Find("Viper");
         establishAsteoidPools();
-		/*for(int i = 0; i < asteroidsPrefabs.Count; i++)
-		{
-			switch(i)
-			{
-			case 0:
-				type = 1;
-			case 1:
-				type = 2;
-			case 2:
-				type = 3;
-			case 3:
-				type = 4;
-			case 4:
-				type = 5;
-			}
-		}*/
+
 		//spamAsteroids(10.0f, 100);
         //startAsteroids();
 	}
@@ -53,18 +39,51 @@ public class AsteroidManager : MonoBehaviour {
 			CheckAsteroids();
 			counter = 0;
             Vector3 posSpaceShip = spaceShip.transform.position;
-            // TODO: Revise that
-			if (posSpaceShip.z==(-20))
-            {
-                spamAsteroids(10.0f, 100);
-            }
-			spamAsteroids (50.0f, 40);
+			if (started > 2) {
+				spamAsteroids (50.0f, 100);
+			}
+
+			if (started==2)
+			{
+				spamAsteroids(10.0f, 100);
+				Debug.Log ("holi");
+			}
 		}
+		
+		started++;
 	}
 	#endregion
 
 	#region User Methods
 
+	/// <summary>
+	/// Establishs the asteoid pools.
+	/// </summary>
+	public void establishAsteoidPools()
+	{
+		asteroids = new List<GameObject>[asteroidsPrefabs.Count];
+
+		for (int i = 0; i < asteroidsPrefabs.Count; i++) {
+			asteroids[i] = new List<GameObject>();
+			for (int j = 0; j < numAsteroids; j++) {
+				asteroids [i].Add (Instantiate (asteroidsPrefabs [i]));
+				asteroids[i][j].GetComponent<AsteroidCollisionManager>().AsteroidMgr = this;
+				asteroids [i] [j].SetActive (false);
+			}
+		}
+	}
+		
+	/// <summary>
+	/// Check if the asteroid is out of the camera
+	/// </summary>
+	/// <param name="asteroid"></param>
+	/// <returns></returns>
+	bool CheckOutOfCamera(GameObject asteroid)
+	{
+		Vector3 screenPoint = Camera.main.WorldToViewportPoint(asteroid.transform.position);
+		return screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1;
+	}
+		
 	/// <summary>
 	/// Haz una pasada comprobando los asteriodes
 	/// De momento que estén en pantalla
@@ -82,18 +101,7 @@ public class AsteroidManager : MonoBehaviour {
 			}
 		}
 	}
-
-	/// <summary>
-	/// Check if the asteroid is out of the camera
-	/// </summary>
-	/// <param name="asteroid"></param>
-	/// <returns></returns>
-	bool CheckOutOfCamera(GameObject asteroid)
-	{
-		Vector3 screenPoint = Camera.main.WorldToViewportPoint(asteroid.transform.position);
-		return screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1;
-	}
-
+		
 	/// <summary>
 	/// Determine the zone in which the asteroids should appears
 	/// </summary>
@@ -127,22 +135,12 @@ public class AsteroidManager : MonoBehaviour {
 		}
 		// Debug.Log("All asteroids in use");
 	}
-
-	public void establishAsteoidPools()
-	{
-		asteroids = new List<GameObject>[asteroidsPrefabs.Count];
-
-		for (int i = 0; i < asteroidsPrefabs.Count; i++) {
-            asteroids[i] = new List<GameObject>();
-            for (int j = 0; j < numAsteroids; j++) {
-				asteroids [i].Add (Instantiate (asteroidsPrefabs [i]));
-                asteroids[i][j].GetComponent<AsteroidCollisionManager>().AsteroidMgr = this;
-				asteroids [i] [j].SetActive (false);
-			}
-		}
-	}
-    
-    //spamea asteroides aleatorios
+		
+    /// <summary>
+    /// Spams the asteroids aleatory.
+    /// </summary>
+    /// <param name="dist">Dist.</param>
+    /// <param name="numAsteroids">Number asteroids.</param>
 	public void spamAsteroids(float dist, int numAsteroids){
 		for (int i = 0; i < numAsteroids; i++) {
 			int randomIndex = (int)(Random.value * asteroidsPrefabs.Count);
