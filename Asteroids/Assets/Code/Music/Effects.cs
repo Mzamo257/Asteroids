@@ -6,6 +6,7 @@ public class Effects : MonoBehaviour {
 
 	#region Public Attributes
 	public AudioClip [] effects;
+	public AudioClip [] choque;
 	#endregion
 
 	#region Private Attributes
@@ -32,13 +33,20 @@ public class Effects : MonoBehaviour {
 	#endregion
 
 	#region User Methods
-	public void playEffect(int effectNumber)
+	public void playEffect(int clip)
 	{
 		if (!gmScript.mute) 
 		{
-			aS.clip = effects [effectNumber];
+			//aS.clip = clip;
+			aS.volume = gmScript.Volume;
 			aS.Play ();
 		}
+	}
+
+	public void playChoque()
+	{
+		int i = /*random*/0;
+		//playEffect (choque [i]);
 	}
 	#endregion
 }

@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
     #region Private Attributes
     private string language;
 	private bool music;
+	private float volume;
 	private List<SurvivalLevelData> survivalLevelList;
     private List<StoryLevelData> storyLevelList;
 
@@ -40,7 +41,9 @@ public class GameManager : MonoBehaviour {
 
 	#region Properties
 
-
+	public float Volume{
+		get{return volume;}
+	}
 	public int CurrentLevel {
 		get { return currentSurvivalLevel; }
 	}
