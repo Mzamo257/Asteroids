@@ -23,8 +23,9 @@ public class Menu : MonoBehaviour {
 	#endregion
 
 	#region Private Attributes
-	GameObject gameManager;
-	GameManager gmScript;
+	//GameObject gameManager;
+	//GameManager gmScript;
+    GameManagerSingleton gameManagerSingleton;
 	#endregion
 
 	#region typedef
@@ -36,8 +37,9 @@ public class Menu : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		gameManager = GameObject.Find ("GameManager");
-		gmScript = gameManager.GetComponent<GameManager> ();
+		//gameManager = GameObject.Find ("GameManager");
+		//gmScript = gameManager.GetComponent<GameManager> ();
+        gameManagerSingleton = GameManagerSingleton.GetInstance();
         /*if (language) 
 		{		
 			switch (gmScript.GetLanguage ()) 
@@ -72,7 +74,7 @@ public class Menu : MonoBehaviour {
 
 	public void DropdownLanguage()
 	{
-		gmScript.ChangeLanguage(language.value);
+		gameManagerSingleton.ChangeLanguage(language.value);
 		switch (language.value) 
 		{
 		case 0:
@@ -92,11 +94,11 @@ public class Menu : MonoBehaviour {
 	{
 		if(sound.isOn)
 		{
-			gmScript.SetSound(true);
+			gameManagerSingleton.SetSound(true);
 		}
 		else
 		{
-			gmScript.SetSound(false);
+			gameManagerSingleton.SetSound(false);
 		}
 		//gmScript.SavePreferences ();
 	}

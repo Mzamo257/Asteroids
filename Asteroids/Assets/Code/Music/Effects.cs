@@ -11,8 +11,9 @@ public class Effects : MonoBehaviour {
 
 	#region Private Attributes
 	private AudioSource aS;
-	protected GameObject gameManager;
-	protected GameManager gmScript;
+    //protected GameObject gameManager;
+    //protected GameManager gmScript;
+    protected GameManagerSingleton gameManagerSingleton;
 	#endregion
 
 
@@ -20,7 +21,8 @@ public class Effects : MonoBehaviour {
 	// Use this for initialization
 	protected virtual void Start () 
 	{
-        gmScript = FindObjectOfType<GameManager>();
+        //gmScript = FindObjectOfType<GameManager>();
+        gameManagerSingleton = GameManagerSingleton.GetInstance();
 		aS = GetComponent<AudioSource> ();
 
 	}
@@ -35,10 +37,10 @@ public class Effects : MonoBehaviour {
 	#region User Methods
 	public void playEffect(int clip)
 	{
-		if (!gmScript.mute) 
+		if (!gameManagerSingleton.mute) 
 		{
 			//aS.clip = clip;
-			aS.volume = gmScript.Volume;
+			aS.volume = gameManagerSingleton.Volume;
 			aS.Play ();
 		}
 	}

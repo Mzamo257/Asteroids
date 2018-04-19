@@ -9,16 +9,18 @@ public class Music : MonoBehaviour {
 
 	#region Private Attributes
 	private AudioSource aS;
-	protected GameObject gameManager;
-	protected GameManager gmScript;
+	//protected GameObject gameManager;
+	//protected GameManager gmScript;
+    protected GameManagerSingleton gameManagerSingleton;
 	#endregion
 
 
 	#region MonoDevelop Methods
 	// Use this for initialization
 	protected virtual void Start () {
-		gameManager = GameObject.Find ("GameManager");
-		gmScript = gameManager.GetComponent<GameManager> ();
+        //gameManager = GameObject.Find ("GameManager");
+        //gmScript = gameManager.GetComponent<GameManager> ();
+        gameManagerSingleton = GameManagerSingleton.GetInstance();
 		aS = GetComponent<AudioSource> ();
 	}
 

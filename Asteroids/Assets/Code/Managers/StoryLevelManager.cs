@@ -33,9 +33,9 @@ public class StoryLevelManager : BaseLevelManager {
     protected override void Start () {
         base.Start();
         // Set the game mode
-        gameManager.CurrentGameMode = GameMode.Story;
+        gameManagerSingleton.CurrentGameMode = GameMode.Story;
         //
-        levelData = gameManager.CurrentStoryLevelData;
+        levelData = gameManagerSingleton.CurrentStoryLevelData;
         // Set the little aliens
         aliens = new List<GameObject>();
         for(int i = 0; i < levelData.numberOfAliens; i++)

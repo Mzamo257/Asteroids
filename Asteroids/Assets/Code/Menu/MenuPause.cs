@@ -9,13 +9,15 @@ public class MenuPause : MonoBehaviour {
 	public Text mainMenu;
 	public Text exit;
 
-	private GameObject gameManager;
-	private GameManager gmScript;
+	// private GameObject gameManager;
+	// private GameManager gmScript;
+    private GameManagerSingleton gameManagerSingleton;
 
-	// Use this for initialization
-	void Start () {
-		gameManager = GameObject.Find ("GameManager");
-		gmScript = gameManager.GetComponent<GameManager> ();
+    // Use this for initialization
+    void Start () {
+        // gameManager = GameObject.Find ("GameManager");
+        // gmScript = gameManager.GetComponent<GameManager> ();
+        gameManagerSingleton = GameManagerSingleton.GetInstance();
 		MenuPauseLanguage ();
 	}
 	
@@ -25,7 +27,7 @@ public class MenuPause : MonoBehaviour {
 
 	private void MenuPauseLanguage()
 	{
-		switch (gmScript.GetLanguage())
+		switch (gameManagerSingleton.GetLanguage())
 		{
 		case "English":
 			pause.text = "Pause";

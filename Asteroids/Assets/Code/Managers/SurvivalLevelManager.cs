@@ -37,8 +37,8 @@ public class SurvivalLevelManager : BaseLevelManager {
     protected override void Start () {
         base.Start();
         //
-        gameManager.CurrentGameMode = GameMode.Survival;
-        levelData = gameManager.CurrentSurvivalLevelData;
+        gameManagerSingleton.CurrentGameMode = GameMode.Survival;
+        levelData = gameManagerSingleton.CurrentSurvivalLevelData;
         
         // Debug.Log("Number of waypoints: " + level_data.numberOf_Waypoints);
         //create waypoints

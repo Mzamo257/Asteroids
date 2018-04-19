@@ -13,7 +13,8 @@ public abstract class HUD : MonoBehaviour {
 	#region Private Attributes
 	protected float iconSize;
 	protected GameObject gameManager;
-	protected GameManager gmScript;
+	// protected GameManager gmScript;
+    protected GameManagerSingleton gmSingScript;
 	protected BaseLevelManager levelMgr;
 	#endregion
 
@@ -21,10 +22,10 @@ public abstract class HUD : MonoBehaviour {
 	#region MonoDevelop Methods
 	// Use this for initialization
 	protected virtual void Start () {
-		gameManager = GameObject.Find ("GameManager");
-		gmScript = gameManager.GetComponent<GameManager> ();
+		// gmScript = FindObjectOfType<GameManager>();
+        // gmSingScript = GameManagerSingleton.GetInstance();
 
-		levelMgr = FindObjectOfType<BaseLevelManager> ();
+        levelMgr = FindObjectOfType<BaseLevelManager> ();
 
 		iconSize = Screen.height * iconSizeRate;
 
