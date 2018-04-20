@@ -46,7 +46,7 @@ public class AsteroidManager : MonoBehaviour {
 			if (started==2)
 			{
 				spamAsteroids(10.0f, 100);
-				Debug.Log ("holi");
+				//Debug.Log ("holi");
 			}
 		}
 		

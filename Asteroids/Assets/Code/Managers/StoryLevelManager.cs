@@ -7,15 +7,20 @@ public class StoryLevelManager : BaseLevelManager {
     #region Public Attributes
 
     public GameObject alienPrefab;
+	public GameObject trashPrefab;
+	public Camera minimapCamera;
 
     #endregion
 
     #region Private Attributes
     protected StoryLevelData levelData;
     protected List<GameObject> playerWayPoints;
+	protected int amountTrash = 5;
+	protected int availableTrash = 3;
     //
     protected List<GameObject> aliens;
     protected int caughtAliens = 0;
+	private HUDstory hud;
     #endregion
 
     #region Properties
@@ -24,7 +29,12 @@ public class StoryLevelManager : BaseLevelManager {
 
     public int CaughtAliens { get { return caughtAliens; } }
 
-    public GameObject CurrentWaypoint { get { return playerWayPoints[0]; } }
+	public int AvailableTrash { get { return availableTrash; } }
+
+	public int TotalTrash { get { return amountTrash; } }
+
+	public GameObject CurrentWaypoint { get { if (playerWayPoints.Count > 0)return playerWayPoints [0];
+												else return null;} }
 
     #endregion
 
@@ -49,11 +59,23 @@ public class StoryLevelManager : BaseLevelManager {
             }
         }
 		playerWayPoints = new List<GameObject>();
+
+		hud = FindObjectOfType<HUDstory> ();
     }
 
     // Update is called once per frame
     protected override void Update () {
-		
+		base.Update ();
+		if (hud.checkClick ().x != -1) 
+		{
+			Vector3 newWaypointPosition = DetermineZoneToAppear ();
+			if(AvailableTrash > 0)
+			{
+				availableTrash--;
+				GameObject newTrash = Instantiate (trashPrefab, newWaypointPosition, Quaternion.identity);
+				playerWayPoints.Add (newTrash);
+			}
+		}
 	}
     #endregion
 
@@ -87,8 +109,18 @@ public class StoryLevelManager : BaseLevelManager {
     /// </summary>
     public void ReachWaypoint()
     {
+		if(playerWayPoints.Count > 0)
         playerWayPoints.RemoveAt(0);
     }
+
+	Vector3 DetermineZoneToAppear()
+	{
+		float zDistance = (ship.transform.position - minimapCamera.transform.position).magnitude;
+		Vector2 cameraPoint = hud.checkClick ();
+		Vector3 worldPoint = minimapCamera.ViewportToWorldPoint(new Vector3(cameraPoint.x, cameraPoint.y, zDistance));
+		worldPoint.y = ship.transform.position.y;
+		return worldPoint;
+	}
 
     #endregion
 }

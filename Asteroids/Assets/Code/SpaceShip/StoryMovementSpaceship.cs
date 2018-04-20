@@ -37,7 +37,7 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 		currentUpdateTime += Time.deltaTime;
 
-		generateWaypoints (currentUpdateTime);
+		//generateWaypoints (currentUpdateTime);
 
 		angleResultant = Vector3.Angle (velocity, posNextWayPointRelative);
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity , maxSpeed);
@@ -74,10 +74,11 @@ public class StoryMovementSpaceship : BaseSpaceship {
 			//tengo que coger el siguiente waypoint 
 			GameObject nextWaypoint = levelManager.CurrentWaypoint;
 			/*
+
 			if (nextWaypoint != null)
 			{
-				pos_current_wayPoint = nextWaypoint.transform.position;
-			}*/
+				posCurrentWayPoint = nextWaypoint.transform.position;
+			}
 
 			firstMovement = true;
 			secondMovement = true;
