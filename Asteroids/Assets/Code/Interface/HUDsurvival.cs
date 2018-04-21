@@ -10,7 +10,6 @@ public class HUDsurvival : HUD {
 	private float startPosition;
 	private float positionY;
 
-
 	// Use this for initialization
 	protected override void Start () {
 		base.Start ();

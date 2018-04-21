@@ -21,6 +21,7 @@ public class Drag : MonoBehaviour {
 	private float posY;
 	private bool selected;
 	private Rigidbody rb;
+	private BaseLevelManager levelManager;
 	#endregion
 
 	#region MonoDevelop Methods
@@ -31,6 +32,7 @@ public class Drag : MonoBehaviour {
 		rb.centerOfMass = newCenterOfMass;
 		addRandomTorque();
 		addRandomForce();
+		levelManager = FindObjectOfType<BaseLevelManager> ();
 		//rb.AddTorque(torque, ForceMode.Impulse);
 	}
 
@@ -38,6 +40,7 @@ public class Drag : MonoBehaviour {
 	void Update () {
 		if (Input.GetMouseButtonUp (0) && selected) {
 			selected = false;
+			levelManager.AsteroidSelected = false;
 			gameObject.GetComponent<MeshRenderer> ().material = cubo1;
 			launchAsteroid();
 		}
@@ -48,6 +51,8 @@ public class Drag : MonoBehaviour {
 	void OnMouseDown(){
 		selected = true;
 		gameObject.GetComponent<MeshRenderer> ().material = cubo2;
+		levelManager.AsteroidSelected = true;
+		levelManager.asteroidPosition (transform.position);
 	}
 
 	void launchAsteroid(){

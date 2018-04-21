@@ -78,7 +78,7 @@ public class StoryMovementSpaceship : BaseSpaceship {
 			if (nextWaypoint != null)
 			{
 				posCurrentWayPoint = nextWaypoint.transform.position;
-			}
+			}*/
 
 			firstMovement = true;
 			secondMovement = true;
