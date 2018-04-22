@@ -22,7 +22,6 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 	// Use this for initialization
 	protected override void Start () {
-
 		base.Start ();
 		levelManager = FindObjectOfType<StoryLevelManager>();
         posCurrentWayPoint = Vector3.zero; 
@@ -51,8 +50,10 @@ public class StoryMovementSpaceship : BaseSpaceship {
 			currentUpdateTime = 0;
 		
 		} else {
-			
 			rb.AddForce (transform.forward * force, ForceMode.Impulse);
+			if (rb.velocity.magnitude > Vector3.zero.magnitude) {
+				nextRotation = Quaternion.LookRotation (rb.velocity);
+			}
 		}
 
 		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
@@ -64,8 +65,6 @@ public class StoryMovementSpaceship : BaseSpaceship {
 		if ((transform.position - posCurrentWayPoint).magnitude <= 2) {
 
 			levelManager.ReachWaypoint();
-
-			//tengo que coger el siguiente waypoint 
 			GameObject nextWaypoint = levelManager.CurrentWaypoint;
 		}
 	}
@@ -74,14 +73,15 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 
 	#region User Methods
-	private void generateWaypoints(float counter)
+
+	void OnCollisionEnter(Collision collision)
 	{
-		//cambiar este counter sino creare waypoint cada dos por tres
-		if (counter < 2) {
-			levelManager.SetWaypoint( transform.position + new Vector3(0,0,100) );
-			Debug.Log ("He creado un waypoint");
-			//currentUpdateTime = 0;
+		if (collision.gameObject.tag == "Limit")
+		{
+			//lo voy a hacer aleatorio entre hay que pensarlo
+			transform.Rotate(0,130,0);
 		}
 	}
+
 	#endregion
 }
