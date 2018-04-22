@@ -135,6 +135,22 @@ public class AsteroidManager : MonoBehaviour {
 		}
 		// Debug.Log("All asteroids in use");
 	}
+
+	public void ActivateAsteroidFromDivision(int index, Vector3 pos)
+	{
+		for(int i = 0; i < asteroids[index].Count; i++)
+		{
+			Debug.Log ("que pasa wey");
+			if (!asteroids[index][i].activeInHierarchy){
+				asteroids[index][i].SetActive(true);
+				asteroids[index][i].transform.position = pos;
+				asteroids[index][i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+				Debug.Log ("lanzado");
+				return;
+			}
+			Debug.Log ("Pool vacia");
+		}
+	}
 		
     /// <summary>
     /// Spams the asteroids aleatory.
