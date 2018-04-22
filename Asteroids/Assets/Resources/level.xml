@@ -1,5 +1,6 @@
 <LEVELS>
   <SURVIVAL>
+    
 	  <LEVEL name = "LEVEL1">
 		  <VARIABLE name="force_Spaceship">1</VARIABLE>
 		  <VARIABLE name="max_Speed_Spaceship">5</VARIABLE>
@@ -8,8 +9,28 @@
 		  <VARIABLE name="force_Asteroids">3</VARIABLE>
 		  <VARIABLE name="lifeKit">10</VARIABLE>
 	  </LEVEL>
+    
+    <LEVEL name = "LEVEL2">
+      <VARIABLE name="force_Spaceship">2</VARIABLE>
+      <VARIABLE name="max_Speed_Spaceship">10</VARIABLE>
+      <VARIABLE name="numberOf_Waypoints">4</VARIABLE>
+      <VARIABLE name="numberOf_Asteroids">9</VARIABLE>
+      <VARIABLE name="force_Asteroids">4</VARIABLE>
+      <VARIABLE name="lifeKit">20</VARIABLE>
+    </LEVEL>
+    
+    <LEVEL name = "LEVEL3">
+      <VARIABLE name="force_Spaceship">2</VARIABLE>
+      <VARIABLE name="max_Speed_Spaceship">10</VARIABLE>
+      <VARIABLE name="numberOf_Waypoints">4</VARIABLE>
+      <VARIABLE name="numberOf_Asteroids">9</VARIABLE>
+      <VARIABLE name="force_Asteroids">4</VARIABLE>
+      <VARIABLE name="lifeKit">20</VARIABLE>
+    </LEVEL>
+    
   </SURVIVAL>
   <STORY>
+    
     <LEVEL name = "LEVEL1">
       <VARIABLE name="force_Spaceship">1</VARIABLE>
       <VARIABLE name="max_Speed_Spaceship">5</VARIABLE>
@@ -18,5 +39,24 @@
       <VARIABLE name="force_Asteroids">3</VARIABLE>
       <VARIABLE name="numberOfTrash">10</VARIABLE>
     </LEVEL>
+    
+    <LEVEL name = "LEVEL2">
+      <VARIABLE name="force_Spaceship">2</VARIABLE>
+      <VARIABLE name="max_Speed_Spaceship">10</VARIABLE>
+      <VARIABLE name="numberOfAliens">6</VARIABLE>
+      <VARIABLE name="numberOf_Asteroids">10</VARIABLE>
+      <VARIABLE name="force_Asteroids">3</VARIABLE>
+      <VARIABLE name="numberOfTrash">9</VARIABLE>
+    </LEVEL>
+    
+    <LEVEL name = "LEVEL3">
+      <VARIABLE name="force_Spaceship">2</VARIABLE>
+      <VARIABLE name="max_Speed_Spaceship">10</VARIABLE>
+      <VARIABLE name="numberOfAliens">6</VARIABLE>
+      <VARIABLE name="numberOf_Asteroids">10</VARIABLE>
+      <VARIABLE name="force_Asteroids">3</VARIABLE>
+      <VARIABLE name="numberOfTrash">9</VARIABLE>
+    </LEVEL>
+    
   </STORY>
 </LEVELS>

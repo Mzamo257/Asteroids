@@ -30,8 +30,8 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
     private List<SurvivalLevelData> survivalLevelList;
     private List<StoryLevelData> storyLevelList;
 
-    private int currentSurvivalLevel;
-    private int currentStoryLevel;
+    private int currentSurvivalLevel = 0;
+    private int currentStoryLevel = 0;
     private GameMode currentGameMode;
 
     #endregion
@@ -56,6 +56,9 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
         get { return storyLevelList[currentStoryLevel]; }
     }
 
+    public int CurrentSurvivalLevel { get { return currentSurvivalLevel; } }
+    public int CurrentStoryLevel { get { return currentStoryLevel; } }
+
     public bool mute
     {
         get { return music; }
@@ -76,39 +79,27 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
     }
 
     #region Methods
-    // Use this for initialization
-    void Awake()
-    {
-        // DontDestroyOnLoad(transform.gameObject);
-    }
-
+    
+    // Not monobeahvoiur
     void Start()
     {
         language = "English";
         // SceneManager.LoadSceneAsync("Menu", LoadSceneMode.Single);
         //Create the levels
+
         // Survival ones
-        survivalLevelList = new List<SurvivalLevelData>();
-        for (int i = 0; i < 2; i++)
-        {
-            survivalLevelList.Add(Reader.getSurvivalLevelDataFromXML("LEVEL1"));
-        }
+        // survivalLevelList = new List<SurvivalLevelData>();
+        survivalLevelList = Reader.getSurvivalLevelDataFromXML();
+        
         // Story ones
-        storyLevelList = new List<StoryLevelData>();
-        for (int i = 0; i < 2; i++)
-        {
-            storyLevelList.Add(Reader.getStoryLevelDataFromXML("LEVEL1"));
-        }
+        // storyLevelList = new List<StoryLevelData>();
+        storyLevelList = Reader.getStoryLevelDataFromXML();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
     #endregion
 
     #region User Methods
+
     public string GetLanguage()
     {
         return language;
@@ -139,6 +130,23 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
     {
         music = change;
     }
+
+    public void SurvivalProgress()
+    {
+        if(currentSurvivalLevel < survivalLevelList.Count - 1)
+        {
+            currentSurvivalLevel++;
+        }
+    }
+
+    public void StoryProgress()
+    {
+        if (currentStoryLevel < storyLevelList.Count - 1)
+        {
+            currentStoryLevel++;
+        }
+    }
+
     #endregion
 
 }

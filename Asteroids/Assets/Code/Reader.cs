@@ -16,56 +16,80 @@ public static class Reader {
 	#endregion
 
 	#region User Methods
-    // TODO: Hacer funciones diferentes para los diferentes niveles
-	public static SurvivalLevelData getSurvivalLevelDataFromXML(string level_Name)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+	public static List<SurvivalLevelData> getSurvivalLevelDataFromXML(/*string level_Name*/)
 	{
-        SurvivalLevelData level = new SurvivalLevelData();
+        List<SurvivalLevelData> levels = new List<SurvivalLevelData>();
 		XmlDocument xml_doc = new XmlDocument();
 		xml_doc.Load ("Assets/Resources/level.xml");
-		XmlNode level_info;
+		//XmlNode level_info;
+        XmlNodeList levelsInfo;
 
 
-		level_info = xml_doc.SelectSingleNode ("LEVELS/SURVIVAL/LEVEL[@name='" +level_Name+ "']");
-		if (level_info != null) 
+        //level_info = xml_doc.SelectSingleNode ("LEVELS/SURVIVAL/LEVEL[@name='" +level_Name+ "']");
+        //levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL/LEVEL[@name='" + level_Name + "']");
+        levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL");
+        // Debug.Log(levelsInfo.Count);
+
+        if (levelsInfo != null) 
 		{
-			
-			level.force_Spaceship = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[0].InnerText);
-			level.max_Speed_Spaceship = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[1].InnerText);
-			level.numberOfWaypoints = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[2].InnerText);
-			level.numberOf_Asteroids = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[3].InnerText);
-			level.force_Asteroids = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[4].InnerText);
-			level.numberOfLifeKits = int.Parse(((XmlElement)level_info).GetElementsByTagName ("VARIABLE")[5].InnerText);
-
-
+            foreach (XmlNode nextLevelInfo in levelsInfo)
+            {
+                //XmlNode nextLevelInfo = levelsInfo.Item(i);
+                SurvivalLevelData level = new SurvivalLevelData();
+                level.force_Spaceship = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[0].InnerText);
+                level.max_Speed_Spaceship = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[1].InnerText);
+                level.numberOfWaypoints = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[2].InnerText);
+                level.numberOf_Asteroids = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[3].InnerText);
+                level.force_Asteroids = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[4].InnerText);
+                level.numberOfLifeKits = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[5].InnerText);
+                levels.Add(level);
+                // Debug.Log("XML reader: Adding survival level");
+            }
 		}
 
-		return level;
+		return levels;
 
 	}
 
-    public static StoryLevelData getStoryLevelDataFromXML(string level_Name)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public static List<StoryLevelData> getStoryLevelDataFromXML(/*string level_Name*/)
     {
-        StoryLevelData level = new StoryLevelData();
+        List<StoryLevelData> levels = new List<StoryLevelData>();
         XmlDocument xml_doc = new XmlDocument();
         xml_doc.Load("Assets/Resources/level.xml");
-        XmlNode level_info;
+        //XmlNode level_info;
+        XmlNodeList levelsInfo;
 
 
-        level_info = xml_doc.SelectSingleNode("LEVELS/SURVIVAL/LEVEL[@name='" + level_Name + "']");
-        if (level_info != null)
+        //level_info = xml_doc.SelectSingleNode ("LEVELS/SURVIVAL/LEVEL[@name='" +level_Name+ "']");
+        //levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL/LEVEL[@name='" + level_Name + "']");
+        levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL");
+
+        if (levelsInfo != null)
         {
-
-            level.force_Spaceship = int.Parse(((XmlElement)level_info).GetElementsByTagName("VARIABLE")[0].InnerText);
-            level.max_Speed_Spaceship = int.Parse(((XmlElement)level_info).GetElementsByTagName("VARIABLE")[1].InnerText);
-            level.numberOfAliens = int.Parse(((XmlElement)level_info).GetElementsByTagName("VARIABLE")[2].InnerText);
-            level.numberOf_Asteroids = int.Parse(((XmlElement)level_info).GetElementsByTagName("VARIABLE")[3].InnerText);
-            level.force_Asteroids = int.Parse(((XmlElement)level_info).GetElementsByTagName("VARIABLE")[4].InnerText);
-            level.numberOfTrash = int.Parse(((XmlElement)level_info).GetElementsByTagName("VARIABLE")[5].InnerText);
-
-
+            for (int i = 0; i < levelsInfo.Count; i++)
+            {
+                XmlNode nextLevelInfo = levelsInfo.Item(i);
+                StoryLevelData level = new StoryLevelData();
+                level.force_Spaceship = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[0].InnerText);
+                level.max_Speed_Spaceship = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[1].InnerText);
+                level.numberOfAliens = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[2].InnerText);
+                level.numberOf_Asteroids = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[3].InnerText);
+                level.force_Asteroids = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[4].InnerText);
+                level.numberOfTrash = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[5].InnerText);
+                levels.Add(level);
+                // Debug.Log("XML reader: Adding story level");
+            }
         }
 
-        return level;
+        return levels;
 
     }
     #endregion

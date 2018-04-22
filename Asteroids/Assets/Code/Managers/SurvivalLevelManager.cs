@@ -78,6 +78,7 @@ public class SurvivalLevelManager : BaseLevelManager {
         if(currentWaypoint > list_of_wayPoints.Count)
         {
             Debug.Log("Defeat");
+            GameManagerSingleton.GetInstance().SurvivalProgress();
             SceneManager.LoadScene("Menu");
         }
 		else
