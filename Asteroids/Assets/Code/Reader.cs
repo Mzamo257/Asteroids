@@ -31,7 +31,7 @@ public static class Reader {
 
         //level_info = xml_doc.SelectSingleNode ("LEVELS/SURVIVAL/LEVEL[@name='" +level_Name+ "']");
         //levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL/LEVEL[@name='" + level_Name + "']");
-        levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL");
+        levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL/LEVEL");
         // Debug.Log(levelsInfo.Count);
 
         if (levelsInfo != null) 
@@ -70,7 +70,7 @@ public static class Reader {
 
         //level_info = xml_doc.SelectSingleNode ("LEVELS/SURVIVAL/LEVEL[@name='" +level_Name+ "']");
         //levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL/LEVEL[@name='" + level_Name + "']");
-        levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL");
+        levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL/LEVEL");
 
         if (levelsInfo != null)
         {

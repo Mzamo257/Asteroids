@@ -1,7 +1,7 @@
 <LEVELS>
   <SURVIVAL>
     
-	  <LEVEL name = "LEVEL1">
+	  <LEVEL>
 		  <VARIABLE name="force_Spaceship">1</VARIABLE>
 		  <VARIABLE name="max_Speed_Spaceship">5</VARIABLE>
 		  <VARIABLE name="numberOf_Waypoints">5</VARIABLE>
@@ -10,7 +10,7 @@
 		  <VARIABLE name="lifeKit">10</VARIABLE>
 	  </LEVEL>
     
-    <LEVEL name = "LEVEL2">
+    <LEVEL>
       <VARIABLE name="force_Spaceship">2</VARIABLE>
       <VARIABLE name="max_Speed_Spaceship">10</VARIABLE>
       <VARIABLE name="numberOf_Waypoints">4</VARIABLE>
@@ -19,7 +19,7 @@
       <VARIABLE name="lifeKit">20</VARIABLE>
     </LEVEL>
     
-    <LEVEL name = "LEVEL3">
+    <LEVEL>
       <VARIABLE name="force_Spaceship">2</VARIABLE>
       <VARIABLE name="max_Speed_Spaceship">10</VARIABLE>
       <VARIABLE name="numberOf_Waypoints">4</VARIABLE>
@@ -29,6 +29,7 @@
     </LEVEL>
     
   </SURVIVAL>
+  
   <STORY>
     
     <LEVEL name = "LEVEL1">
