@@ -40,7 +40,7 @@ public class AsteroidManager : MonoBehaviour {
 			counter = 0;
             Vector3 posSpaceShip = spaceShip.transform.position;
 			if (started > 2) {
-				spamAsteroids (50.0f, 100);
+				spamAsteroids (50.0f, 1);
 			}
 
 			if (started==2)
@@ -148,9 +148,10 @@ public class AsteroidManager : MonoBehaviour {
 				Debug.Log ("lanzado");
 				return;
 			}
-			Debug.Log ("Pool vacia");
+			
 		}
-	}
+        Debug.Log("Pool vacia");
+    }
 		
     /// <summary>
     /// Spams the asteroids aleatory.
