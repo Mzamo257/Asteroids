@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StoryLevelManager : BaseLevelManager {
 
@@ -53,7 +54,7 @@ public class StoryLevelManager : BaseLevelManager {
             // Debug.Log("Spawning little alien");
             if (alienPrefab != null)
             {
-                Vector3 alienPosition = new Vector3(0, 0, 100 * i);
+                Vector3 alienPosition = new Vector3(0, 0, 10 * i);
                 GameObject newAlien = Instantiate(alienPrefab, alienPosition, Quaternion.identity);
                 aliens.Add(newAlien);
             }
@@ -90,6 +91,8 @@ public class StoryLevelManager : BaseLevelManager {
         if(caughtAliens == levelData.numberOfAliens)
         {
             Debug.Log("Victory");
+            GameManagerSingleton.GetInstance().StoryProgress();
+            SceneManager.LoadScene("Menu");
         }
     }
 
