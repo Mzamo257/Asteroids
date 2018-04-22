@@ -32,7 +32,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		Debug.Log ("colisionado");
+		//Debug.Log ("colisionado");
 		float otherObjectMass = collision.rigidbody.mass;
 		// Usamos la velocidad relativa de la colisión para determinar el daño
 		health -= (collision.relativeVelocity.magnitude * otherObjectMass);
@@ -61,7 +61,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
 	private void DestroyAsteroid()
 	{
 		int nextAsteroidType=type/2;
-		Debug.Log (nextAsteroidType);
+		//Debug.Log (nextAsteroidType);
 		asteroidMgr.ActivateAsteroidFromDivision (nextAsteroidType, transform.position);
 		asteroidMgr.ActivateAsteroidFromDivision (nextAsteroidType, transform.position);
 	}

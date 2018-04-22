@@ -140,17 +140,17 @@ public class AsteroidManager : MonoBehaviour {
 	{
 		for(int i = 0; i < asteroids[index].Count; i++)
 		{
-			Debug.Log ("que pasa wey");
+			//Debug.Log ("que pasa wey");
 			if (!asteroids[index][i].activeInHierarchy){
 				asteroids[index][i].SetActive(true);
 				asteroids[index][i].transform.position = pos;
 				asteroids[index][i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
-				Debug.Log ("lanzado");
+				//Debug.Log ("lanzado");
 				return;
 			}
 			
 		}
-        Debug.Log("Pool vacia");
+        //Debug.Log("Pool vacia");
     }
 		
     /// <summary>
