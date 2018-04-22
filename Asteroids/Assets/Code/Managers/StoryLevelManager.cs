@@ -15,8 +15,8 @@ public class StoryLevelManager : BaseLevelManager {
     #region Private Attributes
     protected StoryLevelData levelData;
     protected List<GameObject> playerWayPoints;
-	protected int amountTrash = 5;
-	protected int availableTrash = 3;
+	protected int amountTrash = 10;
+	protected int availableTrash = 10;
     //
     protected List<GameObject> aliens;
     protected int caughtAliens = 0;

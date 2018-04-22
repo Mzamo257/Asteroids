@@ -25,39 +25,36 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 		base.Start ();
 		levelManager = FindObjectOfType<StoryLevelManager>();
-        posCurrentWayPoint = Vector3.zero; /*level_manager.CurrentWaypoint.transform.position;*/
+        posCurrentWayPoint = Vector3.zero; 
 		counterWaypoints = 0;
 	}
 
 	// Update is called once per frame
 	protected override void Update () {
-		
+
 		velocity = rb.velocity;
-		posNextWayPointRelative = posCurrentWayPoint - transform.position;
-
 		currentUpdateTime += Time.deltaTime;
-
-		//generateWaypoints (currentUpdateTime);
-
-		angleResultant = Vector3.Angle (velocity, posNextWayPointRelative);
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity , maxSpeed);
 
-		if (!firstMovement) {
-			rb.AddForce (posNextWayPointRelative.normalized * force, ForceMode.Impulse);
-			firstMovement = true;
-			previousRotation = nextRotation;
-			nextRotation = Quaternion.LookRotation (posNextWayPointRelative);
-		} 
-		else if(secondMovement && currentUpdateTime > updateTime)
-		{
-			adjustedDirection = adjustDirection(velocity, posNextWayPointRelative).normalized;
+		if (levelManager.CurrentWaypoint != null) {
+			posCurrentWayPoint = levelManager.CurrentWaypoint.transform.position;
+
+			posNextWayPointRelative = posCurrentWayPoint - transform.position;
+
+			angleResultant = Vector3.Angle (velocity, posNextWayPointRelative);
+
+			adjustedDirection = adjustDirection (velocity, posNextWayPointRelative).normalized;
 			rb.AddForce (adjustedDirection * force, ForceMode.Impulse);
-		
+
 			previousRotation = nextRotation;
 			nextRotation = Quaternion.LookRotation (posNextWayPointRelative);
 			currentUpdateTime = 0;
-		}
+		
+		} else {
 			
+			rb.AddForce (transform.forward * force, ForceMode.Impulse);
+		}
+
 		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
 
 		Debug.DrawRay (transform.position, rb.velocity, Color.red);
@@ -66,22 +63,10 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 		if ((transform.position - posCurrentWayPoint).magnitude <= 2) {
 
-			//Este deberá de ser el de la collección de waypoint del levelManager del story
-			//si ese array esta lleno la direccion hacia el del numero 0
-			//si esta vacio sigo con la velocidad que llevaba y direccion
 			levelManager.ReachWaypoint();
 
 			//tengo que coger el siguiente waypoint 
 			GameObject nextWaypoint = levelManager.CurrentWaypoint;
-			/*
-
-			if (nextWaypoint != null)
-			{
-				posCurrentWayPoint = nextWaypoint.transform.position;
-			}*/
-
-			firstMovement = true;
-			secondMovement = true;
 		}
 	}
 
