@@ -35,6 +35,29 @@ public class StoryMovementSpaceship : BaseSpaceship {
 		currentUpdateTime += Time.deltaTime;
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity , maxSpeed);
 
+		Movement ();
+
+		NextWaypoint ();
+
+		VerticalSpeedControl ();
+	}
+
+	#endregion
+
+
+	#region User Methods
+
+	protected override void NextWaypoint()
+	{
+		if ((transform.position - posCurrentWayPoint).magnitude <= 2) {
+
+			levelManager.ReachWaypoint();
+			GameObject nextWaypoint = levelManager.CurrentWaypoint;
+		}
+	}
+
+	protected override void Movement()
+	{
 		if (levelManager.CurrentWaypoint != null) {
 			posCurrentWayPoint = levelManager.CurrentWaypoint.transform.position;
 
@@ -42,13 +65,13 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 			angleResultant = Vector3.Angle (velocity, posNextWayPointRelative);
 
-			adjustedDirection = adjustDirection (velocity, posNextWayPointRelative).normalized;
+			adjustedDirection = AdjustDirection (velocity, posNextWayPointRelative).normalized;
 			rb.AddForce (adjustedDirection * force, ForceMode.Impulse);
 
 			previousRotation = nextRotation;
 			nextRotation = Quaternion.LookRotation (posNextWayPointRelative);
 			currentUpdateTime = 0;
-		
+
 		} else {
 			rb.AddForce (transform.forward * force, ForceMode.Impulse);
 			if (rb.velocity.magnitude > Vector3.zero.magnitude) {
@@ -57,29 +80,16 @@ public class StoryMovementSpaceship : BaseSpaceship {
 		}
 
 		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
-
-		Debug.DrawRay (transform.position, rb.velocity, Color.red);
-		Debug.DrawRay (transform.position, adjustDirection (velocity, posNextWayPointRelative) , Color.green);
-		Debug.DrawRay (transform.position, posNextWayPointRelative, Color.white);
-
-		if ((transform.position - posCurrentWayPoint).magnitude <= 2) {
-
-			levelManager.ReachWaypoint();
-			GameObject nextWaypoint = levelManager.CurrentWaypoint;
-		}
 	}
-
-	#endregion
-
-
-	#region User Methods
 
 	void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.tag == "Limit")
 		{
 			//lo voy a hacer aleatorio entre hay que pensarlo
-			transform.Rotate(0,130,0);
+			transform.Rotate(0,180,0);
+
+			//añadir aqui texto de limites en plan tienes limites eres redireccionado
 		}
 	}
 

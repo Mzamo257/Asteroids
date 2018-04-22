@@ -5,7 +5,6 @@ using UnityEngine;
 public class BaseSpaceship : MonoBehaviour {
 
 	#region Public Attributes
-	//public Transform nextWayPoint;
 	public float updateTime;
 	public float force;
 	public float maxSpeed;
@@ -45,14 +44,34 @@ public class BaseSpaceship : MonoBehaviour {
 
 
 	#region User Methods
-	protected Vector3 adjustDirection(Vector3 pos, Vector3 obj)
+	protected virtual void Movement()
+	{
+		
+	}
+
+	protected virtual void NextWaypoint()
+	{
+		
+	}
+
+	protected virtual void Dodge()
+	{
+		
+	}
+
+	protected Vector3 AdjustDirection(Vector3 pos, Vector3 obj)
 	{
 		return (obj - pos);
 	}
 
-	/*void SetNextWayPoint()
+	protected void VerticalSpeedControl()
 	{
-		nextWayPoint = level_manager.getWaypoint (current_wayPoint).GetComponent<WayPoint>().nextWayPoint;
-	}*/
+		if (rb.velocity.y > 0.1f) {
+			rb.AddForce (Vector3.down, ForceMode.Force);
+		} else if (rb.velocity.y < -0.1) {
+			rb.AddForce (Vector3.up, ForceMode.Force);
+		}
+	}
+
 	#endregion
 }

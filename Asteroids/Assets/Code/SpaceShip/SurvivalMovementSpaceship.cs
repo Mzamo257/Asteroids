@@ -31,7 +31,8 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 	// Update is called once per frame
 	protected override void Update () {
 		
-		dodge ();
+		Dodge ();
+
 		velocity = rb.velocity;
 		currentUpdateTime += Time.deltaTime;
 		angleResultant = Vector3.Angle (velocity, posNextWayPointRelative);
@@ -39,37 +40,35 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 
 		posNextWayPointRelative = posCurrentWayPoint - transform.position;
 
-		Redirect ();
-		VerticalSpeedControl ();
+		Movement ();
+
+		base.VerticalSpeedControl ();
+
 		NextWaypoint ();
 
 	}
 	#endregion
 
 	#region User Methods
-	private void NextWaypoint()
+	protected override void Movement()
 	{
-		if ((transform.position - posCurrentWayPoint).magnitude <= 2) {
+		if(currentUpdateTime > updateTime)
+		{
+			adjustedDirection = AdjustDirection(velocity, posNextWayPointRelative).normalized;
+			rb.AddForce (adjustedDirection * force, ForceMode.Impulse);
 
-			levelManager.AdvanceWaypoint();
-			GameObject nextWaypoint = levelManager.CurrentWaypoint;
-
-			if (nextWaypoint != null)
-			{
-				posCurrentWayPoint = nextWaypoint.transform.position;
-			}
-
-			firstMovement = true;
-			secondMovement = true;
+			previousRotation = nextRotation;
+			nextRotation = Quaternion.LookRotation (posNextWayPointRelative);
+			currentUpdateTime = 0;
 		}
+		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
 	}
 
-	private void dodge()
+	protected override void Dodge()
 	{
 		if (Physics.SphereCast (transform.position, maxDetectionDistance, rb.velocity, out hitInfo)) {
 			if(hitInfo.transform.tag.Equals("Asteroid"))
 			{
-				Debug.Log ("Sphere Detection");
 				if (Physics.Raycast (transform.position, rb.velocity, out hitInfo, maxDetectionDistance)) {
 
 					if(hitInfo.transform.tag.Equals("Asteroid"))
@@ -80,44 +79,25 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 						} else if(random == 1){
 							rb.AddForce (-transform.up, ForceMode.Impulse);
 						}
-							
-						Debug.Log ("Raycast Detection");
 					}
 				}
 			}
 		}
 	}
 
-	private void Redirect()
+	protected override void NextWaypoint()
 	{
-		
-		if(currentUpdateTime > updateTime)
-		{
-			adjustedDirection = adjustDirection(velocity, posNextWayPointRelative).normalized;
-			rb.AddForce (adjustedDirection * force, ForceMode.Impulse);
 
-			// TODO: Guardar un valor de orientación
-			// Y hacer una transición más limpia con Slerp
+		if ((transform.position - posCurrentWayPoint).magnitude <= 2) {
 
-			previousRotation = nextRotation;
-			nextRotation = Quaternion.LookRotation (posNextWayPointRelative);
-			currentUpdateTime = 0;
-		}
+			levelManager.AdvanceWaypoint();
+			GameObject nextWaypoint = levelManager.CurrentWaypoint;
 
-		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
-
-	}
-		
-
-	private void VerticalSpeedControl()
-	{
-		if (rb.velocity.y > 0.1f) {
-			rb.AddForce (Vector3.down, ForceMode.Force);
-			Debug.Log ("VerticalSpeedControl_hacia abajo");
-		} else if (rb.velocity.y < -0.1) {
-			rb.AddForce (Vector3.up, ForceMode.Force);
-			Debug.Log ("VerticalSpeedControl_ hacia arriba");
-
+			if (nextWaypoint != null)
+			{
+				posCurrentWayPoint = nextWaypoint.transform.position;
+			}
+				
 		}
 	}
 	#endregion
