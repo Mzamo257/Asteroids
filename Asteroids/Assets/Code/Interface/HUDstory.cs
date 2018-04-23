@@ -28,8 +28,8 @@ public class HUDstory : HUD {
 
 	protected override void OnGUI()
 	{
+		base.OnGUI ();
 		if (!levelMgr.Pause) {
-			base.OnGUI ();
 			GUI.Label (new Rect (Screen.width * 9 / 10, Screen.height / 20, Screen.width / 10, Screen.height / 10), storyLevelMgr.CaughtAliens + " / " + storyLevelMgr.AliensToCatch);
 			GUI.Label (new Rect (Screen.width * 7 / 10, Screen.height / 20, Screen.width / 10, Screen.height / 10), storyLevelMgr.AvailableTrash + " / " + storyLevelMgr.TotalTrash);
 		}

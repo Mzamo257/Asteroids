@@ -95,7 +95,9 @@ public class StoryLevelManager : BaseLevelManager {
         {
             Debug.Log("Victory");
             GameManagerSingleton.GetInstance().StoryProgress();
-            SceneManager.LoadScene("Menu");
+			win = true;
+			//pause = true;
+            //SceneManager.LoadScene("Menu");
         }
     }
 
@@ -115,8 +117,11 @@ public class StoryLevelManager : BaseLevelManager {
     /// </summary>
     public void ReachWaypoint()
     {
-		if(playerWayPoints.Count > 0)
-        playerWayPoints.RemoveAt(0);
+		if (playerWayPoints.Count > 0) 
+		{
+			playerWayPoints [0].SetActive (false);
+			playerWayPoints.RemoveAt (0);
+		}
     }
 
 	Vector3 DetermineZoneToAppear()

@@ -19,6 +19,9 @@ public class Menu : MonoBehaviour {
 	public Text credits;
 	public Text volume;
 	public Text back;
+	public Text backCredits;
+	public Text settingsTitle;
+	public Text creditsTitle;
 	public Transform spaceship;
 	public Transform center;
 
@@ -39,28 +42,22 @@ public class Menu : MonoBehaviour {
 	void Start () 
 	{
         gameManagerSingleton = GameManagerSingleton.GetInstance();
-        /*if (language) 
-		{		
-			switch (gmScript.GetLanguage ()) 
-			{
-			case "English":
-				language.value = 0;
-				MenuEnglish ();
-				break;
-			case "Español":
-				language.value = 1;
-				MenuSpanish ();
-				break;
-			case "Français":
-				language.value = 2;
-				break;
-			}
-			MenuPauseLanguage();
+		switch (gameManagerSingleton.GetLanguage()) {
+		case "English":
+			language.value = 0;
+			MenuEnglish ();
+			break;
+		case "Español":
+			language.value = 1;
+			MenuSpanish ();
+			break;
+		case "Français":
+			language.value = 2;
+			break;
 		}
-		if (sound) 
-		{
-			sound.isOn = gmScript.GetSound ();
-		}*/
+		sound.isOn = gameManagerSingleton.Music;
+		volumeValue.value = gameManagerSingleton.Volume;
+
 
         //
         Time.timeScale = 1.0f;
@@ -116,8 +113,11 @@ public class Menu : MonoBehaviour {
 		music.text = "Music/Sound";
 		volume.text = "Volume";
 		back.text = "Back";
+		backCredits.text = "Back";
 		settings.text = "SETTINGS";
+		settingsTitle.text = "SETTINGS";
 		credits.text = "CREDITS";
+		creditsTitle.text = "CREDITS";
 	}
 
 	private void MenuSpanish()
@@ -129,8 +129,11 @@ public class Menu : MonoBehaviour {
 		music.text = "Musica/Sonido";
 		volume.text = "Volumen";
 		back.text = "Atrás";
+		backCredits.text = "Atrás";
 		settings.text = "CONFIGURACION";
+		settingsTitle.text = "CONFIGURACION";
 		credits.text = "CREDITOS";
+		creditsTitle.text = "CREDITOS";
 	}
 
 	private void MenuFrench()
@@ -142,7 +145,10 @@ public class Menu : MonoBehaviour {
 		music.text = "Musique /Son";
 		volume.text = "Volum";
 		back.text = "Return";
+		backCredits.text = "Return";
 		settings.text = "Configuration";
+		settingsTitle.text = "Configuration";
 		credits.text = "Crédits";
+		creditsTitle.text = "CRÉDITS";
 	}
 }

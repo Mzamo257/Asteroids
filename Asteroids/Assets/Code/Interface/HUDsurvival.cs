@@ -30,9 +30,9 @@ public class HUDsurvival : HUD {
 
 	protected override void OnGUI()
 	{
+		base.OnGUI ();
 		if (!levelMgr.Pause) 
 		{
-			base.OnGUI ();
 			//Spaceship progress
 			//Line
 			GUI.DrawTexture (new Rect (Screen.width * 9 / 10, finalPosition, iconSize / 10, iconSize * 3), progress [2], ScaleMode.StretchToFill);

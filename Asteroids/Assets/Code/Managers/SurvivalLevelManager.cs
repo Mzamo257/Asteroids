@@ -84,7 +84,9 @@ public class SurvivalLevelManager : BaseLevelManager {
         {
             Debug.Log("Defeat");
             GameManagerSingleton.GetInstance().SurvivalProgress();
-            SceneManager.LoadScene("Menu");
+            //SceneManager.LoadScene("Menu");
+			lose = true;
+			//pause = true;
         }
 		else
 		surHud.updateParameters();
