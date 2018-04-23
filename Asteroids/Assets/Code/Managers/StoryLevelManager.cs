@@ -54,7 +54,10 @@ public class StoryLevelManager : BaseLevelManager {
             // Debug.Log("Spawning little alien");
             if (alienPrefab != null)
             {
-                Vector3 alienPosition = new Vector3(0, 0, 10 * i);
+                // Revisar como organizarse con los límites
+                float x = Random.RandomRange(-80.0f, 80.0f);
+                float z = Random.RandomRange(0.0f, 180.0f);
+                Vector3 alienPosition = new Vector3(x, 0, z);
                 GameObject newAlien = Instantiate(alienPrefab, alienPosition, Quaternion.identity);
                 aliens.Add(newAlien);
             }

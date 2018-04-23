@@ -45,7 +45,11 @@ public class SurvivalLevelManager : BaseLevelManager {
         list_of_wayPoints = new List<GameObject>();
         for (int i = 0; i < levelData.numberOfWaypoints; i++)
         {
-            Vector3 wayPoint_position = new Vector3(0, 0, 100 * i);
+            //
+            float x = Random.Range(-5.0f, 5.0f);
+            float y = Random.Range(-5.0f, 5.0f);
+            //
+            Vector3 wayPoint_position = new Vector3(x, y, 100 * i);
             GameObject new_WayPoint = Instantiate(wayPoint_prefab, wayPoint_position, Quaternion.identity);
             list_of_wayPoints.Add(new_WayPoint);
         }
