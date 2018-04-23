@@ -61,8 +61,7 @@ public class SurvivalLevelManager : BaseLevelManager {
     // Update is called once per frame
     protected override void Update () {
         base.Update();
-
-	}
+    }
 
     #endregion
 
@@ -86,7 +85,9 @@ public class SurvivalLevelManager : BaseLevelManager {
             GameManagerSingleton.GetInstance().SurvivalProgress();
             //SceneManager.LoadScene("Menu");
 			lose = true;
-			PauseGame ();
+            gameState = GameState.Defeat;
+            Time.timeScale = 0.0f;
+			//PauseGame ();
         }
 		else
 		surHud.updateParameters();

@@ -96,7 +96,9 @@ public class StoryLevelManager : BaseLevelManager {
             Debug.Log("Victory");
             GameManagerSingleton.GetInstance().StoryProgress();
 			win = true;
-			PauseGame ();
+            gameState = GameState.Victory;
+            Time.timeScale = 0.0f;
+			//PauseGame ();
         }
     }
 
