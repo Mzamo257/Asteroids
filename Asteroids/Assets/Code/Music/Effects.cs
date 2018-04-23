@@ -37,10 +37,11 @@ public class Effects : MonoBehaviour {
 	#region User Methods
 	public void playEffect(int clip)
 	{
-		if (!gameManagerSingleton.mute) 
+		if (!gameManagerSingleton.Music) 
 		{
-			//aS.clip = clip;
+			aS.clip = choque[clip];
 			aS.volume = gameManagerSingleton.Volume;
+            Debug.Log(aS.volume);
 			aS.Play ();
 		}
 	}

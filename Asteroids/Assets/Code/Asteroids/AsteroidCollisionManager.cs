@@ -46,11 +46,11 @@ public class AsteroidCollisionManager : MonoBehaviour {
 			gameObject.SetActive(false);
 			DestroyAsteroid();
 		}
-		/*else
+		else
 		{
 			int effectNumber = (int)(Random.value * 2);
 			soundEffectsManager.playEffect(effectNumber);
-		}*/
+		}
 
 	}
 	#endregion

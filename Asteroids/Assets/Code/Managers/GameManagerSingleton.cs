@@ -26,7 +26,7 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
     #region Private Attributes
     private string language;
     private bool music;
-    private float volume;
+    private float volume = 1.0f;
     private List<SurvivalLevelData> survivalLevelList;
     private List<StoryLevelData> storyLevelList;
 
@@ -41,7 +41,10 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
     public float Volume
     {
         get { return volume; }
-		set { volume = value; }
+		set {
+            volume = value;
+            PlayerPrefs.SetFloat("Volume", value);
+        }
     }
     public int CurrentLevel
     {
@@ -60,7 +63,7 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
     public int CurrentSurvivalLevel { get { return currentSurvivalLevel; } }
     public int CurrentStoryLevel { get { return currentStoryLevel; } }
 
-    public bool mute
+    public bool Music
     {
         get { return music; }
     }
@@ -84,16 +87,15 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
     // Not monobeahvoiur
     void Start()
     {
-        language = "English";
-        // SceneManager.LoadSceneAsync("Menu", LoadSceneMode.Single);
-        //Create the levels
+        // Get the player prefs
+        language = PlayerPrefs.GetString("Language", "English");
+        volume = PlayerPrefs.GetFloat("Volume", 1);
+        music = PlayerPrefs.GetInt("MusicOff", 0) == 0;
 
+        //Create the levels
         // Survival ones
-        // survivalLevelList = new List<SurvivalLevelData>();
-        survivalLevelList = Reader.getSurvivalLevelDataFromXML();
-        
+        survivalLevelList = Reader.getSurvivalLevelDataFromXML();        
         // Story ones
-        // storyLevelList = new List<StoryLevelData>();
         storyLevelList = Reader.getStoryLevelDataFromXML();
     }
     
@@ -125,11 +127,13 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
                 language = "Français";
                 break;
         }
+        PlayerPrefs.SetString("Language", language);
     }
 
     public void SetSound(bool change)
     {
         music = change;
+        PlayerPrefs.SetInt("MusicOff", change ? 1 : 0);
     }
 
     public void SurvivalProgress()
