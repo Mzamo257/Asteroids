@@ -40,4 +40,18 @@ public class Buttons : MonoBehaviour {
 	{
 		Application.Quit();
 	}
+
+    public void ButtonNextLevel()
+    {
+        switch (GameManagerSingleton.GetInstance().CurrentGameMode)
+        {
+            case GameMode.Survival:
+                SceneManager.LoadScene("Survival");
+                break;
+            case GameMode.Story:
+                SceneManager.LoadScene("Story");
+                break;
+        }
+        
+    }
 }
