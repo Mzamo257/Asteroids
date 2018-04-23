@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class HUD : MonoBehaviour {
 	#region Public Attributes
 	public Texture[] alertBars;
-	public Texture[] progress;
 	public float iconSizeRate = 0.2f;
 	public float damage;
 	#endregion
@@ -50,7 +49,6 @@ public abstract class HUD : MonoBehaviour {
 
 		if (levelMgr.AsteroidSelected) 
 		{
-			GUI.DrawTexture(new Rect(levelMgr.AsteroidPosCamera.x, levelMgr.AsteroidPosCamera.y, iconSize /1.5f, iconSize/1.5f), asteroidPointer, ScaleMode.ScaleToFit);
 			GUI.DrawTexture(new Rect(levelMgr.AsteroidPosCamera.x, levelMgr.AsteroidPosCamera.y, iconSize /1.5f, iconSize/1.5f), asteroidPointer, ScaleMode.ScaleToFit);
 		}
 	}

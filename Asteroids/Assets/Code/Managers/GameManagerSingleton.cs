@@ -41,6 +41,7 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
     public float Volume
     {
         get { return volume; }
+		set { volume = value; }
     }
     public int CurrentLevel
     {

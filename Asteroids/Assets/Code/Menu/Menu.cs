@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour {
 	#region Public Attributes
 	public Dropdown language;
 	public Toggle sound;
+	public Slider volumeValue;
 
 	public Text play;
 	public Text cont;
@@ -16,6 +17,8 @@ public class Menu : MonoBehaviour {
 	public Text music;
 	public Text settings;
 	public Text credits;
+	public Text volume;
+	public Text back;
 	public Transform spaceship;
 	public Transform center;
 
@@ -23,8 +26,6 @@ public class Menu : MonoBehaviour {
 	#endregion
 
 	#region Private Attributes
-	//GameObject gameManager;
-	//GameManager gmScript;
     GameManagerSingleton gameManagerSingleton;
 	#endregion
 
@@ -37,8 +38,6 @@ public class Menu : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		//gameManager = GameObject.Find ("GameManager");
-		//gmScript = gameManager.GetComponent<GameManager> ();
         gameManagerSingleton = GameManagerSingleton.GetInstance();
         /*if (language) 
 		{		
@@ -103,6 +102,11 @@ public class Menu : MonoBehaviour {
 		//gmScript.SavePreferences ();
 	}
 
+	public void Slider()
+	{
+		gameManagerSingleton.Volume = volumeValue.value;
+	}
+
 	private void MenuEnglish()
 	{
 		play.text = "SURVIVAL";
@@ -110,6 +114,8 @@ public class Menu : MonoBehaviour {
 		exit.text = "EXIT";
 		lang.text = "Language";
 		music.text = "Music/Sound";
+		volume.text = "Volume";
+		back.text = "Back";
 		settings.text = "SETTINGS";
 		credits.text = "CREDITS";
 	}
@@ -121,6 +127,8 @@ public class Menu : MonoBehaviour {
 		exit.text = "SALIR DEL JUEGO";
 		lang.text = "Idioma";
 		music.text = "Musica/Sonido";
+		volume.text = "Volumen";
+		back.text = "Atrás";
 		settings.text = "CONFIGURACION";
 		credits.text = "CREDITOS";
 	}
@@ -132,6 +140,8 @@ public class Menu : MonoBehaviour {
 		exit.text = "Jeu de Sortie";
 		lang.text = "Langage";
 		music.text = "Musique /Son";
+		volume.text = "Volum";
+		back.text = "Return";
 		settings.text = "Configuration";
 		credits.text = "Crédits";
 	}
