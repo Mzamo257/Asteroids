@@ -58,8 +58,6 @@ public class Menu : MonoBehaviour {
 		sound.isOn = gameManagerSingleton.Music;
 		volumeValue.value = gameManagerSingleton.Volume;
 
-
-        //
         Time.timeScale = 1.0f;
 	}
 
@@ -83,7 +81,6 @@ public class Menu : MonoBehaviour {
 			MenuFrench ();
 			break;
 		}
-		//gmScript.SavePreferences ();
 	}
 
 	public void ToggleSound()
@@ -96,7 +93,6 @@ public class Menu : MonoBehaviour {
 		{
 			gameManagerSingleton.SetSound(false);
 		}
-		//gmScript.SavePreferences ();
 	}
 
 	public void Slider()

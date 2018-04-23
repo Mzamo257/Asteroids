@@ -35,8 +35,7 @@ public abstract class HUD : MonoBehaviour {
 	// Update is called once per frame
 	protected virtual void Update () 
 	{
-		if (damage > levelMgr.SpaceCurrentLife)	damage -= 10 * Time.deltaTime;
-	
+		if (damage > levelMgr.SpaceCurrentLife)	damage -= 10 * Time.deltaTime;	
 	}
 
 	protected virtual void OnGUI()

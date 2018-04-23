@@ -14,7 +14,6 @@ public class HUDsurvival : HUD {
 	// Use this for initialization
 	protected override void Start () {
 		base.Start ();
-        //survivalLevelMgr = FindObjectOfType<SurvivalLevelManager>();
         survivalLevelMgr = levelMgr as SurvivalLevelManager;
 		positionY = iconSize * 3 / survivalLevelMgr.NumWaypoints;
 
