@@ -40,13 +40,13 @@ public abstract class HUD : MonoBehaviour {
 
 	protected virtual void OnGUI()
 	{
-		if (levelMgr.Win) {
+		if (levelMgr.currentState == GameState.Victory) {
 			Win.enabled = true;
 			Pause.enabled = false;
-		} else if (levelMgr.Lose) {
+		} else if (levelMgr.currentState == GameState.Defeat) {
 			Lose.enabled = true;
 			Pause.enabled = false;
-		} else {
+		} else if (levelMgr.currentState != GameState.Paused){
 			//Healthbar
 			GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize / 6, damage / levelMgr.SpaceMaxLife * (iconSize * 2.9f), iconSize / 3), alertBars [3], ScaleMode.StretchToFill);
 			GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize / 6, levelMgr.SpaceCurrentLife / levelMgr.SpaceMaxLife * (iconSize * 2.9f), iconSize / 3), alertBars [2], ScaleMode.StretchToFill);
