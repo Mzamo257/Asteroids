@@ -9,7 +9,8 @@ public class SurvivalLevelManager : BaseLevelManager {
     #region Private Attributes
     protected SurvivalLevelData levelData;
     protected List<GameObject> list_of_wayPoints;
-    protected int currentWaypoint;   
+    protected int currentWaypoint; 
+	protected SurvivalIntro intro;
     #endregion
 
     #region Properties
@@ -36,6 +37,8 @@ public class SurvivalLevelManager : BaseLevelManager {
     // Use this for initialization
     protected override void Start () {
         base.Start();
+		intro = GetComponent<SurvivalIntro>();
+		intro.StartEvent ();
         //
         gameManagerSingleton.CurrentGameMode = GameMode.Survival;
         levelData = gameManagerSingleton.CurrentSurvivalLevelData;
@@ -83,7 +86,6 @@ public class SurvivalLevelManager : BaseLevelManager {
         {
             Debug.Log("Defeat");
             GameManagerSingleton.GetInstance().SurvivalProgress();
-            //SceneManager.LoadScene("Menu");
 			lose = true;
             gameState = GameState.Defeat;
             Time.timeScale = 0.0f;
@@ -97,6 +99,13 @@ public class SurvivalLevelManager : BaseLevelManager {
     {
         return (list_of_wayPoints[currentWaypoint].transform.position - ship.transform.position).magnitude;
     }
+
+	public override bool introEnd()
+	{
+		if (intro.Step == 1)
+			return true;
+		return false;
+	}
 
     #endregion
 

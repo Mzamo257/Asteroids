@@ -22,6 +22,8 @@ public class StoryLevelManager : BaseLevelManager {
     protected List<GameObject> aliens;
     protected int caughtAliens = 0;
 	private HUDstory hud;
+
+	protected StoryIntro intro;
     #endregion
 
     #region Properties
@@ -43,6 +45,8 @@ public class StoryLevelManager : BaseLevelManager {
     // Use this for initialization
     protected override void Start () {
         base.Start();
+		intro = GetComponent<StoryIntro>();
+		intro.StartEvent ();
         // Set the game mode
         gameManagerSingleton.CurrentGameMode = GameMode.Story;
         //
@@ -132,6 +136,13 @@ public class StoryLevelManager : BaseLevelManager {
 		Vector3 worldPoint = minimapCamera.ViewportToWorldPoint(new Vector3(cameraPoint.x, cameraPoint.y, zDistance));
 		worldPoint.y = ship.transform.position.y;
 		return worldPoint;
+	}
+		
+	public override bool introEnd()
+	{
+		if (intro.Step == 1)
+			return true;
+		return false;
 	}
 
     #endregion

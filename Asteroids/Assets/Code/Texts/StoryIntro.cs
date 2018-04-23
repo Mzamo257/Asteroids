@@ -1,13 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Collections;
-using System.IO;
-using UnityEngine.SceneManagement;
 
-public class SurvivalIntro : MonoBehaviour {
+public class StoryIntro : MonoBehaviour {
 
 	#region Public Attributes
 	//Common ones
@@ -42,7 +37,7 @@ public class SurvivalIntro : MonoBehaviour {
 	void Start () 
 	{
 		gameManagerSingleton = GameManagerSingleton.GetInstance ();
-		eventText = GameFunctions.GetTextXML ("EVENTS", "EVENT", "SurvivalIntro");
+		eventText = GameFunctions.GetTextXML ("EVENTS", "EVENT", "StoryIntro");
 		//fadeInOut = GameObject.Find ("FadeInOut");
 		//Conversation Box zone
 		conversationBoxZone = new Rect(0, Screen.height * 4/5, Screen.width, Screen.height * 1/5);

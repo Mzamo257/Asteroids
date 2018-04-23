@@ -2936,6 +2936,7 @@ GameObject:
   - component: {fileID: 1624366546}
   - component: {fileID: 1624366544}
   - component: {fileID: 1624366545}
+  - component: {fileID: 1624366547}
   m_Layer: 0
   m_Name: Level Manager
   m_TagString: Untagged
@@ -2994,6 +2995,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1624366547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1624366543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d6950965a081a478ea1a49324ed700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  conversationIcons: []
+  conversationFrame: {fileID: 0}
+  conversationBox: {fileID: 2800000, guid: 7891d3f2ec65c724dbe3689874221794, type: 3}
 --- !u!1 &1658669652
 GameObject:
   m_ObjectHideFlags: 0
