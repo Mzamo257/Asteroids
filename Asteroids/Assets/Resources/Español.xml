@@ -1,45 +1,14 @@
 <MAIN>
 	<EVENTS>
 		<EVENT name="SurvivalIntro">						<!-- &lt;color=orange&gt; texto &lt;/color&gt; -->
-			<texto> ¿Qué ...? </texto>
-			<texto> ¿ESTÁS LOCO !? </texto>
-			<texto> Déjame ayudarte </texto>
+			<texto> OH! NO! Nuestro enemigo a escapado</texto>
+			<texto> Tiene que destruir su nave antes de que llegue a su fin </texto>
+			<texto> Dale con los asteroides!! </texto>
 		</EVENT>
 		<EVENT name="StoryIntro">
-			<!-- Welcome message -->
-			<texto> Hola, Weirdy </texto>									<!-- 0 -->
-			<texto> Un mal día, ¿eh? </texto>
-			<!-- Before entering -->
-			<texto> ¿Donde están tus modales, Weirdy? </texto>
-			<!-- Weirdy replies -->
-			<texto> Oh, claro, tienes preguntas </texto>
-			<texto> No estas a gusto con lo que pasa aquí, ¿verdad? </texto>
-			<texto> Bastante gracioso lo de la pintura </texto>
-			<texto> Bueno, estoy aquí porque te he elegido </texto> 		<!-- 6 -->
-			<!-- Weirdy replies again -->
-			<texto> Está claro </texto>
-			<texto> Me ayudarás a aclarar este asunto </texto>
-			<texto> Por ahora necesito que compruebes una cosa por mi </texto>
-			<texto> Puedo ver a través de tus ojos y hablar a tu mente </texto>			
-			<texto> Así podré ayudarte </texto>
-			<texto> Así que hazme un favor </texto>
-			<texto> Inspecciona el &lt;color=orange&gt;ascensor&lt;/color&gt; o el &lt;color=orange&gt;técnico&lt;/color&gt; que esta allí </texto>	<!-- 13 -->
-			<!-- When elevator and operator examinated -->
-			<texto> Hmmm, interesante </texto>
-			<texto> Ven, tengo algo para tí </texto>				<!-- 15 -->
-			<!-- Retaking before EXAMINATE explanation -->
-			<texto> Bien, vamos al grano </texto>
-			<texto> Siento algo extraño en el &lt;color=orange&gt; sótano &lt;/color&gt; </texto>
-			<texto> Algo no va bien </texto>
-			<texto> Tendrás que &lt;color=orange&gt;manipular el ascensor&lt;/color&gt; </texto>
-			<texto> Para poder llegar al sótano </texto> <!-- 20 -->
-			<!-- White fade -->
-			<texto> Sensación rara, ¿verdad? </texto>
-			<texto> He compartido contigo algo de mi habilidad </texto>
-			<texto> Telepatía </texto>
-			<texto> Un poquito de ella. Muy básico </texto>
-			<texto> Espero que puedas desarrollarlo pronto </texto>
-			<texto> Y ahora, vamos. Al sotano </texto>
+			<texto> Tenemos que recoger a nuestros amigos </texto>									<!-- 0 -->
+			<texto> Coloca los ganchos para redirigir la nave y recogerlos </texto>
+			<texto> Ten cuidado con con los asteroides te quitarán vida </texto>
 		</EVENT>
 	</EVENTS>
 </MAIN>

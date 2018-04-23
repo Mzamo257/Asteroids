@@ -1,45 +1,14 @@
 <MAIN>
 	<EVENTS>
 		<EVENT name="SurvivalIntro">
-			<texto> Quoi ...? </texto>
-			<texto> TU ES FOU!? </texto>
-			<texto> Laisse-moi t´aider </texto>
+			<texto> OH! NON! Notre ennemi a échappé</texto>
+			<texto> Vous devez détruire votre vaisseau avant qu'il ne prenne fin </texto>
+			<texto> Frappez-le avec les astéroïdes! </texto>
 		</EVENT>
 		<EVENT name="StoryIntro">
-			<!-- Welcome message -->
-			<texto> Salut, Weirdy </texto>									<!-- 0 -->
-			<texto> Un mauvais jour, ein? </texto>
-			<!-- Before entering -->
-			<texto> Où sont tes manières, Weirdy? </texto>
-			<!-- Weirdy replies -->
-			<texto> Oh, bien sur, tu as des questions </texto>
-			<texto> Tu n´es pas à l´aise avec ce qui ce passe ici, n´est-ce pas? </texto>
-			<texto> C´est assez drôle ce qui c´est passé avec la peinture </texto>
-			<texto> Bon, je suis ici parce que je t´ai choisi </texto> 		<!-- 6 -->
-			<!-- Weirdy replies again -->
-			<texto> Bien sûr </texto>
-			<texto> M´aideras-tu a dénouer cette situation </texto>
-			<texto> Pour l´instant, j´ai besoin que tu vérifies une chose pour moi </texto>
-			<texto> Je peux voir à travers de tes yeux et parler dans ta tête </texto>			
-			<texto> Ainsi je pourrais t´aider </texto>
-			<texto> Alors rends-moi un service </texto>
-			<texto> Fais-moi une reconnaissance de l´ascenseur ou du technicien qui est là-bas </texto>	<!-- 13 -->
-			<!-- When elevator and operator examinated -->
-			<texto> Oh, intéressant </texto>
-			<texto> Viens, j´ai quelque chose pour toi </texto>				<!-- 15 -->
-			<!-- Retaking before EXAMINATE explanation -->
-			<texto> Ok, allons droit au but </texto>
-			<texto> À mon avis, il y a quelque chose de bizarre au sou-sol </texto>
-			<texto> Ça ne marche pas </texto>
-			<texto> Tu devras manipuler l´ascenseur </texto>
-			<texto> Pour arriver au sous-sol </texto> <!-- 20 -->
-			<!-- White fade -->
-			<texto> C´est étrange, n´est-ce pas? </texto>
-			<texto> J´ai partagé avec toi un peu de mon don </texto>
-			<texto> La télépathie </texto>
-			<texto> Un peu d´elle du point de vue basique </texto>
-			<texto> J´espère que bientôt tu pourras l´avoir </texto>
-			<texto> Et maintenant, allons au sous-sol </texto>
+			<texto> Nous devons prendre nos amis </texto>									<!-- 0 -->
+			<texto> Placez les crochets pour rediriger le bateau et ramassez-les </texto>
+			<texto> Soyez prudent avec les astéroïdes qui vous emmènera </texto>
 		</EVENT>
 	</EVENTS>
 </MAIN>

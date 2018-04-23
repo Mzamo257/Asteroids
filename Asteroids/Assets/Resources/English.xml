@@ -1,45 +1,14 @@
 <MAIN>
 	<EVENTS>
 		<EVENT name="SurvivalIntro">
-			<texto> What the...? </texto>
-			<texto> ARE YOU MAD!? </texto>
-			<texto> Let me help you </texto>
+			<texto> OH! MY GOD! Our enemy has escaped</texto>
+			<texto> You have to destroy your ship before it comes to an end </texto>
+			<texto> Hit him with the asteroids! </texto>
 		</EVENT>
 		<EVENT name="StoryIntro">
-			<!-- Welcome message -->
-			<texto> Hello, Weirdy </texto>									<!-- 0 -->
-			<texto> Not a good day, huh? </texto>
-			<!-- Before entering -->
-			<texto> Where are your manners, Weirdy? </texto>
-			<!-- Weirdy replies -->
-			<texto> Oh, yes, you have questions </texto>
-			<texto> You are not ok with things here, aren't you? </texto>
-			<texto> Quite funny the thing with the paint </texto>
-			<texto> Well, I'm here because I have chosen you </texto> 		<!-- 6 -->
-			<!-- Weirdy replies again -->
-			<texto> It's clear </texto>
-			<texto> You'll help me to clarify this mess </texto>
-			<texto> For now I need you to check something for me </texto>
-			<texto> I can see through your eyes and speak to your mind </texto>			
-			<texto> With that I will be able to help you </texto>
-			<texto> So do me a favor </texto>
-			<texto> Inspect the &lt;color=orange&gt;elevator&lt;/color&gt; or the &lt;color=orange&gt;technician&lt;/color&gt; that is there </texto>		<!-- 13 -->
-			<!-- When elevator and operator examinated -->
-			<texto> Hmmm, interesting </texto>
-			<texto> Come, I have something for you </texto>				<!-- 15 -->
-			<!-- Retaking before EXAMINATE explanation -->
-			<texto> Well, here's the point </texto>
-			<texto> I sense something strange from the basment </texto>
-			<texto> Something that is not ok </texto>
-			<texto> And you'll need to &lt;color=orange&gt;hack that elevator&lt;/color&gt; </texto>
-			<texto> In order to reach it </texto>						<!-- 20 -->
-			<!-- White fade -->
-			<texto> Weird, huh? </texto>
-			<texto> I have shared with you something of my ability </texto>
-			<texto> Telepathy </texto>
-			<texto> Well, a little of. Very basic </texto>
-			<texto> I hope you can grow on it soon </texto>
-			<texto> And now, go. To the basement </texto>
+			<texto> We have to pick up our friends </texto>
+			<texto> Place the hooks to redirect the ship and pick them up </texto>
+			<texto> Be careful with the asteroids will take you away </texto>
 		</EVENT>
 	</EVENTS>
 </MAIN>
