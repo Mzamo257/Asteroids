@@ -27,12 +27,12 @@ GameObject:
   - component: {fileID: 114996681913520188}
   - component: {fileID: 198270870604424978}
   - component: {fileID: 199052070087793998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Asteroid_03_L
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!4 &4203708736844698
 Transform:
