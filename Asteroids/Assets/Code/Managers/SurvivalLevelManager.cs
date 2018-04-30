@@ -36,14 +36,15 @@ public class SurvivalLevelManager : BaseLevelManager {
     #region MonoBehaviour Methods
     // Use this for initialization
     protected override void Start () {
+        // And then the base start
         base.Start();
-		intro = GetComponent<SurvivalIntro>();
+
+        intro = GetComponent<SurvivalIntro>();
 		intro.StartEvent ();
         //
         gameManagerSingleton.CurrentGameMode = GameMode.Survival;
         levelData = gameManagerSingleton.CurrentSurvivalLevelData;
         
-        // Debug.Log("Number of waypoints: " + level_data.numberOf_Waypoints);
         //create waypoints
         list_of_wayPoints = new List<GameObject>();
         for (int i = 0; i < levelData.numberOfWaypoints; i++)
@@ -56,9 +57,14 @@ public class SurvivalLevelManager : BaseLevelManager {
             GameObject new_WayPoint = Instantiate(wayPoint_prefab, wayPoint_position, Quaternion.identity);
             list_of_wayPoints.Add(new_WayPoint);
         }
-        // Debug.Log("Waypoint list length: " + list_of_wayPoints.Count);
         //
         surHud = FindObjectOfType<HUDsurvival>();
+
+        // Assign the rest of the data
+        // NOTE: This should be in BaseLevelManager, have to find the way
+        asteroidManager.numAsteroids = levelData.numberOf_Asteroids;
+        ship.force = levelData.force_Spaceship;
+        ship.maxSpeed = levelData.max_Speed_Spaceship;
     }
 
     // Update is called once per frame

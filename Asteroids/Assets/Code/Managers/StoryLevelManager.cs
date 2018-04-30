@@ -44,8 +44,11 @@ public class StoryLevelManager : BaseLevelManager {
     #region MonoBehaviour Methods
     // Use this for initialization
     protected override void Start () {
+
+        // And then the base start
         base.Start();
-		intro = GetComponent<StoryIntro>();
+
+        intro = GetComponent<StoryIntro>();
 		intro.StartEvent ();
         // Set the game mode
         gameManagerSingleton.CurrentGameMode = GameMode.Story;
@@ -59,8 +62,8 @@ public class StoryLevelManager : BaseLevelManager {
             if (alienPrefab != null)
             {
                 // Revisar como organizarse con los límites
-                float x = Random.RandomRange(-80.0f, 80.0f);
-                float z = Random.RandomRange(0.0f, 180.0f);
+                float x = Random.Range(-80.0f, 80.0f);
+                float z = Random.Range(0.0f, 180.0f);
                 Vector3 alienPosition = new Vector3(x, 0, z);
                 GameObject newAlien = Instantiate(alienPrefab, alienPosition, Quaternion.identity);
                 aliens.Add(newAlien);
@@ -69,6 +72,13 @@ public class StoryLevelManager : BaseLevelManager {
 		playerWayPoints = new List<GameObject>();
 
 		hud = FindObjectOfType<HUDstory> ();
+
+        // Assign the rest of the data
+        // NOTE: This should be in BaseLevelManager, have to find the way
+        asteroidManager.numAsteroids = levelData.numberOf_Asteroids;
+        ship.force = levelData.force_Spaceship;
+        ship.maxSpeed = levelData.max_Speed_Spaceship;
+
     }
 
     // Update is called once per frame
