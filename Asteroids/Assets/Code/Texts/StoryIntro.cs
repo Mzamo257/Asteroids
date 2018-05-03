@@ -23,6 +23,7 @@ public class StoryIntro : MonoBehaviour {
 	private int currentText = 0;
 	private GUIStyle style;
 	private GameManagerSingleton gameManagerSingleton;
+	private BaseLevelManager level;
 	#endregion
 
 	#region Properties
@@ -42,6 +43,7 @@ public class StoryIntro : MonoBehaviour {
 		//Conversation Box zone
 		conversationBoxZone = new Rect(0, Screen.height * 4/5, Screen.width, Screen.height * 1/5);
 		//style = gmControl.GetStyle ();
+		level = FindObjectOfType<BaseLevelManager>();
 	}
 
 	// Update is called once per frame
@@ -51,10 +53,12 @@ public class StoryIntro : MonoBehaviour {
 		bool lClickDown = Input.GetMouseButtonDown (0);
 		//
 		if (lClickDown && step == 0) {
-			if (currentText < eventText.Length-1)
+			if (currentText < eventText.Length - 1)
 				currentText++;
-			else
+			else {
 				step++;
+				level.StartedAsteroids = 4;
+			}
 		}
 	}
 

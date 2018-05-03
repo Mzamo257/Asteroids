@@ -6,7 +6,6 @@ public class AsteroidManager : MonoBehaviour {
 	#region Public Attributes
 	public List<GameObject> asteroidsPrefabs;
 	public int numAsteroids;
-	public int type;
 	#endregion
 
 	#region Private Attributes
@@ -15,42 +14,39 @@ public class AsteroidManager : MonoBehaviour {
 	private GameObject spaceShip;
 	private float counter;
 	private int started=0;
+	private BaseLevelManager level;
 	#endregion
 
 	#region MonoDevelop Methods
 	// Use this for initialization
 	void Start () {
-		// Method 1: 
-		// Asteroids in the scene by hand and got by FindGameObjectsWithTag
-		//asteroidsPrefabs = GameObject.FindGameObjectsWithTag("Asteroid");
-		//
 		spaceShip = GameObject.Find("Viper");
         establishAsteoidPools();
-
-		//spamAsteroids(10.0f, 100);
-        //startAsteroids();
+		level = FindObjectOfType<BaseLevelManager>();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		// TODO: Mover este chequeo a una corrutina
 		counter += Time.deltaTime;
 		if (counter >= 0.01) {
 			CheckAsteroids();
 			counter = 0;
-            Vector3 posSpaceShip = spaceShip.transform.position;
-			if (started > 2) {
-				spamAsteroids (50.0f, 1);
-			}
-
-			if (started==2)
-			{
-				spamAsteroids(10.0f, 50);
-				//Debug.Log ("holi");
-			}
+            //Vector3 posSpaceShip = spaceShip.transform.position;
 		}
-		
-		started++;
+
+		if (level.StartedAsteroids == 4) {
+			spamAsteroids (50.0f, 10);
+		}
+
+		if (level.StartedAsteroids==2)
+		{
+			spamAsteroids(10.0f, 60);
+			level.StartedAsteroids++;
+			//Debug.Log ("holi");
+		}
+		if (level.StartedAsteroids < 2) {
+			level.StartedAsteroids=level.StartedAsteroids+1;
+		}
 	}
 	#endregion
 
@@ -112,7 +108,7 @@ public class AsteroidManager : MonoBehaviour {
 		float randomX = Random.value;
 		float randomY = Random.value;
 		float zDistance = (spaceShip.transform.position - Camera.main.transform.position).magnitude;
-		float randomZ = (Random.value * 70.0f) + zDistance + dist;
+		float randomZ = (Random.value * 30.0f) + zDistance + dist;
 		Vector3 worldPoint = Camera.main.ViewportToWorldPoint(new Vector3(randomX, randomY, randomZ));
 		//Vector3 worldPoint = Camera.main.transform.position + randomZ * Camera.main.transform.forward + randomX * Camera.main.transform.right + randomY * Camera.main.transform.up;
 		return worldPoint;
