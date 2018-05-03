@@ -2006,7 +2006,7 @@ MonoBehaviour:
   Lose: {fileID: 34696089}
   Win: {fileID: 1656467442}
   Pause: {fileID: 328610550}
-  asteroidPointer: {fileID: 2800000, guid: 0cebd222bcdb7384eb35bac29c0c2840, type: 3}
+  asteroidPointer: {fileID: 2800000, guid: 2f2a7c1524eb8e14aa3afb8005a7fd64, type: 3}
   progress:
   - {fileID: 2800000, guid: 376ccd91579f18342b31cb776048f85f, type: 3}
   - {fileID: 2800000, guid: a1ee84120645cd24f9880feef240b877, type: 3}
@@ -2729,9 +2729,9 @@ RectTransform:
   m_Father: {fileID: 328610551}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -454, y: 343}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 82, y: -70}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1988436611
