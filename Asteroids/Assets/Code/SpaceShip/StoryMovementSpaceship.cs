@@ -75,11 +75,13 @@ public class StoryMovementSpaceship : BaseSpaceship {
 		} else {
 			rb.AddForce (transform.forward * force, ForceMode.Impulse);
 			if (rb.velocity.magnitude > Vector3.zero.magnitude) {
-				nextRotation = Quaternion.LookRotation (rb.velocity);
+				//nextRotation = Quaternion.LookRotation (rb.velocity);
 			}
 		}
 
-		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
+		//transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, 0.1f);
+		//REVISAR ESTO
+		transform.rotation = Quaternion.Slerp (transform.rotation, nextRotation, 0.1f);
 	}
 
 	void OnCollisionEnter(Collision collision)
