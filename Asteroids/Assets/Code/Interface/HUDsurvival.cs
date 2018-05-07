@@ -35,7 +35,7 @@ public class HUDsurvival : HUD {
 		if (!levelMgr.Pause) 
 		{
 			//Current level
-			GUI.Label(new Rect(Screen.width*7.8f/10, Screen.height*0.3f/10, Screen.width*1.5f/10, Screen.height*0.3f/10), "Level " + GameManagerSingleton.GetInstance().CurrentSurvivalLevel, textStyle);
+			GUI.Label (new Rect (iconSize * 2, iconSize/15, 100, 30), "Level " + GameManagerSingleton.GetInstance ().CurrentSurvivalLevel, levelStyle);
 			//Spaceship progress
 			//Line
 			GUI.DrawTexture (new Rect (Screen.width * 9 / 10, finalPosition, iconSize / 10, iconSize * 3), progress [2], ScaleMode.StretchToFill);

@@ -30,8 +30,9 @@ public class HUDstory : HUD {
 	{
 		base.OnGUI ();
 		if (!levelMgr.Pause) {
-			GUI.Label (new Rect (Screen.width * 9 / 10, Screen.height / 20, Screen.width / 10, Screen.height / 10), storyLevelMgr.CaughtAliens + " / " + storyLevelMgr.AliensToCatch);
-			GUI.Label (new Rect (Screen.width * 7 / 10, Screen.height / 20, Screen.width / 10, Screen.height / 10), storyLevelMgr.AvailableTrash + " / " + storyLevelMgr.TotalTrash);
+			GUI.Label (new Rect (iconSize * 2, iconSize/15, 100, 30), "Level " + GameManagerSingleton.GetInstance ().CurrentStoryLevel, levelStyle);
+			GUI.Label (new Rect (Screen.width * 8.7f / 10, Screen.height / 20, Screen.width / 10, Screen.height / 10), storyLevelMgr.CaughtAliens + " / " + storyLevelMgr.AliensToCatch, levelStyle);
+			GUI.Label (new Rect (Screen.width * 7.2f / 10, Screen.height / 20, Screen.width / 10, Screen.height / 10), storyLevelMgr.AvailableTrash + " / " + storyLevelMgr.TotalTrash, levelStyle);
 		}
 	}
 
