@@ -40,7 +40,7 @@ public class AsteroidManager : MonoBehaviour {
 
 		if (level.StartedAsteroids==2)
 		{
-			spamAsteroids(10.0f, 60);
+			spamAsteroids(10.0f, 30);
 			level.StartedAsteroids++;
 			//Debug.Log ("holi");
 		}
