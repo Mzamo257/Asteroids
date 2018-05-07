@@ -132,11 +132,19 @@ public class StoryLevelManager : BaseLevelManager {
     /// </summary>
     public void ReachWaypoint()
     {
+        //
+        if(availableTrash == 0)
+        {
+            gameState = GameState.Defeat;
+            Time.timeScale = 0.0f;
+        }
+        //
 		if (playerWayPoints.Count > 0) 
 		{
 			playerWayPoints [0].SetActive (false);
 			playerWayPoints.RemoveAt (0);
 		}
+        
     }
 
 	Vector3 DetermineZoneToAppear()
