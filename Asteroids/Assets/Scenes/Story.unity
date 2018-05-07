@@ -3087,6 +3087,25 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1851705011583460, guid: 0fd5efb397814734591c0dbe63f6e137, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198010714026544828, guid: 0fd5efb397814734591c0dbe63f6e137,
+        type: 2}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198509430801564592, guid: 0fd5efb397814734591c0dbe63f6e137,
+        type: 2}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198509430801564592, guid: 0fd5efb397814734591c0dbe63f6e137,
+        type: 2}
+      propertyPath: randomSeed
+      value: -658347711
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0fd5efb397814734591c0dbe63f6e137, type: 2}
   m_IsPrefabParent: 0

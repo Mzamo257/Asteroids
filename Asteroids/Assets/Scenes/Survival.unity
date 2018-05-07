@@ -1459,6 +1459,41 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198020625370728628, guid: 3c28644ff5554f944adafec8fdfeeff9,
+        type: 2}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198186026046623550, guid: 3c28644ff5554f944adafec8fdfeeff9,
+        type: 2}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198186026046623550, guid: 3c28644ff5554f944adafec8fdfeeff9,
+        type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 1.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 198186026046623550, guid: 3c28644ff5554f944adafec8fdfeeff9,
+        type: 2}
+      propertyPath: randomSeed
+      value: -1309720817
+      objectReference: {fileID: 0}
+    - target: {fileID: 198186026046623550, guid: 3c28644ff5554f944adafec8fdfeeff9,
+        type: 2}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 198020625370728628, guid: 3c28644ff5554f944adafec8fdfeeff9,
+        type: 2}
+      propertyPath: randomSeed
+      value: 200641795
+      objectReference: {fileID: 0}
+    - target: {fileID: 198020625370728628, guid: 3c28644ff5554f944adafec8fdfeeff9,
+        type: 2}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.74
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114708954106116486, guid: 3c28644ff5554f944adafec8fdfeeff9, type: 2}
     - {fileID: 114533140136468720, guid: 3c28644ff5554f944adafec8fdfeeff9, type: 2}
