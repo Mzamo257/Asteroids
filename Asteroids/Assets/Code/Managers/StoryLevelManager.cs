@@ -89,9 +89,8 @@ public class StoryLevelManager : BaseLevelManager {
 			Vector3 newWaypointPosition = DetermineZoneToAppear ();
 			if(AvailableTrash > 0)
 			{
-				availableTrash--;
-				GameObject newTrash = Instantiate (trashPrefab, newWaypointPosition, Quaternion.identity);
-				playerWayPoints.Add (newTrash);
+                if(SetWaypoint(newWaypointPosition))
+				    availableTrash--;
 			}
 		}
 	}
@@ -107,9 +106,9 @@ public class StoryLevelManager : BaseLevelManager {
         caughtAliens++;
         if(caughtAliens == levelData.numberOfAliens)
         {
-            Debug.Log("Victory");
+            //Debug.Log("Victory");
             GameManagerSingleton.GetInstance().StoryProgress();
-			win = true;
+			//win = true;
             gameState = GameState.Victory;
             Time.timeScale = 0.0f;
 			//PauseGame ();
@@ -120,11 +119,20 @@ public class StoryLevelManager : BaseLevelManager {
     /// 
     /// </summary>
     /// <param name="waypointPosition"></param>
-    public void SetWaypoint(Vector3 waypointPosition)
+    public bool SetWaypoint(Vector3 waypointPosition)
     {
+        // Check that the waypoint position is in the limits
+        // The limits are:
+        //     x = -100, 100
+        //     z = 0, 200
+        //  Yeah, it is hardcoded
+        if (waypointPosition.x < -100 || waypointPosition.x > 100 || waypointPosition.z < 0 || waypointPosition.z > 200) return false;
+        //Debug.Log("Waypoint position: " + waypointPosition);
+
         // TODO: Manejar con pool
-        GameObject newWaypoint = Instantiate(wayPoint_prefab, waypointPosition, Quaternion.identity);
-        playerWayPoints.Add(newWaypoint);
+        GameObject newTrash = Instantiate(wayPoint_prefab, waypointPosition, Quaternion.identity);
+        playerWayPoints.Add(newTrash);
+        return true;
     }
 
     /// <summary>
