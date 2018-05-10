@@ -29,11 +29,10 @@ public class ColissionManagerSpaceship : MonoBehaviour {
 	#region User Methods
     private void OnCollisionEnter(Collision collision)
     {
-        // Debug.Log("Spaceship collision");
-        float otherObjectMass = collision.rigidbody.mass;
+        Rigidbody otherRigid = collision.rigidbody;
+        if(otherRigid != null)
         // Usamos la velocidad relativa de la colisión para determinar el daño
-        levelMgr.DamageSpaceShip(collision.relativeVelocity.magnitude * otherObjectMass);
-        // Debug.Log(health);
+        levelMgr.DamageSpaceShip(collision.relativeVelocity.magnitude * otherRigid.mass);
 
         //
         /*if (particleSystem != null)

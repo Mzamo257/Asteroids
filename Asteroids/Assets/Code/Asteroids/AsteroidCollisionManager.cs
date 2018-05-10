@@ -32,25 +32,27 @@ public class AsteroidCollisionManager : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		//Debug.Log ("colisionado");
-		float otherObjectMass = collision.rigidbody.mass;
-		// Usamos la velocidad relativa de la colisión para determinar el daño
-		health -= (collision.relativeVelocity.magnitude * otherObjectMass);
-		// Debug.Log(health);
-		/*if (particleSystem != null)
-            particleSystem.Play();*/
-		if(health <= 0)
-		{
-			// TODO: Restaurarles vida cuando salgan de la pool
-//			soundEffectsManager.playEffect(2);
-			gameObject.SetActive(false);
-			DestroyAsteroid();
-		}
-		else
-		{
-			int effectNumber = (int)(Random.value * 2);
-			soundEffectsManager.playEffect(effectNumber);
-		}
+        //Debug.Log ("colisionado");
+        Rigidbody otherRigid = collision.rigidbody;
+        if (otherRigid != null)
+        {
+            // Usamos la velocidad relativa de la colisión para determinar el daño
+            health -= (collision.relativeVelocity.magnitude * otherRigid.mass);
+            /*if (particleSystem != null)
+                particleSystem.Play();*/
+            if (health <= 0)
+            {
+                // TODO: Restaurarles vida cuando salgan de la pool
+                //			soundEffectsManager.playEffect(2);
+                gameObject.SetActive(false);
+                DestroyAsteroid();
+            }
+            else
+            {
+                int effectNumber = (int)(Random.value * 2);
+
+            }
+        }
 
 	}
 	#endregion
