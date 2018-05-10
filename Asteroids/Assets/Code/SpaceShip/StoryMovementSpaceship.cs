@@ -79,8 +79,6 @@ public class StoryMovementSpaceship : BaseSpaceship {
 			}
 		}
 
-		//transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, 0.1f);
-		//REVISAR ESTO
 		transform.rotation = Quaternion.Slerp (transform.rotation, nextRotation, 0.1f);
 	}
 
@@ -88,10 +86,7 @@ public class StoryMovementSpaceship : BaseSpaceship {
 	{
 		if (collision.gameObject.tag == "Limit")
 		{
-			//lo voy a hacer aleatorio entre hay que pensarlo
-			transform.Rotate(0,180,0);
-
-			//añadir aqui texto de limites en plan tienes limites eres redireccionado
+			nextRotation = Quaternion.LookRotation (-transform.forward);
 		}
 	}
 
