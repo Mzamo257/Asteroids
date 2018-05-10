@@ -769,11 +769,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidsPrefabs:
-  - {fileID: 1113428135817788, guid: 83b7bbcd87cf103488e474ee6b8e9624, type: 2}
-  - {fileID: 1141381200327592, guid: 4e663299b7ee93c40b269592445a28fc, type: 2}
-  - {fileID: 1184121898613744, guid: 340ec1aa1f653a24d95da99bf8968c7d, type: 2}
-  - {fileID: 1289817872448098, guid: 086a24664c3a0e24b8ed2d353fb5f2cf, type: 2}
-  - {fileID: 1901615731752840, guid: fab2557bf4765354991c52cdf1abf2e7, type: 2}
+  - {fileID: 1610662826685272, guid: 9d9f837e3bc97c444a4d3e308aa0018f, type: 2}
+  - {fileID: 1919482893693716, guid: cd9143172efb4f34b94b277c40e98572, type: 2}
+  - {fileID: 1938645497912198, guid: fcadf10433c9842419298a1b0a658b2d, type: 2}
+  - {fileID: 1378042377135662, guid: b8d9aa4a0b6c5a54db9a3f7ba499e07f, type: 2}
+  - {fileID: 1603573449805562, guid: 561af532eefb3e94db159d81a25b6512, type: 2}
   numAsteroids: 30
 --- !u!4 &373000343
 Transform:

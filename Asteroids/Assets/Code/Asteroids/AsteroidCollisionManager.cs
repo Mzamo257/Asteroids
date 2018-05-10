@@ -12,6 +12,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
 	private ParticleSystem particleSystem;
     private AsteroidManager asteroidMgr;
     private Effects soundEffectsManager;
+	private float collisionCounter = 0;
     #endregion
 
     #region Properties
@@ -27,12 +28,13 @@ public class AsteroidCollisionManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+		collisionCounter += Time.deltaTime;
 	}
 
 	private void OnCollisionEnter(Collision collision)
 	{
-        //Debug.Log ("colisionado");
+		if (collisionCounter < 1)
+			return;
         Rigidbody otherRigid = collision.rigidbody;
         if (otherRigid != null)
         {
@@ -58,14 +60,17 @@ public class AsteroidCollisionManager : MonoBehaviour {
 	#endregion
 
 	#region User Methods
-    
-
 	private void DestroyAsteroid()
 	{
 		int nextAsteroidType=type/2;
 		//Debug.Log (nextAsteroidType);
 		asteroidMgr.ActivateAsteroidFromDivision (nextAsteroidType, transform.position);
 		asteroidMgr.ActivateAsteroidFromDivision (nextAsteroidType, transform.position);
+
+	}
+
+	public void ResetCounter(){
+		collisionCounter = 0;
 	}
 	#endregion
 

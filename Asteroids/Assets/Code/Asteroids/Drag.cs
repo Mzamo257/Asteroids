@@ -8,7 +8,7 @@ public class Drag : MonoBehaviour {
 	public float force;
 	public Material cubo1;
 	public Material cubo2;
-	public Vector3 newCenterOfMass;
+	//public Vector3 newCenterOfMass;
 	public Vector3 impulse;
 
 	//public Vector3 torque;
@@ -29,9 +29,8 @@ public class Drag : MonoBehaviour {
 	void Start () {
 		selected = false;
 		rb = gameObject.GetComponent<Rigidbody> ();
-		rb.centerOfMass = newCenterOfMass;
-		addRandomTorque();
-		addRandomForce();
+		//rb.centerOfMass = newCenterOfMass;
+
 		levelManager = FindObjectOfType<BaseLevelManager> ();
 		//rb.AddTorque(torque, ForceMode.Impulse);
 	}
@@ -65,23 +64,7 @@ public class Drag : MonoBehaviour {
 		rb.AddForce(direction*force, ForceMode.Impulse);
 	}
 
-	void addRandomTorque()
-	{
-		float randomX = Random.value * 10 - 5;
-		float randomY = Random.value * 10 - 5;
-		float randomZ = Random.value * 10 - 5;
 
-		rb.AddTorque(new Vector3(randomX, randomY, randomZ), ForceMode.Impulse);
-	}
-
-	void addRandomForce()
-	{
-		float randomX = Random.value * 10 - 5;
-		float randomY = Random.value * 10 - 5;
-		float randomZ = Random.value * 10 - 5;
-
-		rb.AddForce(new Vector3(randomX, randomY, randomZ), ForceMode.Impulse);
-	}
 	#endregion
 }
 

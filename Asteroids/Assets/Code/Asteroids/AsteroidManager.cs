@@ -23,24 +23,25 @@ public class AsteroidManager : MonoBehaviour {
 		spaceShip = GameObject.Find("Viper");
         establishAsteoidPools();
 		level = FindObjectOfType<BaseLevelManager>();
+
 	}
 
 	// Update is called once per frame
 	void Update () {
 		counter += Time.deltaTime;
-		if (counter >= 0.01) {
+		if (counter >= 0.5) {
 			CheckAsteroids();
 			counter = 0;
             //Vector3 posSpaceShip = spaceShip.transform.position;
 		}
 
 		if (level.StartedAsteroids == 4) {
-			spamAsteroids (50.0f, 10);
+			spamAsteroids (50.0f, 1);
 		}
 
 		if (level.StartedAsteroids==2)
 		{
-			spamAsteroids(10.0f, 30);
+			spamAsteroids(10.0f, 15);
 			level.StartedAsteroids++;
 			//Debug.Log ("holi");
 		}
@@ -125,7 +126,11 @@ public class AsteroidManager : MonoBehaviour {
 			if (!asteroids[index][i].activeInHierarchy){
 				asteroids[index][i].SetActive(true);
 				asteroids[index][i].transform.position = DetermineZoneToAppear(dist);
-				asteroids[index][i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+				Rigidbody rb=asteroids [index] [i].GetComponent<Rigidbody> ();
+				rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+				addRandomTorque(rb);
+				addRandomForce(rb);
+				asteroids [index] [i].GetComponent<AsteroidCollisionManager> ().ResetCounter ();
 				return;
 			}
 		}
@@ -140,8 +145,12 @@ public class AsteroidManager : MonoBehaviour {
 			if (!asteroids[index][i].activeInHierarchy){
 				asteroids[index][i].SetActive(true);
 				asteroids[index][i].transform.position = pos;
-				asteroids[index][i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+				Rigidbody rb=asteroids [index] [i].GetComponent<Rigidbody> ();
+				rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
 				//Debug.Log ("lanzado");
+				addRandomTorque(rb);
+				addRandomForce(rb);
+				asteroids [index] [i].GetComponent<AsteroidCollisionManager> ().ResetCounter ();
 				return;
 			}
 			
@@ -159,6 +168,24 @@ public class AsteroidManager : MonoBehaviour {
 			int randomIndex = (int)(Random.value * asteroidsPrefabs.Count);
 			ActivateAsteroid (randomIndex, dist);
 		}
+	}
+
+	void addRandomTorque(Rigidbody rb)
+	{
+		float randomX = Random.value * 10 - 5;
+		float randomY = Random.value * 10 - 5;
+		float randomZ = Random.value * 10 - 5;
+
+		rb.AddTorque(new Vector3(randomX, randomY, randomZ), ForceMode.Impulse);
+	}
+
+	void addRandomForce(Rigidbody rb)
+	{
+		float randomX = Random.value * 10 - 5;
+		float randomY = Random.value * 10 - 5;
+		float randomZ = Random.value * 10 - 5;
+
+		rb.AddForce(new Vector3(randomX, randomY, randomZ), ForceMode.Impulse);
 	}
 
 
