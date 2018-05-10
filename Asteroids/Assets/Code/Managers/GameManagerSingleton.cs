@@ -60,8 +60,14 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
         get { return storyLevelList[currentStoryLevel]; }
     }
 
-    public int CurrentSurvivalLevel { get { return currentSurvivalLevel; } }
-    public int CurrentStoryLevel { get { return currentStoryLevel; } }
+    public int CurrentSurvivalLevel {
+        get { return currentSurvivalLevel; }
+        set { currentSurvivalLevel = value; }
+    }
+    public int CurrentStoryLevel {
+        get { return currentStoryLevel; }
+        set { currentStoryLevel = value; }
+    }
 
     public bool Music
     {

@@ -47,9 +47,11 @@ public class Buttons : MonoBehaviour {
         {
             case GameMode.Survival:
                 SceneManager.LoadScene("Survival");
+                GameManagerSingleton.GetInstance().CurrentSurvivalLevel = 0;
                 break;
             case GameMode.Story:
                 SceneManager.LoadScene("Story");
+                GameManagerSingleton.GetInstance().CurrentStoryLevel = 0;
                 break;
         }
         

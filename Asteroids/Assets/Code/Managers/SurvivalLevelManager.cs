@@ -90,9 +90,9 @@ public class SurvivalLevelManager : BaseLevelManager {
         // Debug.Log("Current waypoint: " + currentWaypoint + ", num of waypoints: " + list_of_wayPoints.Count);
         if(currentWaypoint > list_of_wayPoints.Count)
         {
-            Debug.Log("Defeat");
-            GameManagerSingleton.GetInstance().SurvivalProgress();
-			lose = true;
+            //Debug.Log("Defeat");
+            //GameManagerSingleton.GetInstance().SurvivalProgress();
+			//lose = true;
             gameState = GameState.Defeat;
             Time.timeScale = 0.0f;
 			//PauseGame ();
