@@ -1259,6 +1259,10 @@ MonoBehaviour:
   resume: {fileID: 275733734}
   mainMenu: {fileID: 1813682867}
   exit: {fileID: 1732834518}
+  mainMenuLose: {fileID: 1767566135}
+  mainMenuWin: {fileID: 1658669654}
+  nextLevel: {fileID: 1823913522}
+  retry: {fileID: 1314531787}
 --- !u!114 &570208108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3106,6 +3110,14 @@ Prefab:
       propertyPath: randomSeed
       value: -658347711
       objectReference: {fileID: 0}
+    - target: {fileID: 1229857402157084, guid: 0fd5efb397814734591c0dbe63f6e137, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1851705011583460, guid: 0fd5efb397814734591c0dbe63f6e137, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0fd5efb397814734591c0dbe63f6e137, type: 2}
   m_IsPrefabParent: 0
@@ -3220,6 +3232,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wayPoint_prefab: {fileID: 1253621437214496, guid: 5dd14f8a5826bec4689f8a468e9cfe48,
     type: 2}
+  textStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_Alignment: 4
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
   alienPrefab: {fileID: 1758524888123128, guid: cf61a6867d74e0a41b75faa311503aea,
     type: 2}
   trashPrefab: {fileID: 1253621437214496, guid: 5d023d68849d5334ab375c7d042d64ce,
@@ -3250,9 +3329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d6950965a081a478ea1a49324ed700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   conversationIcons: []
-  conversationFrame: {fileID: 0}
   conversationBox: {fileID: 2800000, guid: 7891d3f2ec65c724dbe3689874221794, type: 3}
 --- !u!1 &1658669652
 GameObject:

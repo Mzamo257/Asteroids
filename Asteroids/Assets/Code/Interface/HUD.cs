@@ -41,24 +41,26 @@ public abstract class HUD : MonoBehaviour {
 
 	protected virtual void OnGUI()
 	{
-		if (levelMgr.currentState == GameState.Victory) {
-			Win.enabled = true;
-			Pause.enabled = false;
-		} else if (levelMgr.currentState == GameState.Defeat) {
-			Lose.enabled = true;
-			Pause.enabled = false;
-		} else if (levelMgr.currentState != GameState.Paused){
-			//Healthbar
-			GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize *2/ 6, damage / levelMgr.SpaceMaxLife * (iconSize * 2.5f), iconSize / 6), alertBars [3], ScaleMode.StretchToFill);
-			GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize *2/ 6, levelMgr.SpaceCurrentLife / levelMgr.SpaceMaxLife * (iconSize * 2.5f), iconSize / 6), alertBars [2], ScaleMode.StretchToFill);
-			GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize *1.75f/ 6, iconSize * 2.6f, iconSize *1.2f / 5), alertBars [1], ScaleMode.StretchToFill);
-			GUI.DrawTexture (new Rect (iconSize, iconSize*1.3f/6, iconSize / 1.2f, iconSize / 2.5f), alertBars [0], ScaleMode.ScaleToFit);
+		
+			Pause.enabled = true;
+			if (levelMgr.currentState == GameState.Victory) {
+				Win.enabled = true;
+				Pause.enabled = false;
+			} else if (levelMgr.currentState == GameState.Defeat) {
+				Lose.enabled = true;
+				Pause.enabled = false;
+			} else if (levelMgr.currentState != GameState.Paused) {
+				//Healthbar
+				GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize * 2 / 6, damage / levelMgr.SpaceMaxLife * (iconSize * 2.5f), iconSize / 6), alertBars [3], ScaleMode.StretchToFill);
+				GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize * 2 / 6, levelMgr.SpaceCurrentLife / levelMgr.SpaceMaxLife * (iconSize * 2.5f), iconSize / 6), alertBars [2], ScaleMode.StretchToFill);
+				GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize * 1.75f / 6, iconSize * 2.6f, iconSize * 1.2f / 5), alertBars [1], ScaleMode.StretchToFill);
+				GUI.DrawTexture (new Rect (iconSize, iconSize * 1.3f / 6, iconSize / 1.2f, iconSize / 2.5f), alertBars [0], ScaleMode.ScaleToFit);
 
 
-			if (levelMgr.AsteroidSelected) {
-				GUI.DrawTexture (new Rect (levelMgr.AsteroidPosCamera.x, levelMgr.AsteroidPosCamera.y, iconSize / 1.5f, iconSize / 1.5f), asteroidPointer, ScaleMode.ScaleToFit);
+				if (levelMgr.AsteroidSelected) {
+					GUI.DrawTexture (new Rect (levelMgr.AsteroidPosCamera.x - asteroidPointer.width * 0.04f, levelMgr.AsteroidPosCamera.y - asteroidPointer.height * 0.02f, iconSize / 1.5f, iconSize / 1.5f), asteroidPointer, ScaleMode.ScaleToFit);
+				}
 			}
-		}
 	}
 	#endregion
 

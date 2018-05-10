@@ -31,24 +31,27 @@ public class HUDsurvival : HUD {
 
 	protected override void OnGUI()
 	{
-		base.OnGUI ();
-		if (!levelMgr.Pause) 
-		{
-			//Current level
-			GUI.Label (new Rect (iconSize * 2, iconSize/15, 100, 30), "Level " + GameManagerSingleton.GetInstance ().CurrentSurvivalLevel, levelStyle);
-			//Spaceship progress
-			//Line
-			GUI.DrawTexture (new Rect (Screen.width * 9 / 10, finalPosition, iconSize / 10, iconSize * 3), progress [2], ScaleMode.StretchToFill);
-			//Waypoints
-			for (int i = 0; i < survivalLevelMgr.NumWaypoints - survivalLevelMgr.CurrentWaypointIndex; i++) {
-				GUI.DrawTexture (new Rect (Screen.width * 8.7f / 10, finalPosition + positionY * i, iconSize / 2, iconSize / 3), progress [0], ScaleMode.ScaleToFit);
+		if (levelMgr.currentState == GameState.WaitingToStart) {
+			Pause.enabled = false;
+		} else {
+			base.OnGUI ();
+			if (levelMgr.currentState == GameState.InGame) {
+				//Current level
+				GUI.Label (new Rect (iconSize * 2, iconSize / 15, 100, 30), "Level " + GameManagerSingleton.GetInstance ().CurrentSurvivalLevel, levelStyle);
+				//Spaceship progress
+				//Line
+				GUI.DrawTexture (new Rect (Screen.width * 9 / 10, finalPosition, iconSize / 10, iconSize * 3), progress [2], ScaleMode.StretchToFill);
+				//Waypoints
+				for (int i = 0; i < survivalLevelMgr.NumWaypoints - survivalLevelMgr.CurrentWaypointIndex; i++) {
+					GUI.DrawTexture (new Rect (Screen.width * 8.7f / 10, finalPosition + positionY * i, iconSize / 2, iconSize / 3), progress [0], ScaleMode.ScaleToFit);
+				}
+				//Waypoints pass
+				for (int i = survivalLevelMgr.NumWaypoints - survivalLevelMgr.CurrentWaypointIndex; i < survivalLevelMgr.NumWaypoints; i++) {
+					GUI.DrawTexture (new Rect (Screen.width * 8.7f / 10, finalPosition + positionY * i, iconSize / 2, iconSize / 3), progress [1], ScaleMode.ScaleToFit);
+				}
+				//Spaceship
+				GUI.DrawTexture (new Rect (Screen.width * 8.8f / 10, getProgress (), iconSize / 2.8f, iconSize / 2.8f), progress [0], ScaleMode.ScaleToFit);
 			}
-			//Waypoints pass
-			for (int i = survivalLevelMgr.NumWaypoints - survivalLevelMgr.CurrentWaypointIndex; i < survivalLevelMgr.NumWaypoints; i++) {
-				GUI.DrawTexture (new Rect (Screen.width * 8.7f / 10, finalPosition + positionY * i, iconSize / 2, iconSize / 3), progress [1], ScaleMode.ScaleToFit);
-			}
-			//Spaceship
-			GUI.DrawTexture (new Rect (Screen.width * 8.8f / 10, getProgress (), iconSize / 2.8f, iconSize / 2.8f), progress [0], ScaleMode.ScaleToFit);
 		}
 	}
 

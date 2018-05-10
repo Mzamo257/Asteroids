@@ -11,9 +11,7 @@ public class SurvivalIntro : MonoBehaviour {
 
 	#region Public Attributes
 	//Common ones
-	public string name;
 	public Texture[] conversationIcons;
-	public Texture conversationFrame;
 	public Texture conversationBox;
 	#endregion
 
@@ -27,7 +25,6 @@ public class SurvivalIntro : MonoBehaviour {
 	private string[] eventText;
 	private int currentText = 0;
 	private GUIStyle style;
-	private GameManagerSingleton gameManagerSingleton;
 	private BaseLevelManager level;
 	#endregion
 
@@ -42,13 +39,14 @@ public class SurvivalIntro : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		gameManagerSingleton = GameManagerSingleton.GetInstance ();
 		eventText = GameFunctions.GetTextXML ("EVENTS", "EVENT", "SurvivalIntro");
 		//fadeInOut = GameObject.Find ("FadeInOut");
 		//Conversation Box zone
 		conversationBoxZone = new Rect(0, Screen.height * 4/5, Screen.width, Screen.height * 1/5);
-		//style = gmControl.GetStyle ();
 		level = FindObjectOfType<BaseLevelManager>();
+		style = level.textStyle;
+		if (GameManagerSingleton.GetInstance ().CurrentSurvivalLevel != 0)
+			step++;
 	}
 
 	// Update is called once per frame
@@ -63,6 +61,7 @@ public class SurvivalIntro : MonoBehaviour {
 			else {
 				step++;
 				level.StartedAsteroids = 4;
+				level.InIntro = false;
 			}
 		}
 	}
@@ -72,7 +71,7 @@ public class SurvivalIntro : MonoBehaviour {
 	{
 		if (step == 0) {
 			GUI.DrawTexture (conversationBoxZone, conversationBox, ScaleMode.StretchToFill);
-			GUI.Label (conversationBoxZone, eventText [currentText]);
+			GUI.Label (conversationBoxZone, eventText [currentText], style);
 		}
 	}
 	#endregion

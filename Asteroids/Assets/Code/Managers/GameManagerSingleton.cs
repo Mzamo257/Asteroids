@@ -18,9 +18,7 @@ public enum GameMode
 public class GameManagerSingleton : Singleton<GameManagerSingleton> {
 
     #region Public Attributes
-
     public GameManagerSingleton instance = null;
-
     #endregion
 
     #region Private Attributes

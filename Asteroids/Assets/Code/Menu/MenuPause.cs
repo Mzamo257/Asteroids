@@ -9,6 +9,10 @@ public class MenuPause : MonoBehaviour {
 	public Text resume;
 	public Text mainMenu;
 	public Text exit;
+	public Text mainMenuLose;
+	public Text mainMenuWin;
+	public Text nextLevel;
+	public Text retry;
 
     private GameManagerSingleton gameManagerSingleton;
 
@@ -32,6 +36,10 @@ public class MenuPause : MonoBehaviour {
 			resume.text = "Resume";
 			mainMenu.text = "Main Menu";
 			exit.text = "Exit Game";
+			mainMenuLose.text = "Main Menu";
+			mainMenuWin.text = "Main Menu";
+			nextLevel.text = "Next Level";
+			retry.text = "Retry";
 			break;
 		case "Español":
 			pause.text = "Pausa";
@@ -39,6 +47,10 @@ public class MenuPause : MonoBehaviour {
 			resume.text = "Reanudar";
 			mainMenu.text = "Menú Principal";
 			exit.text = "Salir del juego";
+			mainMenuLose.text = "Menú Principal";
+			mainMenuWin.text = "Menú Principal";
+			nextLevel.text = "Siguiente nivel";
+			retry.text = "Reintentar";
 			break;
 		case "Français":
 			pause.text = "Pause";
@@ -46,6 +58,10 @@ public class MenuPause : MonoBehaviour {
 			resume.text = "Reprendre";
 			mainMenu.text = "Menu Principal";
 			exit.text = "Jeu de Sortie";
+			mainMenuLose.text = "Menu Principal";
+			mainMenuWin.text = "Menu Principal";
+			nextLevel.text = "Next Level";
+			retry.text = "Retry";
 			break;
 		}
 	}
