@@ -64,8 +64,10 @@ public class StoryIntro : MonoBehaviour {
 	void OnGUI()
 	{
 		if (step == 0) {
+			GUI.DrawTexture (new Rect (Screen.width * 4 / 6, Screen.height *2 / 4, Screen.width / 3, Screen.height / 3), conversationIcons [0], ScaleMode.ScaleToFit);
 			GUI.DrawTexture (conversationBoxZone, conversationBox, ScaleMode.StretchToFill);
 			GUI.Label (conversationBoxZone, eventText [currentText], style);
+
 		}
 	}
 	#endregion
