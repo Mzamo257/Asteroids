@@ -39,7 +39,7 @@ public class Drag : MonoBehaviour {
 	void Update () {
 		if (Input.GetMouseButtonUp (0) && selected) {
 			selected = false;
-			levelManager.AsteroidSelected = false;
+			if(levelManager != null) levelManager.AsteroidSelected = false;
 			gameObject.GetComponent<MeshRenderer> ().material = cubo1;
 			launchAsteroid();
 		}
@@ -50,8 +50,11 @@ public class Drag : MonoBehaviour {
 	void OnMouseDown(){
 		selected = true;
 		gameObject.GetComponent<MeshRenderer> ().material = cubo2;
-		levelManager.AsteroidSelected = true;
-		levelManager.asteroidPosition (transform.position);
+        if (levelManager != null)
+        {
+            levelManager.AsteroidSelected = true;
+            levelManager.asteroidPosition(transform.position);
+        }
 	}
 
 	void launchAsteroid(){

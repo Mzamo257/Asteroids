@@ -142,6 +142,7 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
 
     public void SurvivalProgress()
     {
+        Debug.Log("Current level: " + currentSurvivalLevel + ", num levels: " + survivalLevelList.Count);
         if(currentSurvivalLevel < survivalLevelList.Count - 1)
         {
             currentSurvivalLevel++;
