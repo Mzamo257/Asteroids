@@ -78,7 +78,7 @@ public class AsteroidManager : MonoBehaviour {
 	bool CheckOutOfCamera(GameObject asteroid)
 	{
 		Vector3 screenPoint = Camera.main.WorldToViewportPoint(asteroid.transform.position);
-		return screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1;
+		return (screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1)&&screenPoint.z<0;
 	}
 		
 	/// <summary>
@@ -109,7 +109,7 @@ public class AsteroidManager : MonoBehaviour {
 		float randomX = Random.value;
 		float randomY = Random.value;
 		float zDistance = (spaceShip.transform.position - Camera.main.transform.position).magnitude;
-		float randomZ = (Random.value * 30.0f) + zDistance + dist;
+		float randomZ = (Random.value * 60.0f) + zDistance + dist;
 		Vector3 worldPoint = Camera.main.ViewportToWorldPoint(new Vector3(randomX, randomY, randomZ));
 		//Vector3 worldPoint = Camera.main.transform.position + randomZ * Camera.main.transform.forward + randomX * Camera.main.transform.right + randomY * Camera.main.transform.up;
 		return worldPoint;
