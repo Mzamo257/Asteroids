@@ -23,8 +23,8 @@ public class CameraControl : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, objectiveRotation, 0.2f);
 	}
 
-	void Update()
-	{
+    private void FixedUpdate()
+    {
 		float dt = Time.deltaTime;
 
 		Vector3 idealPos = targetPlayer.TransformPoint(camOffset);

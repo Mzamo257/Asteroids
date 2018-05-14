@@ -44,6 +44,8 @@ public class Drag : MonoBehaviour {
 			gameObject.GetComponent<MeshRenderer> ().material = cubo1;
 			launchAsteroid();
 		}
+        //
+        if (selected) DebugArrowDirection();
 	}
 	#endregion
 
@@ -51,23 +53,33 @@ public class Drag : MonoBehaviour {
 	void OnMouseDown(){
 		selected = true;
 		gameObject.GetComponent<MeshRenderer> ().material = cubo2;
-        if (levelManager != null)
-        {
+        //if (levelManager != null)
+        //{
             levelManager.AsteroidSelected = true;
             levelManager.asteroidPosition(transform.position);
-        }
+        //}
 	}
 
 	void launchAsteroid(){
 		Vector3 objectPos = transform.position;
 		float zToUse = (objectPos - Camera.main.transform.position).magnitude;
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, zToUse));
+        
 		Vector3 direction = mouseWorldPos - objectPos;
-		float dist = direction.magnitude;
+		//float dist = direction.magnitude;
 		//rb.velocity=Vector3.zero;
 		rb.AddForce(direction*force, ForceMode.Impulse);
 	}
 
+    void DebugArrowDirection()
+    {
+        float zToUse = (transform.position - Camera.main.transform.position).magnitude;
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zToUse));
+        
+        //Debug.DrawRay(objectPos, mouseWorldPos);
+        Debug.DrawRay(Vector2.zero, mouseWorldPos - transform.position);
+
+    }
 
 	#endregion
 }
