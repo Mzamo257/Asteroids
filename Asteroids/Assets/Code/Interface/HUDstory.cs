@@ -7,6 +7,8 @@ public class HUDstory : HUD {
 	
 	#region Public Attributes
 	public RawImage minimap;
+	public Texture hook;
+	public Texture alien;
 	#endregion
 	#region Private Attributes
 	private RectTransform minimapDimension;
@@ -34,8 +36,9 @@ public class HUDstory : HUD {
 			base.OnGUI ();
 			if (levelMgr.currentState == GameState.InGame) {
 				GUI.Label (new Rect (iconSize * 2, iconSize / 15, 100, 30), "Level " + GameManagerSingleton.GetInstance ().CurrentStoryLevel, levelStyle);
-				GUI.Label (new Rect (Screen.width * 8.7f / 10, Screen.height / 20, Screen.width / 10, Screen.height / 10), storyLevelMgr.CaughtAliens + " / " + storyLevelMgr.AliensToCatch, levelStyle);
-				GUI.Label (new Rect (Screen.width * 7.2f / 10, Screen.height / 20, Screen.width / 10, Screen.height / 10), storyLevelMgr.AvailableTrash + " / " + storyLevelMgr.TotalTrash, levelStyle);
+				GUI.DrawTexture (new Rect (Screen.width * 6.3f / 10, Screen.height * 0.2f / 10, Screen.width / 10, Screen.height/ 10), hook, ScaleMode.ScaleToFit);
+				GUI.Label (new Rect (Screen.width * 8.7f / 10, Screen.height / 20, Screen.width *0.3f/ 10, Screen.height *0.3f/ 10), storyLevelMgr.CaughtAliens + " / " + storyLevelMgr.AliensToCatch, levelStyle);
+				GUI.Label (new Rect (Screen.width * 7.2f / 10, Screen.height / 20, Screen.width *0.3f/ 10, Screen.height*0.3f / 10), storyLevelMgr.AvailableTrash + " / " + storyLevelMgr.TotalTrash, levelStyle);
 			}
 		}
 	}

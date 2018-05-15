@@ -12,6 +12,7 @@ public class HUDsurvival : HUD {
 	private float startPosition;
 	private float positionY;
 	public Texture[] progress;
+	public Texture ship;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -50,7 +51,7 @@ public class HUDsurvival : HUD {
 					GUI.DrawTexture (new Rect (Screen.width * 8.7f / 10, finalPosition + positionY * i, iconSize / 2, iconSize / 3), progress [1], ScaleMode.ScaleToFit);
 				}
 				//Spaceship
-				GUI.DrawTexture (new Rect (Screen.width * 8.8f / 10, getProgress (), iconSize / 2.8f, iconSize / 2.8f), progress [0], ScaleMode.ScaleToFit);
+				GUI.DrawTexture (new Rect (Screen.width * 8.8f / 10, getProgress (), iconSize / 2.8f, iconSize / 2.8f), ship, ScaleMode.ScaleToFit);
 			}
 		}
 	}
