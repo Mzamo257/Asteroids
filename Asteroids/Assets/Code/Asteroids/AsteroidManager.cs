@@ -3,27 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AsteroidManager : MonoBehaviour {
-	#region Public Attributes
-	public List<GameObject> asteroidsPrefabs;
-	public int numAsteroids;
-	#endregion
+    #region Public Attributes
+    public List<GameObject> asteroidsPrefabs;
+    public int numAsteroids;
+    public GameObject asteroidLineRendererPrefab;
+    #endregion
 
-	#region Private Attributes
-	// private List<GameObject> asteroids;
-	private List<GameObject>[] asteroids;
-	private GameObject spaceShip;
-	private float counter;
-	private int started=0;
-	private BaseLevelManager level;
-	#endregion
+    #region Private Attributes
+    // private List<GameObject> asteroids;
+    private List<GameObject>[] asteroids;
+    private GameObject spaceShip;
+    private float counter;
+    private int started = 0;
+    private BaseLevelManager level;
+    private LineRenderer asteroidLineRenderer;
+    #endregion
 
-	#region MonoDevelop Methods
-	// Use this for initialization
-	void Start () {
+    #region Properties
+    public LineRenderer AsteroidLineRenderer { get { return asteroidLineRenderer; } }
+    #endregion
+
+    #region MonoDevelop Methods
+    // Use this for initialization
+    void Start () {
 		spaceShip = GameObject.Find("Viper");
         establishAsteoidPools();
 		level = FindObjectOfType<BaseLevelManager>();
-
+        //
+        GameObject instantiatedAsteroidLineRenderer = Instantiate(asteroidLineRendererPrefab, Vector3.zero, Quaternion.identity);
+        asteroidLineRenderer = instantiatedAsteroidLineRenderer.GetComponent<LineRenderer>();
+        instantiatedAsteroidLineRenderer.SetActive(false);
 	}
 
 	// Update is called once per frame

@@ -22,25 +22,27 @@ public class Drag : MonoBehaviour {
 	private bool selected;
 	private Rigidbody rb;
 	private BaseLevelManager levelManager;
-	#endregion
+    private AsteroidManager asteroidManager;
+    #endregion
 
-	#region MonoDevelop Methods
-	// Use this for initialization
-	void Start () {
+    #region MonoDevelop Methods
+    // Use this for initialization
+    void Start () {
 		selected = false;
 		rb = gameObject.GetComponent<Rigidbody> ();
 		//rb.centerOfMass = newCenterOfMass;
 
 		levelManager = FindObjectOfType<BaseLevelManager> ();
-		//rb.AddTorque(torque, ForceMode.Impulse);
-	}
+        asteroidManager = FindObjectOfType<AsteroidManager>();
+    }
 
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonUp (0) && selected) {
 			selected = false;
-            //if(levelManager != null) 
-            levelManager.AsteroidSelected = false;
+            asteroidManager.AsteroidLineRenderer.gameObject.SetActive(false);
+            if(levelManager != null) 
+                levelManager.AsteroidSelected = false;
 			gameObject.GetComponent<MeshRenderer> ().material = cubo1;
 			launchAsteroid();
 		}
@@ -52,12 +54,13 @@ public class Drag : MonoBehaviour {
 	#region User Methods
 	void OnMouseDown(){
 		selected = true;
-		gameObject.GetComponent<MeshRenderer> ().material = cubo2;
-        //if (levelManager != null)
-        //{
+        asteroidManager.AsteroidLineRenderer.gameObject.SetActive(true);
+        gameObject.GetComponent<MeshRenderer> ().material = cubo2;
+        if (levelManager != null)
+        {
             levelManager.AsteroidSelected = true;
             levelManager.asteroidPosition(transform.position);
-        //}
+        }
 	}
 
 	void launchAsteroid(){
@@ -73,12 +76,12 @@ public class Drag : MonoBehaviour {
 
     void DebugArrowDirection()
     {
-        float zToUse = (transform.position - Camera.main.transform.position).magnitude;
+        Vector3 objectPos = transform.position;
+        float zToUse = (objectPos - Camera.main.transform.position).magnitude;
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zToUse));
-        
-        //Debug.DrawRay(objectPos, mouseWorldPos);
-        Debug.DrawRay(Vector2.zero, mouseWorldPos - transform.position);
 
+        asteroidManager.AsteroidLineRenderer.SetPosition(0, objectPos);
+        asteroidManager.AsteroidLineRenderer.SetPosition(1, mouseWorldPos);
     }
 
 	#endregion

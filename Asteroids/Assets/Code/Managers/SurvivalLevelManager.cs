@@ -86,9 +86,13 @@ public class SurvivalLevelManager : BaseLevelManager {
 
     public void AdvanceWaypoint()
     {
-        currentWaypoint++;
+        if (currentWaypoint < list_of_wayPoints.Count - 1)
+        {
+            currentWaypoint++;
+            surHud.updateParameters();
+        }
         // Debug.Log("Current waypoint: " + currentWaypoint + ", num of waypoints: " + list_of_wayPoints.Count);
-        if(currentWaypoint > list_of_wayPoints.Count)
+        else
         {
             //Debug.Log("Defeat");
             //GameManagerSingleton.GetInstance().SurvivalProgress();
@@ -97,8 +101,7 @@ public class SurvivalLevelManager : BaseLevelManager {
             Time.timeScale = 0.0f;
 			//PauseGame ();
         }
-		else
-		surHud.updateParameters();
+		
     }
 
     public float calculateDistanceNextWaypoint()

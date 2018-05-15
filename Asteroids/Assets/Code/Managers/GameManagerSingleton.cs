@@ -44,10 +44,6 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
             PlayerPrefs.SetFloat("Volume", value);
         }
     }
-    public int CurrentLevel
-    {
-        get { return currentSurvivalLevel; }
-    }
     // TODO: Manage it with the different level types
     public SurvivalLevelData CurrentSurvivalLevelData
     {
@@ -83,7 +79,9 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
     public GameManagerSingleton()
     {
         Start();
-        // Debug.Log("Starting");
+        Debug.Log("Starting - " + 
+            "Current Survival level: " + currentSurvivalLevel +
+                    ", current story level: " + currentStoryLevel);
     }
 
     #region Methods
@@ -142,11 +140,12 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
 
     public void SurvivalProgress()
     {
-        Debug.Log("Current level: " + currentSurvivalLevel + ", num levels: " + survivalLevelList.Count);
+        
         if(currentSurvivalLevel < survivalLevelList.Count - 1)
         {
             currentSurvivalLevel++;
         }
+        Debug.Log("Current level: " + currentSurvivalLevel + ", num levels: " + survivalLevelList.Count);
     }
 
     public void StoryProgress()
@@ -155,6 +154,7 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
         {
             currentStoryLevel++;
         }
+        Debug.Log("Current level: " + currentStoryLevel + ", num levels: " + storyLevelList.Count);
     }
 
     #endregion
