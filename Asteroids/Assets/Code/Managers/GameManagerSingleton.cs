@@ -22,6 +22,7 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
     #endregion
 
     #region Private Attributes
+
     private string language;
     private bool music;
     private float volume = 1.0f;
