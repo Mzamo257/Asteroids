@@ -1719,7 +1719,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 919481022}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2240,7 +2240,7 @@ BoxCollider:
   m_GameObject: {fileID: 1189163534}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2275,13 +2275,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1242164473}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.9, y: -180, z: 95.5}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 1.9, y: 180, z: 95.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1624366546}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!81 &1242164475
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2957,7 +2957,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1530496130}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3215,13 +3215,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidsPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1610662826685272, guid: 9d9f837e3bc97c444a4d3e308aa0018f, type: 2}
+  - {fileID: 1919482893693716, guid: cd9143172efb4f34b94b277c40e98572, type: 2}
+  - {fileID: 1938645497912198, guid: fcadf10433c9842419298a1b0a658b2d, type: 2}
+  - {fileID: 1378042377135662, guid: b8d9aa4a0b6c5a54db9a3f7ba499e07f, type: 2}
+  - {fileID: 1603573449805562, guid: 561af532eefb3e94db159d81a25b6512, type: 2}
   numAsteroids: 30
-  asteroidLineRendererPrefab: {fileID: 0}
+  asteroidLineRendererPrefab: {fileID: 1047824110899334, guid: bc4de48598f089845896c72a54ea7f93,
+    type: 2}
 --- !u!114 &1624366545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3434,7 +3435,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1680652428}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4363,7 +4364,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2010660636}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
