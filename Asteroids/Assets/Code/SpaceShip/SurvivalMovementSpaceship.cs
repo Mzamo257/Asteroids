@@ -75,9 +75,9 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 					{
 						int random = UnityEngine.Random.Range (0,1);
 						if (random == 0) {
-							rb.AddForce (transform.right, ForceMode.Impulse);
+							rb.AddForce (transform.right*20, ForceMode.Impulse);
 						} else if(random == 1){
-							rb.AddForce (-transform.right, ForceMode.Impulse);
+							rb.AddForce (-transform.right*20, ForceMode.Impulse);
 						}
 					}
 				}
