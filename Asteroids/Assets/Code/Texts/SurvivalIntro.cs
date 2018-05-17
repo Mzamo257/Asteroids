@@ -49,6 +49,7 @@ public class SurvivalIntro : MonoBehaviour {
 		{
 			level.InIntro = false;
 			step++;
+			level.StartedAsteroids = 4;
 		}
 	}
 

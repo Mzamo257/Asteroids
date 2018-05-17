@@ -43,6 +43,7 @@ public class StoryIntro : MonoBehaviour {
 		{
 			level.InIntro = false;
 			step++;
+			level.StartedAsteroids = 4;
 		}
 	}
 
