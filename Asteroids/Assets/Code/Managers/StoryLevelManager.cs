@@ -163,13 +163,5 @@ public class StoryLevelManager : BaseLevelManager {
 		worldPoint.y = ship.transform.position.y;
 		return worldPoint;
 	}
-		
-	public override bool introEnd()
-	{
-		if (intro.Step == 1)
-			return true;
-		return false;
-	}
-
     #endregion
 }

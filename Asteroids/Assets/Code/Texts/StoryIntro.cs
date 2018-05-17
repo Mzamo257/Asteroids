@@ -40,7 +40,10 @@ public class StoryIntro : MonoBehaviour {
 		level = FindObjectOfType<BaseLevelManager>();
 		style = level.textStyle;
 		if (GameManagerSingleton.GetInstance ().CurrentStoryLevel != 0)
+		{
+			level.InIntro = false;
 			step++;
+		}
 	}
 
 	// Update is called once per frame

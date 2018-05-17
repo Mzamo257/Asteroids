@@ -108,14 +108,6 @@ public class SurvivalLevelManager : BaseLevelManager {
     {
         return (list_of_wayPoints[currentWaypoint].transform.position - ship.transform.position).magnitude;
     }
-
-	public override bool introEnd()
-	{
-		if (intro.Step == 1)
-			return true;
-		return false;
-	}
-
     #endregion
 
 }
