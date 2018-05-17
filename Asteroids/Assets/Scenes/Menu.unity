@@ -1531,7 +1531,6 @@ MonoBehaviour:
   back: {fileID: 1629884612}
   backCredits: {fileID: 2091789933}
   settingsTitle: {fileID: 1648511828}
-  creditsTitle: {fileID: 0}
   spaceship: {fileID: 1585113473}
   center: {fileID: 1470019226}
   spaceshipVelocity: 20
@@ -1943,7 +1942,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.9558824, g: 0.6903414, b: 0.35142735, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}

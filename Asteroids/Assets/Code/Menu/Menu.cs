@@ -21,7 +21,6 @@ public class Menu : MonoBehaviour {
 	public Text back;
 	public Text backCredits;
 	public Text settingsTitle;
-	public Text creditsTitle;
 	public Transform spaceship;
 	public Transform center;
 
@@ -113,7 +112,6 @@ public class Menu : MonoBehaviour {
 		settings.text = "SETTINGS";
 		settingsTitle.text = "SETTINGS";
 		credits.text = "CREDITS";
-		creditsTitle.text = "CREDITS";
 	}
 
 	private void MenuSpanish()
@@ -129,7 +127,6 @@ public class Menu : MonoBehaviour {
 		settings.text = "CONFIGURACION";
 		settingsTitle.text = "CONFIGURACION";
 		credits.text = "CREDITOS";
-		creditsTitle.text = "CREDITOS";
 	}
 
 	private void MenuFrench()
@@ -145,6 +142,5 @@ public class Menu : MonoBehaviour {
 		settings.text = "Configuration";
 		settingsTitle.text = "Configuration";
 		credits.text = "Crédits";
-		creditsTitle.text = "CRÉDITS";
 	}
 }
