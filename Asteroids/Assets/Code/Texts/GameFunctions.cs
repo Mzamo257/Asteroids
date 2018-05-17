@@ -23,7 +23,7 @@ public static class GameFunctions {
 		XmlDocument xml_d;
 		XmlNode objectToUse;
 		XmlNodeList xmlDescription;
-		GameManagerSingleton gameManagerSingleton = GameManagerSingleton.GetInstance ();
+		GameManagerSingleton gameManagerSingleton = GameManagerSingleton.instance;
 		string language = gameManagerSingleton.GetLanguage ();
 		TextAsset textasset = (TextAsset) Resources.Load(language, typeof(TextAsset));
 		xml_d = new XmlDocument();

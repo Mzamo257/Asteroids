@@ -15,10 +15,10 @@ public enum GameMode
 
 }
 
-public class GameManagerSingleton : Singleton<GameManagerSingleton> {
+public class GameManagerSingleton : MonoBehaviour {
 
     #region Public Attributes
-    public GameManagerSingleton instance = null;
+    public static GameManagerSingleton instance = null;
     #endregion
 
     #region Private Attributes
@@ -77,17 +77,31 @@ public class GameManagerSingleton : Singleton<GameManagerSingleton> {
 
     #endregion
 
-    public GameManagerSingleton()
+    /*public GameManagerSingleton()
     {
         Start();
         Debug.Log("Starting - " + 
             "Current Survival level: " + currentSurvivalLevel +
                     ", current story level: " + currentStoryLevel);
-    }
+    }*/
 
-    #region Methods
+    #region Monobehavoiur Methods
+
+    void Awake()
+    {
+        //Check if there is already an instance of SoundManager
+        if (instance == null)
+            //if not, set it to this.
+            instance = this;
+        //If instance already exists:
+        else if (instance != this)
+            //Destroy this, this enforces our singleton pattern so there can only be one instance of SoundManager.
+            Destroy(gameObject);
+
+        //Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
+        DontDestroyOnLoad(gameObject);
+    }
     
-    // Not monobeahvoiur
     void Start()
     {
         // Get the player prefs

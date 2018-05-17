@@ -40,8 +40,8 @@ public class AsteroidCollisionManager : MonoBehaviour {
         {
             // Usamos la velocidad relativa de la colisión para determinar el daño
             health -= (collision.relativeVelocity.magnitude * otherRigid.mass);
-            /*if (particleSystem != null)
-                particleSystem.Play();*/
+            if (particleSystem != null)
+                particleSystem.Play();
             if (health <= 0)
             {
                 // TODO: Restaurarles vida cuando salgan de la pool

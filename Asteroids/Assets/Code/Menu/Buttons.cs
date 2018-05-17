@@ -18,13 +18,13 @@ public class Buttons : MonoBehaviour {
 	public void ButtonSurvival()
 	{
 		SceneManager.LoadScene ("Survival");
-        GameManagerSingleton.GetInstance().CurrentSurvivalLevel = 0;
+        GameManagerSingleton.instance.CurrentSurvivalLevel = 0;
     }
 
 	public void ButtonStory()
 	{
 		SceneManager.LoadScene ("Story");
-        GameManagerSingleton.GetInstance().CurrentStoryLevel = 0;
+        GameManagerSingleton.instance.CurrentStoryLevel = 0;
     }
 
 	public void ButtonMainMenu()
@@ -45,7 +45,7 @@ public class Buttons : MonoBehaviour {
 
     public void ButtonNextLevel()
     {
-        switch (GameManagerSingleton.GetInstance().CurrentGameMode)
+        switch (GameManagerSingleton.instance.CurrentGameMode)
         {
             case GameMode.Survival:
                 SceneManager.LoadScene("Survival");

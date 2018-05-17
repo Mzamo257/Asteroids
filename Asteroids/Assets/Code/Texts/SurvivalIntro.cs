@@ -45,7 +45,7 @@ public class SurvivalIntro : MonoBehaviour {
 		conversationBoxZone = new Rect(0, Screen.height * 4/5, Screen.width, Screen.height * 1/5);
 		level = FindObjectOfType<BaseLevelManager>();
 		style = level.textStyle;
-		if (GameManagerSingleton.GetInstance ().CurrentSurvivalLevel != 0) 
+		if (GameManagerSingleton.instance.CurrentSurvivalLevel != 0) 
 		{
 			level.InIntro = false;
 			step++;

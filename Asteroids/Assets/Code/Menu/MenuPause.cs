@@ -18,7 +18,7 @@ public class MenuPause : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        gameManagerSingleton = GameManagerSingleton.GetInstance();
+        gameManagerSingleton = GameManagerSingleton.instance;
 		MenuPauseLanguage ();
 	}
 	

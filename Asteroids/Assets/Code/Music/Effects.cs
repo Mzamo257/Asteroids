@@ -22,7 +22,7 @@ public class Effects : MonoBehaviour {
 	protected virtual void Start () 
 	{
         //gmScript = FindObjectOfType<GameManager>();
-        gameManagerSingleton = GameManagerSingleton.GetInstance();
+        gameManagerSingleton = GameManagerSingleton.instance;
 		aS = GetComponent<AudioSource> ();
 
 	}

@@ -20,7 +20,7 @@ public class Music : MonoBehaviour {
 	protected virtual void Start () {
         //gameManager = GameObject.Find ("GameManager");
         //gmScript = gameManager.GetComponent<GameManager> ();
-        gameManagerSingleton = GameManagerSingleton.GetInstance();
+        gameManagerSingleton = GameManagerSingleton.instance;
 		aS = GetComponent<AudioSource> ();
 	}
 

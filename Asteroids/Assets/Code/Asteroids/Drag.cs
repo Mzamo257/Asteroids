@@ -40,9 +40,12 @@ public class Drag : MonoBehaviour {
 	void Update () {
 		if (Input.GetMouseButtonUp (0) && selected) {
 			selected = false;
-            asteroidManager.AsteroidLineRenderer.gameObject.SetActive(false);
-            if(levelManager != null) 
+
+            if (levelManager != null)
+            {
+                asteroidManager.AsteroidLineRenderer.gameObject.SetActive(false);
                 levelManager.AsteroidSelected = false;
+            }
 			gameObject.GetComponent<MeshRenderer> ().material = cubo1;
 			launchAsteroid();
 		}

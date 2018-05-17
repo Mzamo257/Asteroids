@@ -40,7 +40,7 @@ public class Menu : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-        gameManagerSingleton = GameManagerSingleton.GetInstance();
+        gameManagerSingleton = GameManagerSingleton.instance;
 		switch (gameManagerSingleton.GetLanguage()) {
 		case "English":
 			language.value = 0;

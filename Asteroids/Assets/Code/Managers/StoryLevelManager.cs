@@ -107,7 +107,7 @@ public class StoryLevelManager : BaseLevelManager {
         if(caughtAliens == levelData.numberOfAliens)
         {
             //Debug.Log("Victory");
-            GameManagerSingleton.GetInstance().StoryProgress();
+            GameManagerSingleton.instance.StoryProgress();
 			//win = true;
             gameState = GameState.Victory;
             Time.timeScale = 0.0f;

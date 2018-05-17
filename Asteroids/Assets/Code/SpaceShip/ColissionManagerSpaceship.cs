@@ -16,7 +16,7 @@ public class ColissionManagerSpaceship : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // gameMgr = FindObjectOfType<GameManager>();
-        gameManagerSingleton = GameManagerSingleton.GetInstance();
+        gameManagerSingleton = GameManagerSingleton.instance;
         levelMgr = FindObjectOfType<BaseLevelManager>();
 	}
 	

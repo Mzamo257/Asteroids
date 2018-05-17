@@ -39,7 +39,7 @@ public class StoryIntro : MonoBehaviour {
 		conversationBoxZone = new Rect(0, Screen.height * 4/5, Screen.width, Screen.height * 1/5);
 		level = FindObjectOfType<BaseLevelManager>();
 		style = level.textStyle;
-		if (GameManagerSingleton.GetInstance ().CurrentStoryLevel != 0)
+		if (GameManagerSingleton.instance.CurrentStoryLevel != 0)
 		{
 			level.InIntro = false;
 			step++;
