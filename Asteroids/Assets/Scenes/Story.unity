@@ -3215,11 +3215,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidsPrefabs:
-  - {fileID: 1610662826685272, guid: 9d9f837e3bc97c444a4d3e308aa0018f, type: 2}
-  - {fileID: 1919482893693716, guid: cd9143172efb4f34b94b277c40e98572, type: 2}
-  - {fileID: 1938645497912198, guid: fcadf10433c9842419298a1b0a658b2d, type: 2}
-  - {fileID: 1378042377135662, guid: b8d9aa4a0b6c5a54db9a3f7ba499e07f, type: 2}
-  - {fileID: 1603573449805562, guid: 561af532eefb3e94db159d81a25b6512, type: 2}
+  - {fileID: 1223331812059528, guid: d68b96c0c4bb7804a8e27a6b75bbb932, type: 2}
+  - {fileID: 1385394408968098, guid: df3ace0ff91eb3848ac273c51358592f, type: 2}
+  - {fileID: 1544784641263052, guid: 034f59bb8e77b7340abe465302e3c0a6, type: 2}
+  - {fileID: 1470129155019168, guid: 0b6374abc67bff942ad8e20ce19f997d, type: 2}
+  - {fileID: 1679947872018934, guid: 98a5da31342eed645a0562bd9a7c0a18, type: 2}
   numAsteroids: 30
   asteroidLineRendererPrefab: {fileID: 1047824110899334, guid: bc4de48598f089845896c72a54ea7f93,
     type: 2}

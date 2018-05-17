@@ -38,19 +38,19 @@ public class AsteroidManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		counter += Time.deltaTime;
-		if (counter >= 0.5) {
+		if (counter >= 0.3) {
 			CheckAsteroids();
 			counter = 0;
             //Vector3 posSpaceShip = spaceShip.transform.position;
 		}
 
 		if (level.StartedAsteroids == 4) {
-			spamAsteroids (50.0f, 1);
+			spamAsteroids (50.0f, 5);
 		}
 
 		if (level.StartedAsteroids==2)
 		{
-			spamAsteroids(10.0f, 15);
+			spamAsteroids(10.0f, 30);
 			level.StartedAsteroids++;
 			//Debug.Log ("holi");
 		}
@@ -118,7 +118,7 @@ public class AsteroidManager : MonoBehaviour {
 		float randomX = Random.value;
 		float randomY = Random.value;
 		float zDistance = (spaceShip.transform.position - Camera.main.transform.position).magnitude;
-		float randomZ = (Random.value * 60.0f) + zDistance + dist;
+		float randomZ = (Random.value * 30.0f) + zDistance + dist;
 		Vector3 worldPoint = Camera.main.ViewportToWorldPoint(new Vector3(randomX, randomY, randomZ));
 		//Vector3 worldPoint = Camera.main.transform.position + randomZ * Camera.main.transform.forward + randomX * Camera.main.transform.right + randomY * Camera.main.transform.up;
 		return worldPoint;
