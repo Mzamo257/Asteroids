@@ -38,11 +38,11 @@ public class HUDstory : HUD {
 				//level
 				GUI.Label (new Rect (iconSize * 2, iconSize / 15, 100, 30), "Level " + GameManagerSingleton.instance.CurrentStoryLevel, levelStyle);
 				//Hooks
-				GUI.DrawTexture (new Rect (Screen.width * 6.4f / 10, Screen.height * 0.2f / 10, Screen.width / 10, Screen.height/ 10), hook, ScaleMode.ScaleToFit);
-				GUI.Label (new Rect (Screen.width * 7.2f / 10, Screen.height / 20, Screen.width *0.3f/ 10, Screen.height*0.3f / 10), storyLevelMgr.AvailableTrash + "/" + storyLevelMgr.TotalTrash, levelStyle);
+				GUI.DrawTexture (new Rect (Screen.width * 6.3f / 10, Screen.height * 0.3f / 10, Screen.width *1.7f/ 10, Screen.height*0.8f/ 10), hook, ScaleMode.StretchToFill);
+				GUI.Label (new Rect (Screen.width * 7.2f / 10, Screen.height *1.1f/ 20, Screen.width *0.3f/ 10, Screen.height*0.3f / 10), storyLevelMgr.AvailableTrash + "/" + storyLevelMgr.TotalTrash, levelStyle);
 				//Aliens
-				GUI.DrawTexture (new Rect (Screen.width * 8.1f / 10, Screen.height * 0.2f / 10, Screen.width / 10, Screen.height/ 10), hook, ScaleMode.ScaleToFit);
-				GUI.Label (new Rect (Screen.width * 8.7f / 10, Screen.height / 20, Screen.width *0.3f/ 10, Screen.height *0.3f/ 10), storyLevelMgr.CaughtAliens + "/" + storyLevelMgr.AliensToCatch, levelStyle);
+				GUI.DrawTexture (new Rect (Screen.width * 8.1f / 10, Screen.height * 0.3f / 10, Screen.width  *1.5f/ 10, Screen.height *0.8f/ 10), alien, ScaleMode.StretchToFill);
+				GUI.Label (new Rect (Screen.width * 8.9f / 10, Screen.height *1.1f/ 20, Screen.width *0.3f/ 10, Screen.height *0.3f/ 10), storyLevelMgr.CaughtAliens + "/" + storyLevelMgr.AliensToCatch, levelStyle);
 
 			}
 		}
