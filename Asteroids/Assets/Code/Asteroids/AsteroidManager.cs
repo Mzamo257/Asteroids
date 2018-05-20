@@ -117,7 +117,11 @@ public class AsteroidManager : MonoBehaviour {
 	{
 		float randomX = Random.value;
 		float randomY = Random.value;
-		float zDistance = (spaceShip.transform.position - Camera.main.transform.position).magnitude;
+
+        //randomX = Random.Range(0.2f, 0.8f);
+        randomY = Random.Range(0.3f, 0.7f);
+
+        float zDistance = (spaceShip.transform.position - Camera.main.transform.position).magnitude;
 		float randomZ = (Random.value * 30.0f) + zDistance + dist;
 		Vector3 worldPoint = Camera.main.ViewportToWorldPoint(new Vector3(randomX, randomY, randomZ));
 		//Vector3 worldPoint = Camera.main.transform.position + randomZ * Camera.main.transform.forward + randomX * Camera.main.transform.right + randomY * Camera.main.transform.up;

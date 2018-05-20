@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SurvivalMovementSpaceship : BaseSpaceship {
 
-	#region Public Attribute
-
+    #region Public Attribute
+    public float barrelRollSpeed = 180.0f;
 	#endregion
 
 	#region Private Attributes
@@ -14,6 +14,9 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 	private float angleResultant;
 	private float maxDetectionDistance = 10.0f;
 	private RaycastHit hitInfo;
+    //
+    private int barrelRollDirection = 0;
+    private float barrelRollProgression = 0;
 	#endregion
 
 	#region Properties Attributes
@@ -31,7 +34,10 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 	// Update is called once per frame
 	protected override void Update () {
 		
-		Dodge ();
+        if(barrelRollDirection == 0)
+        {
+            Dodge();
+        }
 
 		velocity = rb.velocity;
 		currentUpdateTime += Time.deltaTime;
@@ -62,27 +68,40 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 			currentUpdateTime = 0;
 		}
 		transform.rotation = Quaternion.Slerp (previousRotation, nextRotation, currentUpdateTime);
+       
+        //Check if it is rotating
+        if(Mathf.Abs(barrelRollProgression) < 360)
+        {
+            float rotationToApply = barrelRollDirection * barrelRollSpeed * Time.deltaTime;
+
+            shipModel.Rotate(transform.forward * rotationToApply);
+            barrelRollProgression += rotationToApply;
+        }
+        else
+        {
+            barrelRollDirection = 0;
+            shipModel.eulerAngles = new Vector3 (0,0,0);
+        }
 	}
 
 	protected override void Dodge()
 	{
-		if (Physics.SphereCast (transform.position, maxDetectionDistance, rb.velocity, out hitInfo)) {
+		if (Physics.Raycast (transform.position, rb.velocity, out hitInfo, maxDetectionDistance)) {
+
 			if(hitInfo.transform.tag.Equals("Asteroid"))
 			{
-				if (Physics.Raycast (transform.position, rb.velocity, out hitInfo, maxDetectionDistance)) {
-
-					if(hitInfo.transform.tag.Equals("Asteroid"))
-					{
-						int random = UnityEngine.Random.Range (0,1);
-						if (random == 0) {
-							rb.AddForce (transform.right*20, ForceMode.Impulse);
-						} else if(random == 1){
-							rb.AddForce (-transform.right*20, ForceMode.Impulse);
-						}
-					}
+				int random = UnityEngine.Random.Range (0,2);
+                if (random == 0) {
+					rb.AddForce (transform.right*20, ForceMode.Impulse);
+                    barrelRollDirection = 1;
+                    barrelRollProgression = 0;
+				} else if(random == 1){
+					rb.AddForce (-transform.right*20, ForceMode.Impulse);
+                    barrelRollDirection = -1;
+                    barrelRollProgression = 0;
 				}
 			}
-		}
+		}	
 	}
 
 	protected override void NextWaypoint()

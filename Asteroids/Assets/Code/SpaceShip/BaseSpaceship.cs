@@ -8,6 +8,7 @@ public class BaseSpaceship : MonoBehaviour {
 	public float updateTime;
 	public float force;
 	public float maxSpeed;
+    public Transform shipModel;
 	#endregion
 
 	#region Private Attributes

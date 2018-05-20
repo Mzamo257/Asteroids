@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ColissionManagerSpaceship : MonoBehaviour {
-	#region Public Attributes
-	#endregion
+    #region Public Attributes
+    public GameObject explosion;
+    #endregion
 
-	#region Private Attributes
-	// private GameManager gameMgr;
+    #region Private Attributes
+    // private GameManager gameMgr;
     private GameManagerSingleton gameManagerSingleton;
     private BaseLevelManager levelMgr;
 	#endregion
@@ -33,6 +34,9 @@ public class ColissionManagerSpaceship : MonoBehaviour {
         if(otherRigid != null)
         // Usamos la velocidad relativa de la colisión para determinar el daño
         levelMgr.DamageSpaceShip(collision.relativeVelocity.magnitude * otherRigid.mass);
+
+        //
+        explosion.SetActive(true);
 
         //
         /*if (particleSystem != null)
