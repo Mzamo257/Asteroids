@@ -931,7 +931,7 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: 399997b21626d3e48806bceb0081b135, type: 3}
+    m_Font: {fileID: 12800000, guid: f8deb0671f26fb149becd1277baf219b, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_Alignment: 1
@@ -2246,10 +2246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alertBars:
-  - {fileID: 2800000, guid: c5e6ce970b33c914f9fbcba9020ff0c0, type: 3}
-  - {fileID: 2800000, guid: 27d2da6cb2ef8b64a90fae48580d97e6, type: 3}
-  - {fileID: 2800000, guid: 50b9c1c5afebee3499aa2afae24beb0a, type: 3}
-  - {fileID: 2800000, guid: 07c00e86b94975f47b4a9c05b549b028, type: 3}
+  - {fileID: 2800000, guid: 9899c75ad70fdbc448de1577c1529684, type: 3}
+  - {fileID: 2800000, guid: 9489f7f8218819d44a30948458e32caf, type: 3}
+  - {fileID: 2800000, guid: 12a459611c46d04499d21c354c5cf023, type: 3}
   iconSizeRate: 0.2
   damage: 0
   Lose: {fileID: 34696089}
