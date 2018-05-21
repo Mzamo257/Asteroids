@@ -11,6 +11,7 @@ public abstract class HUD : MonoBehaviour {
 	public Canvas Win;
 	public Canvas Pause;
 	public GUIStyle levelStyle;
+	public Texture back;
 	#endregion
 
 	#region Private Attributes
@@ -50,12 +51,12 @@ public abstract class HUD : MonoBehaviour {
 				Lose.enabled = true;
 				Pause.enabled = false;
 			} else if (levelMgr.currentState != GameState.Paused) {
+				//Base
+				//GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height * 1.5f/10), back, ScaleMode.StretchToFill);
 				//Healthbar
-				GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize * 2 / 6, damage / levelMgr.SpaceMaxLife * (iconSize * 2.5f), iconSize / 6), alertBars [3], ScaleMode.StretchToFill);
-				GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize * 2 / 6, levelMgr.SpaceCurrentLife / levelMgr.SpaceMaxLife * (iconSize * 2.5f), iconSize / 6), alertBars [2], ScaleMode.StretchToFill);
-				GUI.DrawTexture (new Rect (iconSize + iconSize / 2, iconSize * 1.75f / 6, iconSize * 2.6f, iconSize * 1.2f / 5), alertBars [1], ScaleMode.StretchToFill);
-				GUI.DrawTexture (new Rect (iconSize, iconSize * 1.3f / 6, iconSize / 1.2f, iconSize / 2.5f), alertBars [0], ScaleMode.ScaleToFit);
-
+			GUI.DrawTexture (new Rect (Screen.width*2.3f/10, Screen.height*0.6f/10, damage / levelMgr.SpaceMaxLife * (Screen.width*3.8f/10), Screen.height*0.5f/10), alertBars [2], ScaleMode.StretchToFill);
+				GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, levelMgr.SpaceCurrentLife / levelMgr.SpaceMaxLife * (Screen.width*4/10),Screen.height*0.5f/10), alertBars [1], ScaleMode.StretchToFill);
+				GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, Screen.width*4/10, Screen.height*0.5f/10), alertBars [0], ScaleMode.StretchToFill);
 
 				if (levelMgr.AsteroidSelected) {
 					GUI.DrawTexture (new Rect (levelMgr.AsteroidPosCamera.x - asteroidPointer.width * 0.04f, levelMgr.AsteroidPosCamera.y - asteroidPointer.height * 0.02f, iconSize / 1.5f, iconSize / 1.5f), asteroidPointer, ScaleMode.ScaleToFit);
