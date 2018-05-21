@@ -35,13 +35,22 @@ public class Effects : MonoBehaviour {
 	#endregion
 
 	#region User Methods
+	public void playEffect(AudioClip clip)
+	{
+		if (gameManagerSingleton.Music) 
+		{
+			aS.clip = clip;
+			aS.volume = gameManagerSingleton.Volume;
+			aS.Play ();
+		}
+	}
+
 	public void playEffect(int clip)
 	{
 		if (gameManagerSingleton.Music) 
 		{
 			aS.clip = choque[clip];
 			aS.volume = gameManagerSingleton.Volume;
-            //Debug.Log(aS.volume);
 			aS.Play ();
 		}
 	}
@@ -49,10 +58,7 @@ public class Effects : MonoBehaviour {
 	public void playChoque()
 	{
 		int i = Random.Range(0, choque.Length - 1);
-        aS.clip = choque[i];
-        aS.volume = gameManagerSingleton.Volume;
-        Debug.Log(aS.volume);
-        aS.Play();
+		playEffect (choque [i]);
     }
 	#endregion
 }
