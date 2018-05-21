@@ -2,13 +2,13 @@
 	<EVENTS>
 		<EVENT name="SurvivalIntro">
 			<texto> OH! MY GOD! Our enemy has escaped</texto>
-			<texto> You have to destroy your ship before it comes to an end </texto>
+			<texto> You have to destroy your ship before it escapes </texto>
 			<texto> Hit him with the asteroids! </texto>
 		</EVENT>
 		<EVENT name="StoryIntro">
 			<texto> We have to pick up our friends </texto>
-			<texto> Place the hooks to redirect the ship and pick them up </texto>
-			<texto> Be careful with the asteroids will take you away </texto>
+			<texto> Place the beacons to redirect the ship and pick them up </texto>
+			<texto> Be careful with the asteroids! </texto>
 		</EVENT>
 	</EVENTS>
 </MAIN>

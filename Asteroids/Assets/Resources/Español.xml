@@ -1,14 +1,14 @@
 <MAIN>
 	<EVENTS>
 		<EVENT name="SurvivalIntro">						<!-- &lt;color=orange&gt; texto &lt;/color&gt; -->
-			<texto> OH! NO! Nuestro enemigo a escapado</texto>
-			<texto> Tiene que destruir su nave antes de que llegue a su fin </texto>
-			<texto> Dale con los asteroides!! </texto>
+			<texto> OH! NO! Nuestro enemigo a escapado! </texto>
+			<texto> Tienes que destruir su nave antes de que escape </texto>
+			<texto> ¡Dale con los asteroides! </texto>
 		</EVENT>
 		<EVENT name="StoryIntro">
 			<texto> Tenemos que recoger a nuestros amigos </texto>									<!-- 0 -->
-			<texto> Coloca los ganchos para redirigir la nave y recogerlos </texto>
-			<texto> Ten cuidado con con los asteroides te quitarán vida </texto>
+			<texto> Coloca las balizas para redirigir la nave y recogerlos </texto>
+			<texto> ¡Ten cuidado con con los asteroides! </texto>
 		</EVENT>
 	</EVENTS>
 </MAIN>

@@ -18,7 +18,8 @@ public class SurvivalIntro : MonoBehaviour {
 	#region Private Attributes
 	//Common ones
 	private GameObject fadeInOut;
-	private Rect conversationZone;
+    //private Rect conversationZone;
+    private Rect iconZone;
 	private Rect conversationBoxZone;
 	//Specific ones
 	private int step = -1;				//For controlling the progress trough the scene
@@ -43,6 +44,7 @@ public class SurvivalIntro : MonoBehaviour {
 		//fadeInOut = GameObject.Find ("FadeInOut");
 		//Conversation Box zone
 		conversationBoxZone = new Rect(0, Screen.height * 4/5, Screen.width, Screen.height * 1/5);
+        iconZone = new Rect(Screen.width * 3/5, Screen.height * 2/5, Screen.width * 1/5, Screen.height * 2/5);
 		level = FindObjectOfType<BaseLevelManager>();
 		style = level.textStyle;
 		if (GameManagerSingleton.instance.CurrentSurvivalLevel != 0) 
@@ -75,7 +77,8 @@ public class SurvivalIntro : MonoBehaviour {
 	{
 		if (step == 0) {
 			GUI.DrawTexture (conversationBoxZone, conversationBox, ScaleMode.StretchToFill);
-			GUI.Label (conversationBoxZone, eventText [currentText], style);
+            GUI.DrawTexture(iconZone, conversationIcons[currentText], ScaleMode.ScaleToFit);
+            GUI.Label (conversationBoxZone, eventText [currentText], style);
 		}
 	}
 	#endregion

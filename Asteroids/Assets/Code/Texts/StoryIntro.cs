@@ -13,8 +13,9 @@ public class StoryIntro : MonoBehaviour {
 	#region Private Attributes
 	//Common ones
 	private GameObject fadeInOut;
-	private Rect conversationZone;
-	private Rect conversationBoxZone;
+    //private Rect conversationZone;
+    private Rect iconZone;
+    private Rect conversationBoxZone;
 	//Specific ones
 	private int step = -1;				//For controlling the progress trough the scene
 	private string[] eventText;
@@ -37,7 +38,8 @@ public class StoryIntro : MonoBehaviour {
 		eventText = GameFunctions.GetTextXML ("EVENTS", "EVENT", "StoryIntro");
 		//Conversation Box zone
 		conversationBoxZone = new Rect(0, Screen.height * 4/5, Screen.width, Screen.height * 1/5);
-		level = FindObjectOfType<BaseLevelManager>();
+        iconZone = new Rect(Screen.width * 3 / 5, Screen.height * 2 / 5, Screen.width * 1 / 5, Screen.height * 2 / 5);
+        level = FindObjectOfType<BaseLevelManager>();
 		style = level.textStyle;
 		if (GameManagerSingleton.instance.CurrentStoryLevel != 0)
 		{
@@ -68,7 +70,7 @@ public class StoryIntro : MonoBehaviour {
 	void OnGUI()
 	{
 		if (step == 0) {
-			GUI.DrawTexture (new Rect (Screen.width * 4 / 6, Screen.height *2 / 4, Screen.width / 3, Screen.height / 3), conversationIcons [0], ScaleMode.ScaleToFit);
+			GUI.DrawTexture (new Rect (Screen.width * 4 / 6, Screen.height *2 / 4, Screen.width / 3, Screen.height / 3), conversationIcons [currentText], ScaleMode.ScaleToFit);
 			GUI.DrawTexture (conversationBoxZone, conversationBox, ScaleMode.StretchToFill);
 			GUI.Label (conversationBoxZone, eventText [currentText], style);
 
