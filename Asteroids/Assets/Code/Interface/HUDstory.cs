@@ -9,6 +9,7 @@ public class HUDstory : HUD {
 	public RawImage minimap;
 	public Texture hook;
 	public Texture alien;
+	public GameObject bigMap;
 	#endregion
 	#region Private Attributes
 	private RectTransform minimapDimension;
@@ -21,6 +22,9 @@ public class HUDstory : HUD {
 		base.Start ();
 		minimapDimension = minimap.rectTransform;
 		storyLevelMgr = levelMgr as StoryLevelManager;
+
+		bigMap.transform.localScale = new Vector3 (0.004f * Screen.width/4, 0.005f * Screen.height/4, 1);
+		bigMap.transform.position = new Vector3 (Screen.width *5/ 10, Screen.height * 4.5f / 10, 1);
 	}
 	
 	// Update is called once per frame
