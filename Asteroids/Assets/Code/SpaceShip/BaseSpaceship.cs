@@ -16,6 +16,7 @@ public class BaseSpaceship : MonoBehaviour {
 	protected bool secondMovement = false;
 	protected bool firstMovement = false;
 	protected float currentUpdateTime;
+    protected bool destroyed = false;
 
 	protected Vector3 adjustedDirection; // Here for testing
 	protected Quaternion previousRotation;
@@ -39,6 +40,7 @@ public class BaseSpaceship : MonoBehaviour {
 
 	// Update is called once per frame
 	protected virtual void Update () {
+        if (destroyed) return;
 	}
 
 	#endregion
@@ -73,6 +75,12 @@ public class BaseSpaceship : MonoBehaviour {
 			rb.AddForce (Vector3.up, ForceMode.Force);
 		}
 	}
+
+    public void BeDestroyed()
+    {
+        destroyed = true;
+        shipModel.gameObject.SetActive(false);
+    }
 
 	#endregion
 }

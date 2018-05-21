@@ -110,7 +110,7 @@ public class StoryLevelManager : BaseLevelManager {
             GameManagerSingleton.instance.StoryProgress();
 			//win = true;
             gameState = GameState.Victory;
-            Time.timeScale = 0.0f;
+            // Time.timeScale = 0.0f;
 			//PauseGame ();
         }
     }

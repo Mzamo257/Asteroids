@@ -36,7 +36,7 @@ public class ColissionManagerSpaceship : MonoBehaviour {
         levelMgr.DamageSpaceShip(collision.relativeVelocity.magnitude * otherRigid.mass);
 
         //
-        explosion.SetActive(true);
+        //explosion.SetActive(true);
 
         //
         /*if (particleSystem != null)

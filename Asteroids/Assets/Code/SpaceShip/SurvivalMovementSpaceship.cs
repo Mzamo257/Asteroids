@@ -33,8 +33,10 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 
 	// Update is called once per frame
 	protected override void Update () {
-		
-        if(barrelRollDirection == 0)
+
+        if (destroyed) return;
+
+        if (barrelRollDirection == 0)
         {
             Dodge();
         }

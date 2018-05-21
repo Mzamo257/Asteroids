@@ -98,7 +98,7 @@ public class SurvivalLevelManager : BaseLevelManager {
             //GameManagerSingleton.GetInstance().SurvivalProgress();
 			//lose = true;
             gameState = GameState.Defeat;
-            Time.timeScale = 0.0f;
+            // Time.timeScale = 0.0f;
 			//PauseGame ();
         }
 		

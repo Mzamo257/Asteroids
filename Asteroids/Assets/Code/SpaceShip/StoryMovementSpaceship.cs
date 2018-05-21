@@ -30,8 +30,10 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 	// Update is called once per frame
 	protected override void Update () {
+        
+        if (destroyed) return;
 
-		velocity = rb.velocity;
+        velocity = rb.velocity;
 		currentUpdateTime += Time.deltaTime;
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity , maxSpeed);
 
