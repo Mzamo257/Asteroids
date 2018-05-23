@@ -46,7 +46,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
             if (health <= 0)
             {
                 // TODO: Restaurarles vida cuando salgan de la pool
-                			soundEffectsManager.playEffect(2);
+                			soundEffectsManager.playChoque();
                 gameObject.SetActive(false);
                 asteroidMgr.CurrentActiveAsteroids--;
                 Debug.Log("Asteroid destroyed");
@@ -54,8 +54,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
             }
             else
             {
-                int effectNumber = (int)(Random.value * 2);
-                soundEffectsManager.playEffect(effectNumber);
+                soundEffectsManager.playChoque();
             }
         }
 
