@@ -12,6 +12,7 @@ public abstract class HUD : MonoBehaviour {
 	public Canvas Pause;
 	public GUIStyle levelStyle;
 	public Texture back;
+	public Texture panel;
 	#endregion
 
 	#region Private Attributes
@@ -49,18 +50,18 @@ public abstract class HUD : MonoBehaviour {
 		if (levelMgr.currentState == GameState.Victory) {
 			Win.enabled = true;
 			Pause.enabled = false;
-
-            GUI.TextField(new Rect(Screen.width * 2/5, Screen.height * 12/20, Screen.width * 1/5, Screen.height * 1/20), 
-                "Your score: " + levelMgr.Score);
-            GUI.TextField(new Rect(Screen.width * 2 / 5, Screen.height * 13/20, Screen.width * 1 / 5, Screen.height * 1 / 20), 
-                "Total score: " + gmSingScript.CurrentScore);
+			GUI.DrawTexture (new Rect (Screen.width * 2.9f / 10, Screen.height *4.5f / 10, Screen.width * 4.3f / 10, Screen.height *2/ 10), panel, ScaleMode.StretchToFill);
+            GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5/10, Screen.width * 4/10, Screen.height * 0.5f/10), 
+				"Your score: " + levelMgr.Score, levelStyle);
+            GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5.8f/10, Screen.width * 4/10, Screen.height * 0.5f/10), 
+				"Total score: " + gmSingScript.CurrentScore, levelStyle);
 
         } else if (levelMgr.currentState == GameState.Defeat) {
 			Lose.enabled = true;
 			Pause.enabled = false;
-
-            GUI.TextField(new Rect(Screen.width * 2 / 5, Screen.height * 13 / 20, Screen.width * 1 / 5, Screen.height * 1 / 20),
-                "Total score: " + gmSingScript.CurrentScore);
+			GUI.DrawTexture (new Rect (Screen.width * 2.9f / 10, Screen.height *5.5f / 10, Screen.width * 4.3f / 10, Screen.height *1/ 10), panel, ScaleMode.StretchToFill);
+			GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5.8f/10, Screen.width * 4/10, Screen.height * 0.5f/10),
+				"Total score: " + gmSingScript.CurrentScore, levelStyle);
 
         } else if (levelMgr.currentState != GameState.Paused) {
 			//Base
