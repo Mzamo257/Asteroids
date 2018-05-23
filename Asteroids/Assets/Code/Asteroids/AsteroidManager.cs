@@ -17,10 +17,16 @@ public class AsteroidManager : MonoBehaviour {
     private int started = 0;
     private BaseLevelManager level;
     private LineRenderer asteroidLineRenderer;
+    private int maxAsteroids;
+    private int currentActiveAsteroids;
     #endregion
 
     #region Properties
     public LineRenderer AsteroidLineRenderer { get { return asteroidLineRenderer; } }
+    public int CurrentActiveAsteroids {
+        set { currentActiveAsteroids = value; }
+        get { return currentActiveAsteroids; }
+    }
     #endregion
 
     #region MonoDevelop Methods
@@ -33,6 +39,8 @@ public class AsteroidManager : MonoBehaviour {
         GameObject instantiatedAsteroidLineRenderer = Instantiate(asteroidLineRendererPrefab, Vector3.zero, Quaternion.identity);
         asteroidLineRenderer = instantiatedAsteroidLineRenderer.GetComponent<LineRenderer>();
         instantiatedAsteroidLineRenderer.SetActive(false);
+        maxAsteroids = asteroids.Length * asteroids[0].Count;
+        //Debug.Log("Max asteroids: " + maxAsteroids);
 	}
 
 	// Update is called once per frame
@@ -45,7 +53,15 @@ public class AsteroidManager : MonoBehaviour {
 		}
 
 		if (level.StartedAsteroids == 4) {
-			spamAsteroids (50.0f, 5);
+            // Determine the proportion of active asteroids
+            float activeAsteroidProportion = (float)currentActiveAsteroids / (float)maxAsteroids;
+            //
+            int maxAsteroidsToSpawn = 50;
+            int minAsteroidsToSpawn = 1;
+            int asteroidsToSpawn = (int)((1 - activeAsteroidProportion) * (maxAsteroidsToSpawn - minAsteroidsToSpawn) + minAsteroidsToSpawn);
+            //
+			spamAsteroids (50.0f, asteroidsToSpawn);
+            Debug.Log("Spawned asteroids: " + asteroidsToSpawn);
 		}
 
 		if (level.StartedAsteroids==2)
@@ -87,8 +103,24 @@ public class AsteroidManager : MonoBehaviour {
 	bool CheckOutOfCamera(GameObject asteroid)
 	{
 		Vector3 screenPoint = Camera.main.WorldToViewportPoint(asteroid.transform.position);
-		return (screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1)&&screenPoint.z<0;
-	}
+		//return (screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1)&&screenPoint.z<0;
+        return (screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1) /*&& screenPoint.z < 0*/;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="asteroid"></param>
+    /// <returns></returns>
+    bool CheckFarEnoughFromThePlayer(GameObject asteroid)
+    {
+        float distanceToCheck = 10;
+        //float distanceToPlayer = (asteroid.transform.position - spaceShip.transform.position).sqrMagnitude;
+        float distanceToPlayer = (asteroid.transform.position - spaceShip.transform.position).magnitude;
+        // We make it squared to ligthen proccessing
+        //return Mathf.Pow(distanceToCheck, 2) > distanceToPlayer;
+        return distanceToPlayer > distanceToCheck;
+    }
 		
 	/// <summary>
 	/// Haz una pasada comprobando los asteriodes
@@ -100,9 +132,10 @@ public class AsteroidManager : MonoBehaviour {
 		{
 			for (int j = 0; j < numAsteroids; j++) {
 				// Check if any of them is out of screen
-				if (asteroids[i][j].activeInHierarchy && CheckOutOfCamera(asteroids[i][j])) {
+				if (asteroids[i][j].activeInHierarchy && CheckOutOfCamera(asteroids[i][j]) && CheckFarEnoughFromThePlayer(asteroids[i][j])) {
 
 					asteroids[i][j].SetActive(false);
+                    currentActiveAsteroids--;
 				}
 			}
 		}
@@ -144,6 +177,7 @@ public class AsteroidManager : MonoBehaviour {
 				addRandomTorque(rb);
 				addRandomForce(rb);
 				asteroids [index] [i].GetComponent<AsteroidCollisionManager> ().ResetCounter ();
+                currentActiveAsteroids++;
 				return;
 			}
 		}
@@ -164,6 +198,7 @@ public class AsteroidManager : MonoBehaviour {
 				addRandomTorque(rb);
 				addRandomForce(rb);
 				asteroids [index] [i].GetComponent<AsteroidCollisionManager> ().ResetCounter ();
+                currentActiveAsteroids++;
 				return;
 			}
 			

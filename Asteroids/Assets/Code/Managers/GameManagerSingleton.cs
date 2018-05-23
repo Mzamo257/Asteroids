@@ -33,6 +33,8 @@ public class GameManagerSingleton : MonoBehaviour {
     private int currentStoryLevel = 0;
     private GameMode currentGameMode;
 
+    private int currentScore;
+
     #endregion
 
     #region Properties
@@ -55,13 +57,23 @@ public class GameManagerSingleton : MonoBehaviour {
         get { return storyLevelList[currentStoryLevel]; }
     }
 
+    // Decidir si al final lo queremos aqui
     public int CurrentSurvivalLevel {
         get { return currentSurvivalLevel; }
-        set { currentSurvivalLevel = value; }
+        set
+        {
+            currentSurvivalLevel = value;
+            if (currentSurvivalLevel == 0)
+                currentScore = 0;
+        }
     }
     public int CurrentStoryLevel {
         get { return currentStoryLevel; }
-        set { currentStoryLevel = value; }
+        set {
+            currentStoryLevel = value;
+            if (currentStoryLevel == 0)
+                currentScore = 0;
+        }
     }
 
     public bool Music
@@ -75,15 +87,14 @@ public class GameManagerSingleton : MonoBehaviour {
         set { currentGameMode = value; }
     }
 
-    #endregion
-
-    /*public GameManagerSingleton()
+    public int CurrentScore
     {
-        Start();
-        Debug.Log("Starting - " + 
-            "Current Survival level: " + currentSurvivalLevel +
-                    ", current story level: " + currentStoryLevel);
-    }*/
+        get { return currentScore; }
+        set { currentScore = value; }
+    }
+
+    #endregion
+    
 
     #region Monobehavoiur Methods
 
@@ -160,7 +171,6 @@ public class GameManagerSingleton : MonoBehaviour {
         {
             currentSurvivalLevel++;
         }
-        Debug.Log("Current level: " + currentSurvivalLevel + ", num levels: " + survivalLevelList.Count);
     }
 
     public void StoryProgress()

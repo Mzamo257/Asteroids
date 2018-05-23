@@ -32,6 +32,8 @@ public abstract class HUD : MonoBehaviour {
 		iconSize = Screen.height * iconSizeRate;
 
 		damage = levelMgr.SpaceCurrentLife;
+
+        gmSingScript = FindObjectOfType<GameManagerSingleton>();
 	}
 	
 	// Update is called once per frame
@@ -43,25 +45,35 @@ public abstract class HUD : MonoBehaviour {
 	protected virtual void OnGUI()
 	{
 		
-			Pause.enabled = true;
-			if (levelMgr.currentState == GameState.Victory) {
-				Win.enabled = true;
-				Pause.enabled = false;
-			} else if (levelMgr.currentState == GameState.Defeat) {
-				Lose.enabled = true;
-				Pause.enabled = false;
-			} else if (levelMgr.currentState != GameState.Paused) {
-				//Base
-				//GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height * 1.5f/10), back, ScaleMode.StretchToFill);
-				//Healthbar
-			GUI.DrawTexture (new Rect (Screen.width*2.3f/10, Screen.height*0.6f/10, damage / levelMgr.SpaceMaxLife * (Screen.width*3.8f/10), Screen.height*0.5f/10), alertBars [2], ScaleMode.StretchToFill);
-				GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, levelMgr.SpaceCurrentLife / levelMgr.SpaceMaxLife * (Screen.width*4/10),Screen.height*0.5f/10), alertBars [1], ScaleMode.StretchToFill);
-				GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, Screen.width*4/10, Screen.height*0.5f/10), alertBars [0], ScaleMode.StretchToFill);
+		Pause.enabled = true;
+		if (levelMgr.currentState == GameState.Victory) {
+			Win.enabled = true;
+			Pause.enabled = false;
 
-				if (levelMgr.AsteroidSelected) {
-					GUI.DrawTexture (new Rect (levelMgr.AsteroidPosCamera.x - asteroidPointer.width * 0.04f, levelMgr.AsteroidPosCamera.y - asteroidPointer.height * 0.02f, iconSize / 1.5f, iconSize / 1.5f), asteroidPointer, ScaleMode.ScaleToFit);
-				}
+            GUI.TextField(new Rect(Screen.width * 2/5, Screen.height * 12/20, Screen.width * 1/5, Screen.height * 1/20), 
+                "Your score: " + levelMgr.Score);
+            GUI.TextField(new Rect(Screen.width * 2 / 5, Screen.height * 13/20, Screen.width * 1 / 5, Screen.height * 1 / 20), 
+                "Total score: " + gmSingScript.CurrentScore);
+
+        } else if (levelMgr.currentState == GameState.Defeat) {
+			Lose.enabled = true;
+			Pause.enabled = false;
+
+            GUI.TextField(new Rect(Screen.width * 2 / 5, Screen.height * 13 / 20, Screen.width * 1 / 5, Screen.height * 1 / 20),
+                "Total score: " + gmSingScript.CurrentScore);
+
+        } else if (levelMgr.currentState != GameState.Paused) {
+			//Base
+			//GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height * 1.5f/10), back, ScaleMode.StretchToFill);
+			//Healthbar
+		    GUI.DrawTexture (new Rect (Screen.width*2.3f/10, Screen.height*0.6f/10, damage / levelMgr.SpaceMaxLife * (Screen.width*3.8f/10), Screen.height*0.5f/10), alertBars [2], ScaleMode.StretchToFill);
+			GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, levelMgr.SpaceCurrentLife / levelMgr.SpaceMaxLife * (Screen.width*4/10),Screen.height*0.5f/10), alertBars [1], ScaleMode.StretchToFill);
+			GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, Screen.width*4/10, Screen.height*0.5f/10), alertBars [0], ScaleMode.StretchToFill);
+
+			if (levelMgr.AsteroidSelected) {
+				GUI.DrawTexture (new Rect (levelMgr.AsteroidPosCamera.x - asteroidPointer.width * 0.04f, levelMgr.AsteroidPosCamera.y - asteroidPointer.height * 0.02f, iconSize / 1.5f, iconSize / 1.5f), asteroidPointer, ScaleMode.ScaleToFit);
 			}
+		}
 	}
 	#endregion
 

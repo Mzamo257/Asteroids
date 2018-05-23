@@ -24,6 +24,7 @@ public class StoryLevelManager : BaseLevelManager {
 	private HUDstory hud;
 
 	protected StoryIntro intro;
+
     #endregion
 
     #region Properties
@@ -106,12 +107,13 @@ public class StoryLevelManager : BaseLevelManager {
         caughtAliens++;
         if(caughtAliens == levelData.numberOfAliens)
         {
-            //Debug.Log("Victory");
             GameManagerSingleton.instance.StoryProgress();
-			//win = true;
             gameState = GameState.Victory;
-            // Time.timeScale = 0.0f;
-			//PauseGame ();
+
+            //
+            float trashConservation = (float)availableTrash / (float)amountTrash;
+            score = (int)(100 * trashConservation);
+            gameManagerSingleton.CurrentScore += score;
         }
     }
 

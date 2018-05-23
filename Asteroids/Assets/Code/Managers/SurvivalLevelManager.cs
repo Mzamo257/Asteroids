@@ -26,10 +26,12 @@ public class SurvivalLevelManager : BaseLevelManager {
 
     public GameObject CurrentWaypoint
     {
-		get {  if (currentWaypoint < NumWaypoints)
+		get {
+            if (currentWaypoint < NumWaypoints)
 				return list_of_wayPoints [currentWaypoint];
 			else
-				return null;}
+				return null;
+        }
     }
     #endregion
 
@@ -108,6 +110,22 @@ public class SurvivalLevelManager : BaseLevelManager {
     {
         return (list_of_wayPoints[currentWaypoint].transform.position - ship.transform.position).magnitude;
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    protected override int GetScoreFromWaypoints()
+    {
+        // Podríamos contar también la distancia que había al siguiente waypoint
+        
+        float shipProgress = 1 - (float)currentWaypoint / (float)NumWaypoints;
+        float pointsToScore = 100 * shipProgress;
+        Debug.Log("Current waypoint: " + currentWaypoint + ", num waypoints: " + NumWaypoints + 
+            ", ship progress: " + shipProgress + ", points to score: " + pointsToScore);
+        return (int)pointsToScore;
+    }
+
     #endregion
 
 }

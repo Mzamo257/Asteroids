@@ -1,7 +1,7 @@
 <LEVELS>
   <SURVIVAL>
     
-	  <LEVEL>
+	  <LEVEL name ="1">
 		  <VARIABLE name="force_Spaceship">1</VARIABLE>
 		  <VARIABLE name="max_Speed_Spaceship">5</VARIABLE>
 		  <VARIABLE name="numberOf_Waypoints">5</VARIABLE>
@@ -9,30 +9,48 @@
 		  <VARIABLE name="force_Asteroids">3</VARIABLE>
 		  <VARIABLE name="lifeKit">10</VARIABLE>
 	  </LEVEL>
-    
-    <LEVEL>
+
+    <LEVEL name ="1">
       <VARIABLE name="force_Spaceship">2</VARIABLE>
       <VARIABLE name="max_Speed_Spaceship">10</VARIABLE>
       <VARIABLE name="numberOf_Waypoints">4</VARIABLE>
       <VARIABLE name="numberOf_Asteroids">25</VARIABLE>
       <VARIABLE name="force_Asteroids">4</VARIABLE>
-      <VARIABLE name="lifeKit">20</VARIABLE>
+      <VARIABLE name="lifeKit">10</VARIABLE>
     </LEVEL>
-    
-    <LEVEL>
-      <VARIABLE name="force_Spaceship">3</VARIABLE>
+
+    <LEVEL name ="1">
+      <VARIABLE name="force_Spaceship">2</VARIABLE>
       <VARIABLE name="max_Speed_Spaceship">12</VARIABLE>
-      <VARIABLE name="numberOf_Waypoints">4</VARIABLE>
+      <VARIABLE name="numberOf_Waypoints">5</VARIABLE>
       <VARIABLE name="numberOf_Asteroids">20</VARIABLE>
       <VARIABLE name="force_Asteroids">5</VARIABLE>
       <VARIABLE name="lifeKit">20</VARIABLE>
+    </LEVEL>
+
+    <LEVEL name ="1">
+      <VARIABLE name="force_Spaceship">3</VARIABLE>
+      <VARIABLE name="max_Speed_Spaceship">14</VARIABLE>
+      <VARIABLE name="numberOf_Waypoints">3</VARIABLE>
+      <VARIABLE name="numberOf_Asteroids">20</VARIABLE>
+      <VARIABLE name="force_Asteroids">6</VARIABLE>
+      <VARIABLE name="lifeKit">5</VARIABLE>
+    </LEVEL>
+
+    <LEVEL name ="1">
+      <VARIABLE name="force_Spaceship">3</VARIABLE>
+      <VARIABLE name="max_Speed_Spaceship">16</VARIABLE>
+      <VARIABLE name="numberOf_Waypoints">5</VARIABLE>
+      <VARIABLE name="numberOf_Asteroids">20</VARIABLE>
+      <VARIABLE name="force_Asteroids">7</VARIABLE>
+      <VARIABLE name="lifeKit">25</VARIABLE>
     </LEVEL>
     
   </SURVIVAL>
   
   <STORY>
     
-    <LEVEL name = "LEVEL1">
+    <LEVEL name = "1">
       <VARIABLE name="force_Spaceship">1</VARIABLE>
       <VARIABLE name="max_Speed_Spaceship">5</VARIABLE>
       <VARIABLE name="numberOfAliens">5</VARIABLE>
@@ -41,17 +59,34 @@
       <VARIABLE name="numberOfTrash">10</VARIABLE>
     </LEVEL>
     
-    <LEVEL name = "LEVEL2">
+    <LEVEL name = "2">
       <VARIABLE name="force_Spaceship">2</VARIABLE>
       <VARIABLE name="max_Speed_Spaceship">10</VARIABLE>
       <VARIABLE name="numberOfAliens">6</VARIABLE>
-      <VARIABLE name="numberOf_Asteroids">40</VARIABLE>
+      <VARIABLE name="numberOf_Asteroids">35</VARIABLE>
       <VARIABLE name="force_Asteroids">4</VARIABLE>
       <VARIABLE name="numberOfTrash">9</VARIABLE>
     </LEVEL>
     
-    <LEVEL name = "LEVEL3">
+    <LEVEL name = "3">
       <VARIABLE name="force_Spaceship">2</VARIABLE>
+      <VARIABLE name="max_Speed_Spaceship">10</VARIABLE>
+      <VARIABLE name="numberOfAliens">7</VARIABLE>
+      <VARIABLE name="numberOf_Asteroids">40</VARIABLE>
+      <VARIABLE name="force_Asteroids">5</VARIABLE>
+      <VARIABLE name="numberOfTrash">8</VARIABLE>
+    </LEVEL>
+
+    <LEVEL name = "4">
+      <VARIABLE name="force_Spaceship">3</VARIABLE>
+      <VARIABLE name="max_Speed_Spaceship">10</VARIABLE>
+      <VARIABLE name="numberOfAliens">7</VARIABLE>
+      <VARIABLE name="numberOf_Asteroids">45</VARIABLE>
+      <VARIABLE name="force_Asteroids">5</VARIABLE>
+      <VARIABLE name="numberOfTrash">8</VARIABLE>
+    </LEVEL>
+    <LEVEL name = "5">
+      <VARIABLE name="force_Spaceship">3</VARIABLE>
       <VARIABLE name="max_Speed_Spaceship">10</VARIABLE>
       <VARIABLE name="numberOfAliens">7</VARIABLE>
       <VARIABLE name="numberOf_Asteroids">50</VARIABLE>

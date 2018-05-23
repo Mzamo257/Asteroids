@@ -48,6 +48,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
                 // TODO: Restaurarles vida cuando salgan de la pool
                 			soundEffectsManager.playEffect(2);
                 gameObject.SetActive(false);
+                asteroidMgr.CurrentActiveAsteroids--;
                 Debug.Log("Asteroid destroyed");
                 DestroyAsteroid();
             }
