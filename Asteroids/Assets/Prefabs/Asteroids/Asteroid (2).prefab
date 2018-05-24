@@ -62,7 +62,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: bbf7d5c082e9664498f371d317f0d794, type: 2}
+  - {fileID: 2100000, guid: e8b109233ac44e547ab8ac2dd3d945cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 4
-  asteroid: {fileID: 2100000, guid: bbf7d5c082e9664498f371d317f0d794, type: 2}
+  asteroid: {fileID: 2100000, guid: e8b109233ac44e547ab8ac2dd3d945cc, type: 2}
   cubo2: {fileID: 2100000, guid: c35abf456e37ca2418142f896729b308, type: 2}
   impulse: {x: 0, y: 0, z: 0}
 --- !u!135 &135770634029828276

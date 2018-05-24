@@ -3401,7 +3401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483f5d376d3ba544681c859bae93faf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPoint_prefab: {fileID: 1253621437214496, guid: 5dd14f8a5826bec4689f8a468e9cfe48,
+  wayPoint_prefab: {fileID: 1725793201409304, guid: 23e76f0bb240cb647aac8df653752005,
     type: 2}
   textStyle:
     m_Name: 
