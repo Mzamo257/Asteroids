@@ -6,7 +6,7 @@ public class Drag : MonoBehaviour {
 	
 	#region Public Attributes
 	public float force;
-	public Material cubo1;
+	public Material asteroid;
 	public Material cubo2;
 	//public Vector3 newCenterOfMass;
 	public Vector3 impulse;
@@ -46,11 +46,11 @@ public class Drag : MonoBehaviour {
                 asteroidManager.AsteroidLineRenderer.gameObject.SetActive(false);
                 levelManager.AsteroidSelected = false;
             }
-			gameObject.GetComponent<MeshRenderer> ().material = cubo1;
+			gameObject.GetComponent<MeshRenderer> ().material = asteroid;
 			launchAsteroid();
 		}
         //
-        if (selected) DebugArrowDirection();
+        if (selected) ArrowDirection();
 	}
 	#endregion
 
@@ -73,12 +73,10 @@ public class Drag : MonoBehaviour {
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, zToUse));
         
 		Vector3 direction = mouseWorldPos - objectPos;
-		//float dist = direction.magnitude;
-		//rb.velocity=Vector3.zero;
 		rb.AddForce(direction*force, ForceMode.Impulse);
 	}
 
-    void DebugArrowDirection()
+    void ArrowDirection()
     {
         Vector3 objectPos = transform.position;
         float zToUse = (objectPos - Camera.main.transform.position).magnitude;

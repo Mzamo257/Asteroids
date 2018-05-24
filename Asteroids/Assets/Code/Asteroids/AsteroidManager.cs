@@ -56,7 +56,7 @@ public class AsteroidManager : MonoBehaviour {
             // Determine the proportion of active asteroids
             float activeAsteroidProportion = (float)currentActiveAsteroids / (float)maxAsteroids;
             //
-            int maxAsteroidsToSpawn = 50;
+            int maxAsteroidsToSpawn = 25;
             int minAsteroidsToSpawn = 1;
             int asteroidsToSpawn = (int)((1 - activeAsteroidProportion) * (maxAsteroidsToSpawn - minAsteroidsToSpawn) + minAsteroidsToSpawn);
             //
@@ -66,7 +66,7 @@ public class AsteroidManager : MonoBehaviour {
 
 		if (level.StartedAsteroids==2)
 		{
-			spamAsteroids(10.0f, 30);
+			spamAsteroids(5.0f, 30);
 			level.StartedAsteroids++;
 			//Debug.Log ("holi");
 		}
@@ -151,13 +151,11 @@ public class AsteroidManager : MonoBehaviour {
 		float randomX = Random.value;
 		float randomY = Random.value;
 
-        //randomX = Random.Range(0.2f, 0.8f);
         randomY = Random.Range(0.3f, 0.7f);
 
         float zDistance = (spaceShip.transform.position - Camera.main.transform.position).magnitude;
 		float randomZ = (Random.value * 30.0f) + zDistance + dist;
 		Vector3 worldPoint = Camera.main.ViewportToWorldPoint(new Vector3(randomX, randomY, randomZ));
-		//Vector3 worldPoint = Camera.main.transform.position + randomZ * Camera.main.transform.forward + randomX * Camera.main.transform.right + randomY * Camera.main.transform.up;
 		return worldPoint;
 	}
 
