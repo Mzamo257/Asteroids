@@ -56,14 +56,15 @@ public class Drag : MonoBehaviour {
 
 	#region User Methods
 	void OnMouseDown(){
-		selected = true;
-        asteroidManager.AsteroidLineRenderer.gameObject.SetActive(true);
-        gameObject.GetComponent<MeshRenderer> ().material = cubo2;
-        if (levelManager != null)
-        {
-            levelManager.AsteroidSelected = true;
-            levelManager.asteroidPosition(transform.position);
-        }
+		if (levelManager.currentState == GameState.InGame) {
+			selected = true;
+			asteroidManager.AsteroidLineRenderer.gameObject.SetActive (true);
+			gameObject.GetComponent<MeshRenderer> ().material = cubo2;
+			if (levelManager != null) {
+				levelManager.AsteroidSelected = true;
+				levelManager.asteroidPosition (transform.position);
+			}
+		}
 	}
 
 	void launchAsteroid(){
