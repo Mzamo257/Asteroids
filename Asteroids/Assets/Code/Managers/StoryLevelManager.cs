@@ -18,6 +18,7 @@ public class StoryLevelManager : BaseLevelManager {
     protected List<GameObject> playerWayPoints;
 	protected int amountTrash = 10;
 	protected int availableTrash = 10;
+    protected int wayPointIndex;
     //
     protected List<GameObject> aliens;
     protected int caughtAliens = 0;
@@ -37,23 +38,30 @@ public class StoryLevelManager : BaseLevelManager {
 
 	public int TotalTrash { get { return amountTrash; } }
 
-	public GameObject CurrentWaypoint { get { if (playerWayPoints.Count > 0)return playerWayPoints [0];
-												else return null;} }
+	public GameObject CurrentWaypoint
+    {
+        get
+        {
+            if (playerWayPoints[wayPointIndex].activeInHierarchy)
+                return playerWayPoints [wayPointIndex];
+			else
+                return null;
+        }
+    }
 
     #endregion
 
     #region MonoBehaviour Methods
     // Use this for initialization
     protected override void Start () {
-
-        // And then the base start
+        
         base.Start();
-
+        //
         intro = GetComponent<StoryIntro>();
 		intro.StartEvent ();
         // Set the game mode
         gameManagerSingleton.CurrentGameMode = GameMode.Story;
-        //
+        // Get the level data
         levelData = gameManagerSingleton.CurrentStoryLevelData;
         // Set the little aliens
         aliens = new List<GameObject>();
@@ -70,9 +78,16 @@ public class StoryLevelManager : BaseLevelManager {
                 aliens.Add(newAlien);
             }
         }
-		playerWayPoints = new List<GameObject>();
-
-		hud = FindObjectOfType<HUDstory> ();
+        //
+		playerWayPoints = new List<GameObject>(levelData.numberOfTrash);
+        for (int i = 0; i < levelData.numberOfTrash; i++)
+        {
+            GameObject newWaypoint = Instantiate(trashPrefab, Vector3.zero, Quaternion.identity);
+            newWaypoint.SetActive(false);
+            playerWayPoints.Add(newWaypoint);
+        }
+        //
+        hud = FindObjectOfType<HUDstory> ();
 
         // Assign the rest of the data
         // NOTE: This should be in BaseLevelManager, have to find the way
@@ -132,8 +147,13 @@ public class StoryLevelManager : BaseLevelManager {
         //Debug.Log("Waypoint position: " + waypointPosition);
 
         // TODO: Manejar con pool
-        GameObject newTrash = Instantiate(wayPoint_prefab, waypointPosition, Quaternion.identity);
-        playerWayPoints.Add(newTrash);
+        if (availableTrash <= 0) return false;
+
+        playerWayPoints[levelData.numberOfTrash - availableTrash].SetActive(true);
+        playerWayPoints[levelData.numberOfTrash - availableTrash].transform.position = waypointPosition;
+        //availableTrash --;
+        //GameObject newTrash = Instantiate(wayPoint_prefab, waypointPosition, Quaternion.identity);
+        //playerWayPoints.Add(newTrash);
         return true;
     }
 
@@ -146,13 +166,15 @@ public class StoryLevelManager : BaseLevelManager {
         if(availableTrash == 0)
         {
             gameState = GameState.Defeat;
-            Time.timeScale = 0.0f;
+            //Time.timeScale = 0.0f;
         }
         //
-		if (playerWayPoints.Count > 0) 
+		else if(playerWayPoints[wayPointIndex].activeInHierarchy)
 		{
-			playerWayPoints [0].SetActive (false);
-			playerWayPoints.RemoveAt (0);
+			playerWayPoints [wayPointIndex].SetActive (false);
+            wayPointIndex++;
+            //Debug.Log(wayPointIndex);
+			//playerWayPoints.RemoveAt (0);
 		}
         
     }
