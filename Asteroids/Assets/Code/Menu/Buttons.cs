@@ -45,15 +45,21 @@ public class Buttons : MonoBehaviour {
 
     public void ButtonNextLevel()
     {
+        if (GameManagerSingleton.instance.IsFinalLevel)
+        {
+            SceneManager.LoadScene("Victory");
+            return;
+        }
+
         switch (GameManagerSingleton.instance.CurrentGameMode)
         {
             case GameMode.Survival:
-                SceneManager.LoadScene("Survival");
+                    SceneManager.LoadScene("Survival");
                 break;
             case GameMode.Story:
                 SceneManager.LoadScene("Story");
                 break;
         }
-        //Time.timeScale = 1;
+
     }
 }

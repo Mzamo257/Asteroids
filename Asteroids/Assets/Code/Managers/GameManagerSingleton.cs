@@ -76,6 +76,21 @@ public class GameManagerSingleton : MonoBehaviour {
         }
     }
 
+    public bool IsFinalLevel
+    {
+        get
+        {
+            switch (currentGameMode)
+            {
+                case GameMode.Survival:
+                    return currentSurvivalLevel == survivalLevelList.Count - 1;
+                case GameMode.Story:
+                    return currentStoryLevel == storyLevelList.Count - 1;
+            }
+            return false;
+        }
+    }
+
     public bool Music
     {
         get { return music; }
