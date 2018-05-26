@@ -52,6 +52,9 @@ public class Music : MonoBehaviour {
             case "Story":
                 aS.clip = musicClips[2];
                 break;
+            case "Victory":
+                aS.clip = musicClips[0];
+                break;
         }
         aS.Play();
     }
