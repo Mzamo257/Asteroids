@@ -24,8 +24,9 @@ public class Effects : MonoBehaviour {
         //gmScript = FindObjectOfType<GameManager>();
         gameManagerSingleton = GameManagerSingleton.instance;
 		aS = GetComponent<AudioSource> ();
-
-	}
+        aS.volume = gameManagerSingleton.Volume;
+        Debug.Log("Current volume: " + aS.volume);
+    }
 
 	// Update is called once per frame
 	protected virtual void Update () 

@@ -25,7 +25,7 @@ public class GameManagerSingleton : MonoBehaviour {
 
     private string language;
     private bool music;
-    private float volume = 1.0f;
+    private float volume = 0.3f;
     private List<SurvivalLevelData> survivalLevelList;
     private List<StoryLevelData> storyLevelList;
 
@@ -132,7 +132,7 @@ public class GameManagerSingleton : MonoBehaviour {
     {
         // Get the player prefs
         language = PlayerPrefs.GetString("Language", "English");
-        volume = PlayerPrefs.GetFloat("Volume", 1);
+        volume = PlayerPrefs.GetFloat("Volume", 0.3f);
         music = PlayerPrefs.GetInt("MusicOff", 0) == 0;
 
         //Create the levels
