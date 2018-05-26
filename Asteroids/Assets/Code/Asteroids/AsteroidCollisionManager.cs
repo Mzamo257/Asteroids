@@ -9,7 +9,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
 	#endregion
 
 	#region Private Attributes
-	private ParticleSystem particleSystem;
+	private ParticleSystem asteroidParticleSystem;
     private AsteroidManager asteroidMgr;
     private Effects soundEffectsManager;
 	private float collisionCounter = 0;
@@ -22,7 +22,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
     #region MonoDevelop Methods
     // Use this for initialization
     void Start () {
-		particleSystem = gameObject.GetComponent<ParticleSystem>();
+        asteroidParticleSystem = gameObject.GetComponent<ParticleSystem>();
         soundEffectsManager = FindObjectOfType<Effects>();
 	}
 
@@ -40,8 +40,8 @@ public class AsteroidCollisionManager : MonoBehaviour {
         {
             // Usamos la velocidad relativa de la colisión para determinar el daño
             health -= (collision.relativeVelocity.magnitude * otherRigid.mass);
-            if (particleSystem != null)
-                particleSystem.Play();
+            if (asteroidParticleSystem != null)
+                asteroidParticleSystem.Play();
             //
             if (health <= 0)
             {
@@ -49,7 +49,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
                 			soundEffectsManager.playEffect(0);
                 gameObject.SetActive(false);
                 asteroidMgr.CurrentActiveAsteroids--;
-                Debug.Log("Asteroid destroyed");
+                //Debug.Log("Asteroid destroyed");
                 DestroyAsteroid();
             }
             else

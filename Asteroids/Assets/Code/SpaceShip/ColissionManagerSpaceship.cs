@@ -8,16 +8,12 @@ public class ColissionManagerSpaceship : MonoBehaviour {
     #endregion
 
     #region Private Attributes
-    // private GameManager gameMgr;
-    private GameManagerSingleton gameManagerSingleton;
     private BaseLevelManager levelMgr;
 	#endregion
 
 	#region MonoDevelop Methods
 	// Use this for initialization
 	void Start () {
-        // gameMgr = FindObjectOfType<GameManager>();
-        gameManagerSingleton = GameManagerSingleton.instance;
         levelMgr = FindObjectOfType<BaseLevelManager>();
 	}
 	

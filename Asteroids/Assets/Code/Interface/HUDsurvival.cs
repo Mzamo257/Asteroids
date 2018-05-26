@@ -9,7 +9,6 @@ public class HUDsurvival : HUD {
     private SurvivalLevelManager survivalLevelMgr;
 	private float totalDistance;
 	private float finalPosition;
-	private float startPosition;
 	private float positionY;
 	public Texture[] progress;
 	public Texture ship;
@@ -22,7 +21,6 @@ public class HUDsurvival : HUD {
 
 		totalDistance = survivalLevelMgr.calculateDistanceNextWaypoint();
 		finalPosition = Screen.height * 2 / 10;
-		startPosition = positionY * survivalLevelMgr.NumWaypoints + finalPosition;
     }
 	
 	// Update is called once per frame

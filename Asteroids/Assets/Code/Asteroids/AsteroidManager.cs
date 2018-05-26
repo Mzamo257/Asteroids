@@ -14,7 +14,6 @@ public class AsteroidManager : MonoBehaviour {
     private List<GameObject>[] asteroids;
     private GameObject spaceShip;
     private float counter;
-    private int started = 0;
     private BaseLevelManager level;
     private LineRenderer asteroidLineRenderer;
     private int maxAsteroids;
@@ -61,7 +60,7 @@ public class AsteroidManager : MonoBehaviour {
             int asteroidsToSpawn = (int)((1 - activeAsteroidProportion) * (maxAsteroidsToSpawn - minAsteroidsToSpawn) + minAsteroidsToSpawn);
             //
 			spamAsteroids (50.0f, asteroidsToSpawn);
-            Debug.Log("Spawned asteroids: " + asteroidsToSpawn);
+            //Debug.Log("Spawned asteroids: " + asteroidsToSpawn);
 		}
 
 		if (level.StartedAsteroids==2)

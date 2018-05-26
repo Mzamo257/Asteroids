@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Credits : MonoBehaviour {
 
-	public Text name;
+	public Text autorName;
 	public bool goLeft = false;
 	public Vector2 canvasPosition;
 
@@ -28,7 +28,7 @@ public class Credits : MonoBehaviour {
 			startPosition = position;
 			finalPosition = position - new Vector3 (Screen.width * 7 / 10, 0, 0);
 		}
-		startScale = name.transform.localScale;
+		startScale = autorName.transform.localScale;
 	}
 	
 	// Update is called once per frame
@@ -38,7 +38,7 @@ public class Credits : MonoBehaviour {
 
 		transform.position = Vector3.Lerp (startPosition, finalPosition, status);
 
-		name.transform.localScale = new Vector3(Mathf.Lerp (0, startScale.x, status),startScale.y,1);
+        autorName.transform.localScale = new Vector3(Mathf.Lerp (0, startScale.x, status),startScale.y,1);
 	}
 
 	public void buttonClicked()

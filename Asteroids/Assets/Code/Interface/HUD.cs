@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class HUD : MonoBehaviour {
 	#region Public Attributes
@@ -38,6 +36,9 @@ public abstract class HUD : MonoBehaviour {
 		damage = levelMgr.SpaceCurrentLife;
 
         gmSingScript = FindObjectOfType<GameManagerSingleton>();
+
+        levelStyle.fontSize = (int)(Screen.height * 0.03f);
+
         Language();
 	}
 	
@@ -52,28 +53,27 @@ public abstract class HUD : MonoBehaviour {
 		if (levelMgr.currentState == GameState.Victory) {
 			Win.enabled = true;
 			Pause.enabled = false;
+            //Points panel
 			GUI.DrawTexture (new Rect (Screen.width * 2.9f / 10, Screen.height *4.5f / 10, Screen.width * 4.3f / 10, Screen.height *2/ 10), panel, ScaleMode.StretchToFill);
-            GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5/10, Screen.width * 4/10, Screen.height * 0.5f/10), 
-				scoreText + ": " + levelMgr.Score, levelStyle);
-            GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5.8f/10, Screen.width * 4/10, Screen.height * 0.5f/10), 
-				finalScoreText + ": " + gmSingScript.CurrentScore, levelStyle);
+            //Score texts
+            GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5/10, Screen.width * 4/10, Screen.height * 0.5f/10), scoreText + ": " + levelMgr.Score, levelStyle);
+            GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5.8f/10, Screen.width * 4/10, Screen.height * 0.5f/10), finalScoreText + ": " + gmSingScript.CurrentScore, levelStyle);
 
         } else if (levelMgr.currentState == GameState.Defeat) {
 			Lose.enabled = true;
 			Pause.enabled = false;
+            //Points panel
 			GUI.DrawTexture (new Rect (Screen.width * 2.9f / 10, Screen.height *5.5f / 10, Screen.width * 4.3f / 10, Screen.height *1/ 10), panel, ScaleMode.StretchToFill);
-			GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5.8f/10, Screen.width * 4/10, Screen.height * 0.5f/10),
-				finalScoreText + ": " + gmSingScript.CurrentScore, levelStyle);
+            //Score texts
+			GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5.8f/10, Screen.width * 4/10, Screen.height * 0.5f/10), finalScoreText + ": " + gmSingScript.CurrentScore, levelStyle);
 
         } else if (levelMgr.currentState != GameState.Paused) {
 			Pause.enabled = true;
-			//Base
-			//GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height * 1.5f/10), back, ScaleMode.StretchToFill);
 			//Healthbar
 			GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, damage / levelMgr.SpaceMaxLife * (Screen.width*4f/10), Screen.height*0.75f/10), alertBars [2], ScaleMode.StretchToFill);
 			GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, levelMgr.SpaceCurrentLife / levelMgr.SpaceMaxLife * (Screen.width*4/10),Screen.height*0.75f/10), alertBars [1], ScaleMode.StretchToFill);
 			GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, Screen.width*4/10, Screen.height*0.75f/10), alertBars [0], ScaleMode.StretchToFill);
-
+            //Asteroid pointer
 			if (levelMgr.AsteroidSelected) {
 				GUI.DrawTexture (new Rect (levelMgr.AsteroidPosCamera.x - asteroidPointer.width * 0.04f, levelMgr.AsteroidPosCamera.y - asteroidPointer.height * 0.02f, iconSize / 1.5f, iconSize / 1.5f), asteroidPointer, ScaleMode.ScaleToFit);
 			}

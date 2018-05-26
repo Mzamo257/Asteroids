@@ -9,9 +9,6 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 	#region Private Attributes
 	private StoryLevelManager levelManager;
-	private float angleResultant;
-
-	private int counterWaypoints;
 	#endregion
 
 	#region Properties Attributes
@@ -25,7 +22,6 @@ public class StoryMovementSpaceship : BaseSpaceship {
 		base.Start ();
 		levelManager = FindObjectOfType<StoryLevelManager>();
         posCurrentWayPoint = Vector3.zero; 
-		counterWaypoints = 0;
 	}
 
 	// Update is called once per frame
@@ -64,8 +60,6 @@ public class StoryMovementSpaceship : BaseSpaceship {
 			posCurrentWayPoint = levelManager.CurrentWaypoint.transform.position;
 
 			posNextWayPointRelative = posCurrentWayPoint - transform.position;
-
-			angleResultant = Vector3.Angle (velocity, posNextWayPointRelative);
 
 			adjustedDirection = AdjustDirection (velocity, posNextWayPointRelative).normalized;
 			rb.AddForce (adjustedDirection * force, ForceMode.Impulse);

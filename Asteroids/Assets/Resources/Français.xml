@@ -4,11 +4,14 @@
 			<texto> OH! NON! Notre ennemi a échappé</texto>
 			<texto> Vous devez détruire votre vaisseau avant qu'il ne prenne fin </texto>
 			<texto> Frappez-le avec les astéroïdes! </texto>
+      <texto> ¡Haz clic en un asteroide y arrástralo para moverlo! </texto>
 		</EVENT>
 		<EVENT name="StoryIntro">
 			<texto> Nous devons prendre nos amis </texto>									<!-- 0 -->
 			<texto> Placez les crochets pour rediriger le bateau et ramassez-les </texto>
+      <texto> Clica en el minimapa para poner ganchos (Están limitados) </texto>
 			<texto> Soyez prudent avec les astéroïdes qui vous emmènera </texto>
+      <texto> ¡Quítalos del camino! </texto>
 		</EVENT>
 	</EVENTS>
 </MAIN>

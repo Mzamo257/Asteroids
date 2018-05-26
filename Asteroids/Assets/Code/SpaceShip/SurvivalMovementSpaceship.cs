@@ -11,7 +11,6 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 
 	#region Private Attributes
 	private SurvivalLevelManager levelManager;
-	private float angleResultant;
 	private float maxDetectionDistance = 10.0f;
 	private RaycastHit hitInfo;
     //
@@ -43,7 +42,6 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 
 		velocity = rb.velocity;
 		currentUpdateTime += Time.deltaTime;
-		angleResultant = Vector3.Angle (velocity, posNextWayPointRelative);
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity , maxSpeed);
 
 		posNextWayPointRelative = posCurrentWayPoint - transform.position;

@@ -179,12 +179,20 @@ public class StoryLevelManager : BaseLevelManager {
         
     }
 
+    /// <summary>
+    /// Convert the click in the minimap into world coordinates
+    /// </summary>
+    /// <returns></returns>
 	Vector3 DetermineZoneToAppear()
 	{
+        //Get position of the waypoint
 		float zDistance = (ship.transform.position - minimapCamera.transform.position).magnitude;
 		Vector2 cameraPoint = hud.checkClick ();
+        //Convert into wolrd position
 		Vector3 worldPoint = minimapCamera.ViewportToWorldPoint(new Vector3(cameraPoint.x, cameraPoint.y, zDistance));
+        //Fix y
 		worldPoint.y = ship.transform.position.y;
+
 		return worldPoint;
 	}
     #endregion

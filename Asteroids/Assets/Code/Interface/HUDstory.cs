@@ -54,13 +54,17 @@ public class HUDstory : HUD {
 
 	public Vector2 checkClick()
 	{
+        //Initialize position of the click
 		Vector2 positionVector = new Vector2 (-1f, -1f);
+
 		if (Input.GetMouseButtonUp(0)) {
 			Vector3 mPosition = Input.mousePosition;
+            //check if the click is inside of the minimap
 			if (mPosition.x >= minimapDimension.position.x && mPosition.y >= minimapDimension.position.y
 			    && mPosition.x <= minimapDimension.position.x + minimapDimension.rect.size.x * minimapDimension.localScale.x
 			    && mPosition.y <= minimapDimension.position.y + minimapDimension.rect.size.y * minimapDimension.localScale.y) 
 			{
+                //Convert position of the click to the proportion in the world
 				positionVector.x = (mPosition.x - minimapDimension.position.x) / (minimapDimension.rect.size.x * minimapDimension.localScale.x);
 				positionVector.y = (mPosition.y - minimapDimension.position.y) / (minimapDimension.localScale.y * minimapDimension.rect.size.y);
 			}

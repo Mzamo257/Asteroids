@@ -4,11 +4,14 @@
 			<texto> OH! NO! Nuestro enemigo a escapado! </texto>
 			<texto> Tienes que destruir su nave antes de que escape </texto>
 			<texto> ¡Dale con los asteroides! </texto>
+      <texto> ¡Haz clic en un asteroide y arrástralo para moverlo! </texto>
 		</EVENT>
 		<EVENT name="StoryIntro">
 			<texto> Tenemos que recoger a nuestros amigos </texto>									<!-- 0 -->
-			<texto> Coloca las balizas para redirigir la nave y recogerlos </texto>
-			<texto> ¡Ten cuidado con con los asteroides! </texto>
+			<texto> Coloca los ganchos para redirigir la nave y recogerlos </texto>
+      <texto> Clica en el minimapa para poner ganchos (Están limitados) </texto>
+			<texto> ¡Ten cuidado con los asteroides! </texto>
+      <texto> ¡Quítalos del camino! </texto>
 		</EVENT>
 	</EVENTS>
 </MAIN>
