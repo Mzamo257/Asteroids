@@ -40,7 +40,7 @@ public class HUDstory : HUD {
 			base.OnGUI ();
 			if (levelMgr.currentState == GameState.InGame) {
 				//level
-				GUI.Label (new Rect (iconSize * 2, iconSize / 15, 100, 30), "Level " + GameManagerSingleton.instance.CurrentStoryLevel, levelStyle);
+				GUI.Label (new Rect (iconSize * 2, iconSize / 15, 100, 30), levelText + " " + GameManagerSingleton.instance.CurrentStoryLevel, levelStyle);
 				//Hooks
 				GUI.DrawTexture (new Rect (Screen.width * 6.3f / 10, Screen.height * 0.3f / 10, Screen.width *1.7f/ 10, Screen.height*0.8f/ 10), hook, ScaleMode.StretchToFill);
 				GUI.Label (new Rect (Screen.width * 6.8f / 10, Screen.height *1.1f/ 20, Screen.width *0.3f/ 10, Screen.height*0.3f / 10), storyLevelMgr.AvailableTrash + "/" + storyLevelMgr.TotalTrash, levelStyle);

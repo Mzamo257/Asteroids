@@ -13,14 +13,17 @@ public abstract class HUD : MonoBehaviour {
 	public GUIStyle levelStyle;
 	public Texture back;
 	public Texture panel;
-	#endregion
+    public Texture asteroidPointer;
+    #endregion
 
-	#region Private Attributes
-	protected float iconSize;
+    #region Private Attributes
+    protected float iconSize;
 	protected GameObject gameManager;
     protected GameManagerSingleton gmSingScript;
 	protected BaseLevelManager levelMgr;
-	public Texture asteroidPointer;
+    protected string finalScoreText;
+    protected string scoreText;
+    protected string levelText;
 	#endregion
 
 
@@ -35,6 +38,7 @@ public abstract class HUD : MonoBehaviour {
 		damage = levelMgr.SpaceCurrentLife;
 
         gmSingScript = FindObjectOfType<GameManagerSingleton>();
+        Language();
 	}
 	
 	// Update is called once per frame
@@ -45,25 +49,24 @@ public abstract class HUD : MonoBehaviour {
 
 	protected virtual void OnGUI()
 	{
-		
-		Pause.enabled = true;
 		if (levelMgr.currentState == GameState.Victory) {
 			Win.enabled = true;
 			Pause.enabled = false;
 			GUI.DrawTexture (new Rect (Screen.width * 2.9f / 10, Screen.height *4.5f / 10, Screen.width * 4.3f / 10, Screen.height *2/ 10), panel, ScaleMode.StretchToFill);
             GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5/10, Screen.width * 4/10, Screen.height * 0.5f/10), 
-				"Your score: " + levelMgr.Score, levelStyle);
+				scoreText + ": " + levelMgr.Score, levelStyle);
             GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5.8f/10, Screen.width * 4/10, Screen.height * 0.5f/10), 
-				"Total score: " + gmSingScript.CurrentScore, levelStyle);
+				finalScoreText + ": " + gmSingScript.CurrentScore, levelStyle);
 
         } else if (levelMgr.currentState == GameState.Defeat) {
 			Lose.enabled = true;
 			Pause.enabled = false;
 			GUI.DrawTexture (new Rect (Screen.width * 2.9f / 10, Screen.height *5.5f / 10, Screen.width * 4.3f / 10, Screen.height *1/ 10), panel, ScaleMode.StretchToFill);
 			GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5.8f/10, Screen.width * 4/10, Screen.height * 0.5f/10),
-				"Total score: " + gmSingScript.CurrentScore, levelStyle);
+				finalScoreText + ": " + gmSingScript.CurrentScore, levelStyle);
 
         } else if (levelMgr.currentState != GameState.Paused) {
+			Pause.enabled = true;
 			//Base
 			//GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height * 1.5f/10), back, ScaleMode.StretchToFill);
 			//Healthbar
@@ -79,5 +82,26 @@ public abstract class HUD : MonoBehaviour {
 	#endregion
 
 	#region User Methods
+    void Language()
+    {
+        switch (gmSingScript.GetLanguage())
+        {
+            case "English":
+                scoreText = "Your Score";
+                finalScoreText = "Total Score";
+                levelText = "Level";
+                break;
+            case "Español":
+                scoreText = "Puntuacion";
+                finalScoreText = "Puntuacion total";
+                levelText = "Nivel";
+                break;
+            case "Français":
+                scoreText = "Final score";
+                finalScoreText = "Menu Principal";
+                levelText = "Level";
+                break;
+        }
+    }
 	#endregion
 }
