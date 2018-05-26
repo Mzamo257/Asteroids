@@ -17,6 +17,8 @@ public class AlienToRescue : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        Vector3 directionToLook = playerShip.transform.position - transform.position;
+        transform.rotation = Quaternion.LookRotation(directionToLook);
         // Tener en cuenta que usamos sqrmagnitude
         // Para hacer menos pesado en el update
         // Distancia al cuadrado

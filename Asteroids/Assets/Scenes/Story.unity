@@ -3486,7 +3486,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  alienPrefab: {fileID: 1758524888123128, guid: cf61a6867d74e0a41b75faa311503aea,
+  alienPrefab: {fileID: 1723011312997124, guid: 10d49b78157db2c4cae07ab156021c30,
     type: 2}
   trashPrefab: {fileID: 1725793201409304, guid: 23e76f0bb240cb647aac8df653752005,
     type: 2}
