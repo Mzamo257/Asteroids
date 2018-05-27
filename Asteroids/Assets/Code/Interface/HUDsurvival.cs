@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HUDsurvival : HUD {
+    #region Public Attributes
+    public Texture[] progress;
+    public Texture ship;
+    public GUIStyle textStyle;
+    #endregion
 
-	public GUIStyle textStyle;
-
+    #region Private Attributes
     private SurvivalLevelManager survivalLevelMgr;
 	private float totalDistance;
 	private float finalPosition;
 	private float positionY;
-	public Texture[] progress;
-	public Texture ship;
+    #endregion
 
-	// Use this for initialization
-	protected override void Start () {
+    #region MonoDEvelop Methods
+    // Use this for initialization
+    protected override void Start ()
+    {
 		base.Start ();
         survivalLevelMgr = levelMgr as SurvivalLevelManager;
 		positionY = iconSize * 3 / survivalLevelMgr.NumWaypoints;
@@ -30,11 +35,15 @@ public class HUDsurvival : HUD {
 
 	protected override void OnGUI()
 	{
-		if (levelMgr.currentState == GameState.WaitingToStart) {
+		if (levelMgr.currentState == GameState.WaitingToStart)
+        {
 			Pause.enabled = false;
-		} else {
+		}
+        else
+        {
 			base.OnGUI ();
-			if (levelMgr.currentState == GameState.InGame) {
+			if (levelMgr.currentState == GameState.InGame)
+            {
 				//Current level
 				GUI.Label (new Rect (iconSize * 2, iconSize / 15, 100, 30), levelText + " " + GameManagerSingleton.instance.CurrentSurvivalLevel, levelStyle);
 				//Spaceship progress
@@ -53,21 +62,37 @@ public class HUDsurvival : HUD {
 			}
 		}
 	}
+    #endregion
 
-	private float getProgress()
+    #region User Methods
+    /// <summary>
+    /// Returns the current position of the ship image in the progress bar
+    /// </summary>
+    /// <returns>Position in the screen</returns>
+    private float getProgress()
 	{
-		if (survivalLevelMgr.CurrentWaypointIndex < survivalLevelMgr.NumWaypoints) {
-			
-			int point = (survivalLevelMgr.NumWaypoints - survivalLevelMgr.CurrentWaypointIndex) - 1;
-			float v = survivalLevelMgr.calculateDistanceNextWaypoint () / totalDistance;
-	
-			return Mathf.Lerp (finalPosition + positionY * point, finalPosition + positionY * (point + 1), v);
-		} else
-			return finalPosition;
+        //check if it is the last waypoint
+        if (survivalLevelMgr.CurrentWaypointIndex < survivalLevelMgr.NumWaypoints)
+        {
+            //get the correct number of the next waypoint
+            int point = (survivalLevelMgr.NumWaypoints - survivalLevelMgr.CurrentWaypointIndex) - 1;
+            //calculate the position regarding the distance to the next waypoint
+            float interval = survivalLevelMgr.calculateDistanceNextWaypoint() / totalDistance;
+            //return the correct position between two waypoints
+            return Mathf.Lerp(finalPosition + positionY * point, finalPosition + positionY * (point + 1), interval);
+        }
+        else
+        {
+            return finalPosition;
+        }
 	}
 
+    /// <summary>
+    /// Get the current distance between the two waypoints where the ship is
+    /// </summary>
 	public void updateParameters()
 	{
 		totalDistance = survivalLevelMgr.calculateDistanceNextWaypoint ();
 	}
+    #endregion
 }

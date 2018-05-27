@@ -15,10 +15,12 @@ public class HUDstory : HUD {
 	private RectTransform minimapDimension;
 	private Rect uvRect;
 	private StoryLevelManager storyLevelMgr;
-	#endregion
+    #endregion
 
-	// Use this for initialization
-	protected override void Start () {
+    #region MonoDevelop Methods
+    // Use this for initialization
+    protected override void Start ()
+    {
 		base.Start ();
 		minimapDimension = minimap.rectTransform;
 		storyLevelMgr = levelMgr as StoryLevelManager;
@@ -28,17 +30,22 @@ public class HUDstory : HUD {
 	}
 	
 	// Update is called once per frame
-	protected override void Update () {
+	protected override void Update ()
+    {
 		base.Update ();
 	}
 
 	protected override void OnGUI()
 	{
-		if (levelMgr.currentState == GameState.WaitingToStart) {
+		if (levelMgr.currentState == GameState.WaitingToStart)
+        {
 			Pause.enabled = false;
-		} else {
+		}
+        else
+        {
 			base.OnGUI ();
-			if (levelMgr.currentState == GameState.InGame) {
+			if (levelMgr.currentState == GameState.InGame)
+            {
 				//level
 				GUI.Label (new Rect (iconSize * 2, iconSize / 15, 100, 30), levelText + " " + GameManagerSingleton.instance.CurrentStoryLevel, levelStyle);
 				//Hooks
@@ -51,24 +58,32 @@ public class HUDstory : HUD {
 			}
 		}
 	}
+    #endregion
 
-	public Vector2 checkClick()
+    #region User Methods
+    /// <summary>
+    /// Get the position where the player has clicked in the minimap
+    /// </summary>
+    /// <returns></returns>
+    public Vector2 checkClick()
 	{
         //Initialize position of the click
 		Vector2 positionVector = new Vector2 (-1f, -1f);
 
-		if (Input.GetMouseButtonUp(0)) {
+		if (Input.GetMouseButtonUp(0))
+        {
 			Vector3 mPosition = Input.mousePosition;
             //check if the click is inside of the minimap
 			if (mPosition.x >= minimapDimension.position.x && mPosition.y >= minimapDimension.position.y
 			    && mPosition.x <= minimapDimension.position.x + minimapDimension.rect.size.x * minimapDimension.localScale.x
 			    && mPosition.y <= minimapDimension.position.y + minimapDimension.rect.size.y * minimapDimension.localScale.y) 
 			{
-                //Convert position of the click to the proportion in the world
+                //Convert position of the click to the proportion of the minimap
 				positionVector.x = (mPosition.x - minimapDimension.position.x) / (minimapDimension.rect.size.x * minimapDimension.localScale.x);
 				positionVector.y = (mPosition.y - minimapDimension.position.y) / (minimapDimension.localScale.y * minimapDimension.rect.size.y);
 			}
 		}
 		return positionVector;
 	}
+    #endregion
 }

@@ -98,15 +98,19 @@ public class StoryLevelManager : BaseLevelManager {
     }
 
     // Update is called once per frame
-    protected override void Update () {
+    protected override void Update ()
+    {
 		base.Update ();
+        //check if the player has clicked in the minimap to place a hook
 		if (hud.checkClick ().x != -1) 
 		{
 			Vector3 newWaypointPosition = DetermineZoneToAppear ();
 			if(AvailableTrash > 0)
 			{
-                if(SetWaypoint(newWaypointPosition))
-				    availableTrash--;
+                if (SetWaypoint(newWaypointPosition))
+                {
+                    availableTrash--;
+                }
 			}
 		}
 	}
@@ -166,15 +170,12 @@ public class StoryLevelManager : BaseLevelManager {
         if(availableTrash == 0)
         {
             gameState = GameState.Defeat;
-            //Time.timeScale = 0.0f;
         }
         //
 		else if(playerWayPoints[wayPointIndex].activeInHierarchy)
 		{
 			playerWayPoints [wayPointIndex].SetActive (false);
             wayPointIndex++;
-            //Debug.Log(wayPointIndex);
-			//playerWayPoints.RemoveAt (0);
 		}
         
     }

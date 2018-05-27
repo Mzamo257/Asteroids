@@ -29,56 +29,57 @@ public class Menu : MonoBehaviour {
 
 	#region Private Attributes
     GameManagerSingleton gameManagerSingleton;
-	#endregion
+    #endregion
 
-	#region typedef
-	#endregion
-
-	#region Properties
-	#endregion
-
-	// Use this for initialization
-	void Start () 
+    #region MonoDevelop Methods
+    // Use this for initialization
+    void Start () 
 	{
+        //Assign keep values
         gameManagerSingleton = GameManagerSingleton.instance;
-		switch (gameManagerSingleton.GetLanguage()) {
-		case "English":
-			language.value = 0;
-			MenuEnglish ();
-			break;
-		case "Español":
-			language.value = 1;
-			MenuSpanish ();
-			break;
-		case "Français":
-			language.value = 2;
-			break;
+		switch (gameManagerSingleton.GetLanguage())
+        {
+		    case "English":
+			    language.value = 0;
+			    MenuEnglish ();
+			    break;
+		    case "Español":
+			    language.value = 1;
+			    MenuSpanish ();
+			    break;
+		    case "Français":
+			    language.value = 2;
+			    break;
 		}
 		sound.isOn = gameManagerSingleton.Music;
 		volumeValue.value = gameManagerSingleton.Volume;
 
+        //Restore the time scale from the previous pause
         Time.timeScale = 1.0f;
 	}
 
 	void Update()
 	{
+        //Rotate the spaceship in the menu
 		spaceship.RotateAround (center.position, Vector3.down, spaceshipVelocity*Time.deltaTime); 
 	}
+    #endregion
 
-	public void DropdownLanguage()
+    #region UI Methods
+    public void DropdownLanguage()
 	{
 		gameManagerSingleton.ChangeLanguage(language.value);
 		switch (language.value) 
 		{
-		case 0:
-			MenuEnglish ();
-			break;
-		case 1:
-			MenuSpanish ();
-			break;
-		case 2:
-			MenuFrench ();
-			break;
+		    case 0:
+			    MenuEnglish ();
+			    break;
+		    case 1:
+			    MenuSpanish ();
+			    break;
+		    case 2:
+			    MenuFrench ();
+			    break;
 		}
 	}
 
@@ -98,8 +99,10 @@ public class Menu : MonoBehaviour {
 	{
 		gameManagerSingleton.Volume = volumeValue.value;
 	}
+    #endregion
 
-	private void MenuEnglish()
+    #region User Methods
+    private void MenuEnglish()
 	{
 		play.text = "SURVIVAL";
 		cont.text = "STORY";
@@ -143,4 +146,5 @@ public class Menu : MonoBehaviour {
 		settingsTitle.text = "Configuration";
 		credits.text = "Crédits";
 	}
+    #endregion
 }

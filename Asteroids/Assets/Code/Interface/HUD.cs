@@ -27,8 +27,8 @@ public abstract class HUD : MonoBehaviour {
 
 	#region MonoDevelop Methods
 	// Use this for initialization
-	protected virtual void Start () {
-
+	protected virtual void Start ()
+    {
         levelMgr = FindObjectOfType<BaseLevelManager> ();
 
 		iconSize = Screen.height * iconSizeRate;
@@ -45,12 +45,16 @@ public abstract class HUD : MonoBehaviour {
 	// Update is called once per frame
 	protected virtual void Update () 
 	{
-		if (damage > levelMgr.SpaceCurrentLife)	damage -= 10 * Time.deltaTime;	
+        if (damage > levelMgr.SpaceCurrentLife)
+        {
+            damage -= 10 * Time.deltaTime;
+        }
 	}
 
 	protected virtual void OnGUI()
 	{
-		if (levelMgr.currentState == GameState.Victory) {
+		if (levelMgr.currentState == GameState.Victory)
+        {
 			Win.enabled = true;
 			Pause.enabled = false;
             //Points panel
@@ -59,22 +63,26 @@ public abstract class HUD : MonoBehaviour {
             GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5/10, Screen.width * 4/10, Screen.height * 0.5f/10), scoreText + ": " + levelMgr.Score, levelStyle);
             GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5.8f/10, Screen.width * 4/10, Screen.height * 0.5f/10), finalScoreText + ": " + gmSingScript.CurrentScore, levelStyle);
 
-        } else if (levelMgr.currentState == GameState.Defeat) {
+        }
+        else if (levelMgr.currentState == GameState.Defeat)
+        {
 			Lose.enabled = true;
 			Pause.enabled = false;
             //Points panel
 			GUI.DrawTexture (new Rect (Screen.width * 2.9f / 10, Screen.height *5.5f / 10, Screen.width * 4.3f / 10, Screen.height *1/ 10), panel, ScaleMode.StretchToFill);
             //Score texts
 			GUI.TextField(new Rect(Screen.width * 3.5f/10, Screen.height * 5.8f/10, Screen.width * 4/10, Screen.height * 0.5f/10), finalScoreText + ": " + gmSingScript.CurrentScore, levelStyle);
-
-        } else if (levelMgr.currentState != GameState.Paused) {
+        }
+        else if (levelMgr.currentState != GameState.Paused)
+        {
 			Pause.enabled = true;
 			//Healthbar
 			GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, damage / levelMgr.SpaceMaxLife * (Screen.width*4f/10), Screen.height*0.75f/10), alertBars [2], ScaleMode.StretchToFill);
 			GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, levelMgr.SpaceCurrentLife / levelMgr.SpaceMaxLife * (Screen.width*4/10),Screen.height*0.75f/10), alertBars [1], ScaleMode.StretchToFill);
 			GUI.DrawTexture (new Rect (Screen.width*2f/10, Screen.height*0.6f/10, Screen.width*4/10, Screen.height*0.75f/10), alertBars [0], ScaleMode.StretchToFill);
             //Asteroid pointer
-			if (levelMgr.AsteroidSelected) {
+			if (levelMgr.AsteroidSelected)
+            {
 				GUI.DrawTexture (new Rect (levelMgr.AsteroidPosCamera.x - asteroidPointer.width * 0.04f, levelMgr.AsteroidPosCamera.y - asteroidPointer.height * 0.02f, iconSize / 1.5f, iconSize / 1.5f), asteroidPointer, ScaleMode.ScaleToFit);
 			}
 		}

@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 
 public class MenuPause : MonoBehaviour {
-	public Text pause;
+    #region Public Attributes
+    public Text pause;
 	public Text pauseTitle;
 	public Text resume;
 	public Text mainMenu;
@@ -11,20 +12,23 @@ public class MenuPause : MonoBehaviour {
 	public Text mainMenuWin;
 	public Text nextLevel;
 	public Text retry;
+    #endregion
 
+    #region Private Attributes
     private GameManagerSingleton gameManagerSingleton;
+    #endregion
 
+    #region MonoDevelop Methods
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         gameManagerSingleton = GameManagerSingleton.instance;
 		MenuPauseLanguage ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+    #endregion
 
-	private void MenuPauseLanguage()
+    #region User Methods
+    private void MenuPauseLanguage()
 	{
 		switch (gameManagerSingleton.GetLanguage())
 		{
@@ -63,4 +67,5 @@ public class MenuPause : MonoBehaviour {
 			break;
 		}
 	}
+    #endregion
 }

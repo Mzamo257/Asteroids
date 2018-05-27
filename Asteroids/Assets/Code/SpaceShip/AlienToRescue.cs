@@ -29,15 +29,4 @@ public class AlienToRescue : MonoBehaviour {
             gameObject.SetActive(false);
         }
     }
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.name == "SpaceShip")
-        {
-            StoryLevelManager levelMgr = FindObjectOfType<StoryLevelManager>();
-            levelMgr.GetAlien();
-            gameObject.SetActive(false);
-        }
-    }*/
-
 }

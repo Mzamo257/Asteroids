@@ -19,8 +19,7 @@ public class Victory : MonoBehaviour {
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height * 3 / 5, 200, Screen.height * 1 / 5),
-            scoreText +": " + GameManagerSingleton.instance.CurrentScore);
+        GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height * 3 / 5, 200, Screen.height * 1 / 5), scoreText +": " + GameManagerSingleton.instance.CurrentScore);
     }
 
     void Language()

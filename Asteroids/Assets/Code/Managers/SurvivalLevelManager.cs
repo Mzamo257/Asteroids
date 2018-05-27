@@ -91,17 +91,12 @@ public class SurvivalLevelManager : BaseLevelManager {
         if (currentWaypoint < list_of_wayPoints.Count - 1)
         {
             currentWaypoint++;
+            //Tell the hud that the waypoint has change
             surHud.updateParameters();
         }
-        // Debug.Log("Current waypoint: " + currentWaypoint + ", num of waypoints: " + list_of_wayPoints.Count);
         else
         {
-            //Debug.Log("Defeat");
-            //GameManagerSingleton.GetInstance().SurvivalProgress();
-			//lose = true;
             gameState = GameState.Defeat;
-            // Time.timeScale = 0.0f;
-			//PauseGame ();
         }
 		
     }
