@@ -23,11 +23,11 @@ GameObject:
   - component: {fileID: 23030662971344722}
   - component: {fileID: 95298644803699802}
   - component: {fileID: 54980377265096364}
-  - component: {fileID: 135770634029828276}
   - component: {fileID: 114511177005368430}
   - component: {fileID: 114997199995004616}
   - component: {fileID: 198140943675641694}
   - component: {fileID: 199210289047028148}
+  - component: {fileID: 65722859519462014}
   m_Layer: 8
   m_Name: Asteroid (2)
   m_TagString: Asteroid
@@ -104,6 +104,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65722859519462014
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1385394408968098}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.015, y: 0.015, z: 0.015}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95298644803699802
 Animator:
   serializedVersion: 3
@@ -132,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be6561aa02d55444839b5593ac7bd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 100
   type: 2
 --- !u!114 &114997199995004616
 MonoBehaviour:
@@ -147,20 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 4
   asteroid: {fileID: 2100000, guid: e8b109233ac44e547ab8ac2dd3d945cc, type: 2}
-  cubo2: {fileID: 2100000, guid: c35abf456e37ca2418142f896729b308, type: 2}
+  cought: {fileID: 0}
   impulse: {x: 0, y: 0, z: 0}
---- !u!135 &135770634029828276
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1385394408968098}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.0100714695
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198140943675641694
 ParticleSystem:
   m_ObjectHideFlags: 1
