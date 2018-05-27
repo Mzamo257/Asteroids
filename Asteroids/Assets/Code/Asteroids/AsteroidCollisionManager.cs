@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AsteroidCollisionManager : MonoBehaviour {
 	#region Public Attributes
-	public float health = 100;
+	public float maxHealth = 100;
 	public int type;
 	#endregion
 
@@ -13,6 +13,7 @@ public class AsteroidCollisionManager : MonoBehaviour {
     private AsteroidManager asteroidMgr;
     private Effects soundEffectsManager;
 	private float collisionCounter = 0;
+	private float health;
     #endregion
 
     #region Properties
@@ -20,36 +21,46 @@ public class AsteroidCollisionManager : MonoBehaviour {
     #endregion
 
     #region MonoDevelop Methods
-    // Use this for initialization
-    void Start () {
+    void Start () 
+	{
         asteroidParticleSystem = gameObject.GetComponent<ParticleSystem>();
         soundEffectsManager = FindObjectOfType<Effects>();
+		health = maxHealth;
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		collisionCounter += Time.deltaTime;
 	}
 
+	/// <summary>
+	/// Raises the collision enter event.
+	/// </summary>
+	/// <param name="collision">Collision.</param>
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collisionCounter < 1)
+		//to avoid the collision and division of the asteroids in a small period of time, so it doesn't create amounts of asteoids. 
+		if (collisionCounter < 1) 
+		{
 			return;
+		}
+
         Rigidbody otherRigid = collision.rigidbody;
         if (otherRigid != null)
         {
-            // Usamos la velocidad relativa de la colisión para determinar el daño
+            // We use the relative velocity of the collision to determine the damage
             health -= (collision.relativeVelocity.magnitude * otherRigid.mass);
-            if (asteroidParticleSystem != null)
-                asteroidParticleSystem.Play();
-            //
+			if (asteroidParticleSystem != null)
+			{
+				asteroidParticleSystem.Play ();
+			}
+
             if (health <= 0)
             {
-                // TODO: Restaurarles vida cuando salgan de la pool
-                			soundEffectsManager.playEffect(0);
+                soundEffectsManager.playEffect(0);
                 gameObject.SetActive(false);
                 asteroidMgr.CurrentActiveAsteroids--;
-                //Debug.Log("Asteroid destroyed");
                 DestroyAsteroid();
             }
             else
@@ -57,22 +68,34 @@ public class AsteroidCollisionManager : MonoBehaviour {
                 soundEffectsManager.playChoque();
             }
         }
-
 	}
 	#endregion
 
 	#region User Methods
+	/// <summary>
+	/// Devide the asteroid into the next type.
+	/// </summary>
 	private void DestroyAsteroid()
 	{
 		int nextAsteroidType=type/2;
-		//Debug.Log (nextAsteroidType);
 		asteroidMgr.ActivateAsteroidFromDivision (nextAsteroidType, transform.position);
 		asteroidMgr.ActivateAsteroidFromDivision (nextAsteroidType, transform.position);
-
 	}
 
-	public void ResetCounter(){
+	/// <summary>
+	/// Resets the counter to control the number of collisions.
+	/// </summary>
+	public void ResetCounter()
+	{
 		collisionCounter = 0;
+	}
+
+	/// <summary>
+	/// Restarts the health of the asteroid.
+	/// </summary>
+	public void RestartHealth()
+	{
+		health = maxHealth;
 	}
 	#endregion
 

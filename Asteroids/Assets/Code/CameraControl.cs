@@ -15,10 +15,10 @@ public class CameraControl : MonoBehaviour {
 
 	void Start()
 	{
+		//The camera looks to the player at the beggining.
 		Vector3 idealPos = targetPlayer.TransformPoint(camOffset);
 		transform.position = idealPos;
 		Vector3 targetPos = targetPlayer.TransformPoint(targetOffset);
-        //transform.LookAt(targetPos, Vector3.up);
         Quaternion objectiveRotation = Quaternion.LookRotation(targetPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, objectiveRotation, 0.2f);
 	}
@@ -29,6 +29,7 @@ public class CameraControl : MonoBehaviour {
 
 		Vector3 idealPos = targetPlayer.TransformPoint(camOffset);
 		Vector3 offsetPos = idealPos - transform.position;
+		//Add a spring effect so the camera movement looks more natural. 
 		Vector3 springForce = springK * offsetPos;
 		Vector3 dampingForce = -vel * dampingK;
 		Vector3 accel = springForce + dampingForce;

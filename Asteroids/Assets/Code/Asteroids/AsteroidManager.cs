@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidManager : MonoBehaviour {
+public class AsteroidManager : MonoBehaviour 
+{
     #region Public Attributes
     public List<GameObject> asteroidsPrefabs;
     public int numAsteroids;
@@ -10,7 +11,6 @@ public class AsteroidManager : MonoBehaviour {
     #endregion
 
     #region Private Attributes
-    // private List<GameObject> asteroids;
     private List<GameObject>[] asteroids;
     private GameObject spaceShip;
     private float counter;
@@ -21,16 +21,30 @@ public class AsteroidManager : MonoBehaviour {
     #endregion
 
     #region Properties
-    public LineRenderer AsteroidLineRenderer { get { return asteroidLineRenderer; } }
-    public int CurrentActiveAsteroids {
-        set { currentActiveAsteroids = value; }
-        get { return currentActiveAsteroids; }
+    public LineRenderer AsteroidLineRenderer 
+	{ 
+		get 
+		{ 
+			return asteroidLineRenderer; 
+		} 
+	}
+
+    public int CurrentActiveAsteroids 
+	{
+        set 
+		{ 
+			currentActiveAsteroids = value; 
+		}
+        get 
+		{ 
+			return currentActiveAsteroids; 
+		}
     }
     #endregion
 
     #region MonoDevelop Methods
-    // Use this for initialization
-    void Start () {
+    void Start () 
+	{
 		spaceShip = GameObject.Find("Viper");
         establishAsteoidPools();
 		level = FindObjectOfType<BaseLevelManager>();
@@ -39,37 +53,42 @@ public class AsteroidManager : MonoBehaviour {
         asteroidLineRenderer = instantiatedAsteroidLineRenderer.GetComponent<LineRenderer>();
         instantiatedAsteroidLineRenderer.SetActive(false);
         maxAsteroids = asteroids.Length * asteroids[0].Count;
-        //Debug.Log("Max asteroids: " + maxAsteroids);
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		counter += Time.deltaTime;
-		if (counter >= 0.3) {
+
+		if (counter >= 0.3) 
+		{
 			CheckAsteroids();
 			counter = 0;
-            //Vector3 posSpaceShip = spaceShip.transform.position;
 		}
 
-		if (level.StartedAsteroids == 4) {
-            // Determine the proportion of active asteroids
+		//if the intro is finished, they asdigned a 4 to StartedAsteroids, and activate the procedural spam of asteoids.
+		if (level.StartedAsteroids == 4) 
+		{
+            // Determine the proportion of active asteroids depending in the number of asteroid activated at that moment
             float activeAsteroidProportion = (float)currentActiveAsteroids / (float)maxAsteroids;
-            //
+
             int maxAsteroidsToSpawn = 25;
             int minAsteroidsToSpawn = 1;
             int asteroidsToSpawn = (int)((1 - activeAsteroidProportion) * (maxAsteroidsToSpawn - minAsteroidsToSpawn) + minAsteroidsToSpawn);
-            //
+
 			spamAsteroids (50.0f, asteroidsToSpawn);
-            //Debug.Log("Spawned asteroids: " + asteroidsToSpawn);
 		}
 
-		if (level.StartedAsteroids==2)
+		//spam the first astaeroids
+		if (level.StartedAsteroids == 2)
 		{
 			spamAsteroids(10.0f, 30);
 			level.StartedAsteroids++;
-			//Debug.Log ("holi");
 		}
-		if (level.StartedAsteroids < 2) {
+
+		//counter
+		if (level.StartedAsteroids < 2) 
+		{
 			level.StartedAsteroids=level.StartedAsteroids+1;
 		}
 	}
@@ -84,9 +103,12 @@ public class AsteroidManager : MonoBehaviour {
 	{
 		asteroids = new List<GameObject>[asteroidsPrefabs.Count];
 
-		for (int i = 0; i < asteroidsPrefabs.Count; i++) {
+		for (int i = 0; i < asteroidsPrefabs.Count; i++) 
+		{
 			asteroids[i] = new List<GameObject>();
-			for (int j = 0; j < numAsteroids; j++) {
+
+			for (int j = 0; j < numAsteroids; j++) 
+			{
 				asteroids [i].Add (Instantiate (asteroidsPrefabs [i]));
 				asteroids[i][j].GetComponent<AsteroidCollisionManager>().AsteroidMgr = this;
 				asteroids [i] [j].SetActive (false);
@@ -95,7 +117,7 @@ public class AsteroidManager : MonoBehaviour {
 	}
 		
 	/// <summary>
-	/// Check if the asteroid is out of the camera
+	/// Check if the asteroid is out of the camera sight.
 	/// </summary>
 	/// <param name="asteroid"></param>
 	/// <returns></returns>
@@ -107,32 +129,29 @@ public class AsteroidManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Check if the asterois is more than 10 spaces away from the player.
     /// </summary>
     /// <param name="asteroid"></param>
     /// <returns></returns>
     bool CheckFarEnoughFromThePlayer(GameObject asteroid)
     {
         float distanceToCheck = 10;
-        //float distanceToPlayer = (asteroid.transform.position - spaceShip.transform.position).sqrMagnitude;
         float distanceToPlayer = (asteroid.transform.position - spaceShip.transform.position).magnitude;
-        // We make it squared to ligthen proccessing
-        //return Mathf.Pow(distanceToCheck, 2) > distanceToPlayer;
         return distanceToPlayer > distanceToCheck;
     }
-		
+
 	/// <summary>
-	/// Haz una pasada comprobando los asteriodes
-	/// De momento que estén en pantalla
+	/// Check if the asteroid is out of the camera sight and far away from the player
 	/// </summary>
 	void CheckAsteroids()
 	{
 		for(int i = 0; i < asteroidsPrefabs.Count; i++)
 		{
-			for (int j = 0; j < numAsteroids; j++) {
+			for (int j = 0; j < numAsteroids; j++) 
+			{
 				// Check if any of them is out of screen
-				if (asteroids[i][j].activeInHierarchy && CheckOutOfCamera(asteroids[i][j]) && CheckFarEnoughFromThePlayer(asteroids[i][j])) {
-
+				if (asteroids[i][j].activeInHierarchy && CheckOutOfCamera(asteroids[i][j]) && CheckFarEnoughFromThePlayer(asteroids[i][j])) 
+				{
 					asteroids[i][j].SetActive(false);
                     currentActiveAsteroids--;
 				}
@@ -141,7 +160,7 @@ public class AsteroidManager : MonoBehaviour {
 	}
 		
 	/// <summary>
-	/// Determine the zone in which the asteroids should appears
+	/// Determine the zone in which the asteroids should appears.
 	/// </summary>
 	/// <param name="dist"></param>
 	/// <returns></returns>
@@ -158,63 +177,76 @@ public class AsteroidManager : MonoBehaviour {
 		return worldPoint;
 	}
 
+
 	/// <summary>
-	/// Activate the asteroids from the pool, so they appear in the screen
+	/// Activate the asteroids from the pool, so they appear in the screen.
 	/// </summary>
 	/// <param name="index"><param name="dist"></param>
-	public void ActivateAsteroid(int index, float dist)
+	public void ActivateAsteroidFromPool(int index, float dist)
 	{
 		for(int i = 0; i < asteroids[index].Count; i++)
 		{
-			if (!asteroids[index][i].activeInHierarchy){
+			if (!asteroids[index][i].activeInHierarchy)
+			{
 				asteroids[index][i].SetActive(true);
 				asteroids[index][i].transform.position = DetermineZoneToAppear(dist);
 				Rigidbody rb=asteroids [index] [i].GetComponent<Rigidbody> ();
 				rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
 				addRandomTorque(rb);
 				addRandomForce(rb);
-				asteroids [index] [i].GetComponent<AsteroidCollisionManager> ().ResetCounter ();
+				AsteroidCollisionManager asteroidColl=asteroids [index] [i].GetComponent<AsteroidCollisionManager> ();
+				asteroidColl.ResetCounter ();
+				asteroidColl.RestartHealth();
                 currentActiveAsteroids++;
 				return;
 			}
 		}
-		// Debug.Log("All asteroids in use");
 	}
 
+	/// <summary>
+	/// Activates the asteroid after a division.
+	/// </summary>
+	/// <param name="index">Index.</param>
+	/// <param name="pos">Position.</param>
 	public void ActivateAsteroidFromDivision(int index, Vector3 pos)
 	{
 		for(int i = 0; i < asteroids[index].Count; i++)
 		{
-			//Debug.Log ("que pasa wey");
-			if (!asteroids[index][i].activeInHierarchy){
+			if (!asteroids[index][i].activeInHierarchy)
+			{
 				asteroids[index][i].SetActive(true);
 				asteroids[index][i].transform.position = pos;
 				Rigidbody rb=asteroids [index] [i].GetComponent<Rigidbody> ();
 				rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-				//Debug.Log ("lanzado");
 				addRandomTorque(rb);
 				addRandomForce(rb);
-				asteroids [index] [i].GetComponent<AsteroidCollisionManager> ().ResetCounter ();
+				AsteroidCollisionManager asteroidColl=asteroids [index] [i].GetComponent<AsteroidCollisionManager> ();
+				asteroidColl.ResetCounter ();
+				asteroidColl.RestartHealth();
                 currentActiveAsteroids++;
 				return;
 			}
-			
 		}
-        //Debug.Log("Pool vacia");
     }
 		
     /// <summary>
-    /// Spams the asteroids aleatory.
+    /// Spams the asteroids randomly.
     /// </summary>
     /// <param name="dist">Dist.</param>
     /// <param name="numAsteroids">Number asteroids.</param>
-	public void spamAsteroids(float dist, int numAsteroids){
-		for (int i = 0; i < numAsteroids; i++) {
+	public void spamAsteroids(float dist, int numAsteroids)
+	{
+		for (int i = 0; i < numAsteroids; i++) 
+		{
 			int randomIndex = (int)(Random.value * asteroidsPrefabs.Count);
-			ActivateAsteroid (randomIndex, dist);
+			ActivateAsteroidFromPool (randomIndex, dist);
 		}
 	}
 
+	/// <summary>
+	/// Adds the random torque to the asteroids.
+	/// </summary>
+	/// <param name="rb">Rb.</param>
 	void addRandomTorque(Rigidbody rb)
 	{
 		float randomX = Random.value * 10 - 5;
@@ -224,6 +256,10 @@ public class AsteroidManager : MonoBehaviour {
 		rb.AddTorque(new Vector3(randomX, randomY, randomZ), ForceMode.Impulse);
 	}
 
+	/// <summary>
+	/// Adds the random force to the asteroids.
+	/// </summary>
+	/// <param name="rb">Rb.</param>
 	void addRandomForce(Rigidbody rb)
 	{
 		float randomX = Random.value * 10 - 5;

@@ -7,11 +7,8 @@ public class Drag : MonoBehaviour {
 	#region Public Attributes
 	public float force;
 	public Material asteroid;
-	public Material cubo2;
-	//public Vector3 newCenterOfMass;
+	public Material cought;
 	public Vector3 impulse;
-
-	//public Vector3 torque;
 
 	#endregion
 
@@ -26,19 +23,19 @@ public class Drag : MonoBehaviour {
     #endregion
 
     #region MonoDevelop Methods
-    // Use this for initialization
-    void Start () {
+    void Start () 
+	{
 		selected = false;
 		rb = gameObject.GetComponent<Rigidbody> ();
-		//rb.centerOfMass = newCenterOfMass;
-
 		levelManager = FindObjectOfType<BaseLevelManager> ();
         asteroidManager = FindObjectOfType<AsteroidManager>();
     }
 
 	// Update is called once per frame
-	void Update () {
-		if (Input.GetMouseButtonUp (0) && selected) {
+	void Update () 
+	{
+		if (Input.GetMouseButtonUp (0) && selected) 
+		{
 			selected = false;
 
             if (levelManager != null)
@@ -47,7 +44,7 @@ public class Drag : MonoBehaviour {
                 levelManager.AsteroidSelected = false;
             }
 			gameObject.GetComponent<MeshRenderer> ().material = asteroid;
-			launchAsteroid();
+			LaunchAsteroid();
 		}
         //
         if (selected) ArrowDirection();
@@ -55,19 +52,29 @@ public class Drag : MonoBehaviour {
 	#endregion
 
 	#region User Methods
-	void OnMouseDown(){
-		if (levelManager.currentState == GameState.InGame) {
+	/// <summary>
+	/// Raises the mouse down event.
+	/// </summary>
+	void OnMouseDown()
+	{
+		if (levelManager.currentState == GameState.InGame) 
+		{
 			selected = true;
 			asteroidManager.AsteroidLineRenderer.gameObject.SetActive (true);
-			gameObject.GetComponent<MeshRenderer> ().material = cubo2;
-			if (levelManager != null) {
+			gameObject.GetComponent<MeshRenderer> ().material = cought;
+			if (levelManager != null) 
+			{
 				levelManager.AsteroidSelected = true;
 				levelManager.asteroidPosition (transform.position);
 			}
 		}
 	}
 
-	void launchAsteroid(){
+	/// <summary>
+	/// Launchs the asteroid, depending how far you have the pointer from the asteroid it will be launched with more force.
+	/// </summary>
+	void LaunchAsteroid()
+	{
 		Vector3 objectPos = transform.position;
 		float zToUse = (objectPos - Camera.main.transform.position).magnitude;
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, zToUse));
@@ -76,6 +83,9 @@ public class Drag : MonoBehaviour {
 		rb.AddForce(direction*force, ForceMode.Impulse);
 	}
 
+	/// <summary>
+	/// Makes a LineRenderer that draws a line between the asteroid and the pointer.
+	/// </summary>
     void ArrowDirection()
     {
         Vector3 objectPos = transform.position;
