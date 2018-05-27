@@ -25,20 +25,14 @@ public static class Reader {
         List<SurvivalLevelData> levels = new List<SurvivalLevelData>();
 		XmlDocument xml_doc = new XmlDocument();
 		xml_doc.Load ("Assets/Resources/level.xml");
-		//XmlNode level_info;
         XmlNodeList levelsInfo;
 
-
-        //level_info = xml_doc.SelectSingleNode ("LEVELS/SURVIVAL/LEVEL[@name='" +level_Name+ "']");
-        //levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL/LEVEL[@name='" + level_Name + "']");
         levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL/LEVEL");
-        // Debug.Log(levelsInfo.Count);
 
         if (levelsInfo != null) 
 		{
             foreach (XmlNode nextLevelInfo in levelsInfo)
             {
-                //XmlNode nextLevelInfo = levelsInfo.Item(i);
                 SurvivalLevelData level = new SurvivalLevelData();
                 level.force_Spaceship = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[0].InnerText);
                 level.max_Speed_Spaceship = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[1].InnerText);
@@ -47,12 +41,9 @@ public static class Reader {
                 level.force_Asteroids = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[4].InnerText);
                 level.numberOfLifeKits = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[5].InnerText);
                 levels.Add(level);
-                // Debug.Log("XML reader: Adding survival level");
             }
 		}
-
 		return levels;
-
 	}
 
     /// <summary>
@@ -64,12 +55,8 @@ public static class Reader {
         List<StoryLevelData> levels = new List<StoryLevelData>();
         XmlDocument xml_doc = new XmlDocument();
         xml_doc.Load("Assets/Resources/level.xml");
-        //XmlNode level_info;
         XmlNodeList levelsInfo;
 
-
-        //level_info = xml_doc.SelectSingleNode ("LEVELS/SURVIVAL/LEVEL[@name='" +level_Name+ "']");
-        //levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL/LEVEL[@name='" + level_Name + "']");
         levelsInfo = xml_doc.SelectNodes("LEVELS/SURVIVAL/LEVEL");
 
         if (levelsInfo != null)
@@ -85,12 +72,9 @@ public static class Reader {
                 level.force_Asteroids = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[4].InnerText);
                 level.numberOfTrash = int.Parse(((XmlElement)nextLevelInfo).GetElementsByTagName("VARIABLE")[5].InnerText);
                 levels.Add(level);
-                // Debug.Log("XML reader: Adding story level");
             }
         }
-
         return levels;
-
     }
     #endregion
 }
