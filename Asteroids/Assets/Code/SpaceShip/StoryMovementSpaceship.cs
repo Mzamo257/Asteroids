@@ -18,15 +18,17 @@ public class StoryMovementSpaceship : BaseSpaceship {
 	#region MonoDevelop Methods
 
 	// Use this for initialization
-	protected override void Start () {
+	protected override void Start () 
+	{
 		base.Start ();
 		levelManager = FindObjectOfType<StoryLevelManager>();
         posCurrentWayPoint = Vector3.zero; 
 	}
 
 	// Update is called once per frame
-	protected override void Update () {
-        
+	protected override void Update () 
+	{
+
         if (destroyed) return;
 
         velocity = rb.velocity;
@@ -39,24 +41,28 @@ public class StoryMovementSpaceship : BaseSpaceship {
 
 		VerticalSpeedControl ();
 	}
-
 	#endregion
 
 
 	#region User Methods
-
+	/// <summary>
+	/// Catch the next waypoint
+	/// </summary>
 	protected override void NextWaypoint()
 	{
-		if ((transform.position - posCurrentWayPoint).magnitude <= 2) {
-
+		if ((transform.position - posCurrentWayPoint).magnitude <= 2) 
+		{
 			levelManager.ReachWaypoint();
 			GameObject nextWaypoint = levelManager.CurrentWaypoint;
 		}
 	}
-
+	/// <summary>
+	/// Movement of the Story mode you go fordward until a hook appear
+	/// </summary>
 	protected override void Movement()
 	{
-		if (levelManager.CurrentWaypoint != null) {
+		if (levelManager.CurrentWaypoint != null) 
+		{
 			posCurrentWayPoint = levelManager.CurrentWaypoint.transform.position;
 
 			posNextWayPointRelative = posCurrentWayPoint - transform.position;
@@ -68,16 +74,19 @@ public class StoryMovementSpaceship : BaseSpaceship {
 			nextRotation = Quaternion.LookRotation (posNextWayPointRelative);
 			currentUpdateTime = 0;
 
-		} else {
+		} 
+		else 
+		{
 			rb.AddForce (transform.forward * force, ForceMode.Impulse);
-			if (rb.velocity.magnitude > Vector3.zero.magnitude) {
-				//nextRotation = Quaternion.LookRotation (rb.velocity);
-			}
 		}
 
 		transform.rotation = Quaternion.Slerp (transform.rotation, nextRotation, 0.1f);
 	}
 
+	/// <summary>
+	/// Check collision with bounds of map
+	/// </summary>
+	/// <param name="collision">Collision.</param>
 	void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.tag == "Limit")

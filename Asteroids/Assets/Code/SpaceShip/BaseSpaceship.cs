@@ -18,7 +18,7 @@ public class BaseSpaceship : MonoBehaviour {
 	protected float currentUpdateTime;
     protected bool destroyed = false;
 
-	protected Vector3 adjustedDirection; // Here for testing
+	protected Vector3 adjustedDirection;
 	protected Quaternion previousRotation;
 	protected Quaternion nextRotation;
 	protected Vector3 velocity;
@@ -32,14 +32,16 @@ public class BaseSpaceship : MonoBehaviour {
 	#region MonoDevelop Methods
 
 	// Use this for initialization
-	protected virtual void Start () {
+	protected virtual void Start () 
+	{
 		rb = gameObject.GetComponent<Rigidbody> ();
 		previousRotation = new Quaternion();
 		nextRotation = new Quaternion();
 	}
 
 	// Update is called once per frame
-	protected virtual void Update () {
+	protected virtual void Update () 
+	{
         if (destroyed) return;
 	}
 
@@ -62,16 +64,28 @@ public class BaseSpaceship : MonoBehaviour {
 		
 	}
 
+	/// <summary>
+	/// Return the direction between a position and objects
+	/// </summary>
+	/// <returns>The direction.</returns>
+	/// <param name="pos">Position.</param>
+	/// <param name="obj">Object.</param>
 	protected Vector3 AdjustDirection(Vector3 pos, Vector3 obj)
 	{
 		return (obj - pos);
 	}
 
+	/// <summary>
+	/// Verticals speed control of spaceship
+	/// </summary>
 	protected void VerticalSpeedControl()
 	{
-		if (rb.velocity.y > 0.1f) {
+		if (rb.velocity.y > 0.1f) 
+		{
 			rb.AddForce (Vector3.down, ForceMode.Force);
-		} else if (rb.velocity.y < -0.1) {
+		} 
+		else if (rb.velocity.y < -0.1) 
+		{
 			rb.AddForce (Vector3.up, ForceMode.Force);
 		}
 	}

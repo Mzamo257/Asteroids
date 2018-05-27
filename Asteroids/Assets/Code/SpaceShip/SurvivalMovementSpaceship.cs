@@ -13,7 +13,7 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 	private SurvivalLevelManager levelManager;
 	private float maxDetectionDistance = 10.0f;
 	private RaycastHit hitInfo;
-    //
+    
     private int barrelRollDirection = 0;
     private float barrelRollProgression = 0;
 	#endregion
@@ -24,17 +24,19 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 	#region MonoDevelop Methods
 
 	// Use this for initialization
-	protected override void Start () {
+	protected override void Start () 
+	{
 		base.Start ();
 		levelManager = GameObject.Find("Level Manager").GetComponent<SurvivalLevelManager>();
 		posCurrentWayPoint = levelManager.CurrentWaypoint.transform.position;
 	}
-
-	// Update is called once per frame
-	protected override void Update () {
-
+	 
+	//Update is called once per frame
+	protected override void Update () 
+	{
         if (destroyed) return;
 
+		//if you are not dodging
         if (barrelRollDirection == 0)
         {
             Dodge();
@@ -56,6 +58,9 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 	#endregion
 
 	#region User Methods
+	/// <summary>
+	/// Movement of survival mode you adjust the direction between waypoints and rotate when you dodge
+	/// </summary>
 	protected override void Movement()
 	{
 		if(currentUpdateTime > updateTime)
@@ -84,18 +89,24 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
         }
 	}
 
+	/// <summary>
+	/// Dodge randomly when an Asteroid appear in front of you.
+	/// </summary>
 	protected override void Dodge()
 	{
-		if (Physics.Raycast (transform.position, rb.velocity, out hitInfo, maxDetectionDistance)) {
-
+		if (Physics.Raycast (transform.position, rb.velocity, out hitInfo, maxDetectionDistance)) 
+		{
 			if(hitInfo.transform.tag.Equals("Asteroid"))
 			{
 				int random = UnityEngine.Random.Range (0,2);
-                if (random == 0) {
+                if (random == 0) 
+				{
 					rb.AddForce (transform.right*20, ForceMode.Impulse);
                     barrelRollDirection = 1;
                     barrelRollProgression = 0;
-				} else if(random == 1){
+				} 
+				else if(random == 1)
+				{
 					rb.AddForce (-transform.right*20, ForceMode.Impulse);
                     barrelRollDirection = -1;
                     barrelRollProgression = 0;
@@ -103,12 +114,13 @@ public class SurvivalMovementSpaceship : BaseSpaceship {
 			}
 		}	
 	}
-
+	/// <summary>
+	/// Catch waypoint and redirect to the next waypoint
+	/// </summary>
 	protected override void NextWaypoint()
 	{
-
-		if ((transform.position - posCurrentWayPoint).magnitude <= 2) {
-
+		if ((transform.position - posCurrentWayPoint).magnitude <= 2) 
+		{
 			levelManager.AdvanceWaypoint();
 			GameObject nextWaypoint = levelManager.CurrentWaypoint;
 
