@@ -5,13 +5,13 @@ using UnityEngine;
 public class AsteroidManager : MonoBehaviour 
 {
     #region Public Attributes
-    public List<GameObject> asteroidsPrefabs;
-    public int numAsteroids;
+    public List<GameObject> asteroidsPrefabs; //Types of asteoids
+    public int numAsteroids; // Number of asteroids of each typr
     public GameObject asteroidLineRendererPrefab;
     #endregion
 
     #region Private Attributes
-    private List<GameObject>[] asteroids;
+    private List<GameObject>[] asteroids; //Asteroids in game
     private GameObject spaceShip;
     private float counter;
     private BaseLevelManager level;
