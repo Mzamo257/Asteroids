@@ -91,9 +91,9 @@ public class StoryLevelManager : BaseLevelManager {
 
         // Assign the rest of the data
         // NOTE: This should be in BaseLevelManager, have to find the way
-        asteroidManager.numAsteroids = levelData.numberOf_Asteroids;
-        ship.force = levelData.force_Spaceship;
-        ship.maxSpeed = levelData.max_Speed_Spaceship;
+        asteroidManager.numAsteroids = levelData.numberOfAsteroids;
+        ship.force = levelData.spaceshipForce;
+        ship.maxSpeed = levelData.spaceshipMaxSpeed;
 
     }
 
