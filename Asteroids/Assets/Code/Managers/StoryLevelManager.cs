@@ -119,7 +119,8 @@ public class StoryLevelManager : BaseLevelManager {
     #region Methods
 
     /// <summary>
-    /// 
+    /// Get the alien and advance the index
+    /// And declare victory in case of getting all of them
     /// </summary>
     public void GetAlien()
     {
@@ -129,7 +130,7 @@ public class StoryLevelManager : BaseLevelManager {
             GameManagerSingleton.instance.StoryProgress();
             gameState = GameState.Victory;
 
-            //
+            // Make here the point calculation instead of GetScoreFromWaypoints
             float trashConservation = (float)availableTrash / (float)amountTrash;
             score = (int)(100 * trashConservation);
             gameManagerSingleton.CurrentScore += score;
@@ -137,7 +138,8 @@ public class StoryLevelManager : BaseLevelManager {
     }
 
     /// <summary>
-    /// 
+    /// Set a waypoint inside the level boundaries
+    /// And adavance the index of available ones
     /// </summary>
     /// <param name="waypointPosition"></param>
     public bool SetWaypoint(Vector3 waypointPosition)
@@ -148,30 +150,26 @@ public class StoryLevelManager : BaseLevelManager {
         //     z = 0, 200
         //  Yeah, it is hardcoded
         if (waypointPosition.x < -100 || waypointPosition.x > 100 || waypointPosition.z < 0 || waypointPosition.z > 200) return false;
-        //Debug.Log("Waypoint position: " + waypointPosition);
-
-        // TODO: Manejar con pool
+        
         if (availableTrash <= 0) return false;
 
         playerWayPoints[levelData.numberOfTrash - availableTrash].SetActive(true);
         playerWayPoints[levelData.numberOfTrash - availableTrash].transform.position = waypointPosition;
-        //availableTrash --;
-        //GameObject newTrash = Instantiate(wayPoint_prefab, waypointPosition, Quaternion.identity);
-        //playerWayPoints.Add(newTrash);
         return true;
     }
 
     /// <summary>
-    /// 
+    /// Manage the waypoint reaching
+    /// In order to advance the index
+    /// Or go to the defeat if not hooks availbale
     /// </summary>
     public void ReachWaypoint()
     {
-        //
+       
         if(availableTrash == 0)
         {
             gameState = GameState.Defeat;
         }
-        //
 		else if(playerWayPoints[wayPointIndex].activeInHierarchy)
 		{
 			playerWayPoints [wayPointIndex].SetActive (false);
@@ -196,5 +194,6 @@ public class StoryLevelManager : BaseLevelManager {
 
 		return worldPoint;
 	}
+
     #endregion
 }
