@@ -4,19 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SurvivalLevelManager : BaseLevelManager {
-	public HUDsurvival surHud;
+
+    #region Public Attributes
+
+    public HUDsurvival surHud;
+
+    #endregion
 
     #region Private Attributes
+
     protected SurvivalLevelData levelData;
-    protected List<GameObject> list_of_wayPoints;
+    protected List<GameObject> waypointList;
     protected int currentWaypoint; 
 	protected SurvivalIntro intro;
+
     #endregion
 
     #region Properties
+
     public int NumWaypoints
     {
-        get { return list_of_wayPoints.Count; }
+        get { return waypointList.Count; }
     }
 
     public int CurrentWaypointIndex
@@ -28,7 +36,7 @@ public class SurvivalLevelManager : BaseLevelManager {
     {
 		get {
             if (currentWaypoint < NumWaypoints)
-				return list_of_wayPoints [currentWaypoint];
+				return waypointList [currentWaypoint];
 			else
 				return null;
         }
@@ -43,12 +51,13 @@ public class SurvivalLevelManager : BaseLevelManager {
 
         intro = GetComponent<SurvivalIntro>();
 		intro.StartEvent ();
-        //
+
+        // Get the game manager and the level data
         gameManagerSingleton.CurrentGameMode = GameMode.Survival;
         levelData = gameManagerSingleton.CurrentSurvivalLevelData;
         
-        //create waypoints
-        list_of_wayPoints = new List<GameObject>();
+        // Create waypoints
+        waypointList = new List<GameObject>();
         for (int i = 0; i < levelData.numberOfWaypoints; i++)
         {
             //
@@ -57,7 +66,7 @@ public class SurvivalLevelManager : BaseLevelManager {
             //
             Vector3 wayPoint_position = new Vector3(x, y, 100 * i);
             GameObject new_WayPoint = Instantiate(wayPoint_prefab, wayPoint_position, Quaternion.identity);
-            list_of_wayPoints.Add(new_WayPoint);
+            waypointList.Add(new_WayPoint);
         }
         //
         surHud = FindObjectOfType<HUDsurvival>();
@@ -78,17 +87,27 @@ public class SurvivalLevelManager : BaseLevelManager {
 
     #region Methods
 
+    /// <summary>
+    /// Give the current waypoint according to the index
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
     public GameObject getWaypoint(int position)
     {
-        if (position < list_of_wayPoints.Count)
-            return list_of_wayPoints[position];
+        if (position < waypointList.Count)
+            return waypointList[position];
         else
             return null;
     }
 
+    /// <summary>
+    /// Adavance the waypoint index
+    /// In order to reorient the ship and update the HUD info
+    /// Or finish the level when reached the last one
+    /// </summary>
     public void AdvanceWaypoint()
     {
-        if (currentWaypoint < list_of_wayPoints.Count - 1)
+        if (currentWaypoint < waypointList.Count - 1)
         {
             currentWaypoint++;
             //Tell the hud that the waypoint has change
@@ -101,13 +120,18 @@ public class SurvivalLevelManager : BaseLevelManager {
 		
     }
 
+    /// <summary>
+    /// Calculate the distance to the next waypoint
+    /// In order to show the progress in the HUD
+    /// </summary>
+    /// <returns></returns>
     public float calculateDistanceNextWaypoint()
     {
-        return (list_of_wayPoints[currentWaypoint].transform.position - ship.transform.position).magnitude;
+        return (waypointList[currentWaypoint].transform.position - ship.transform.position).magnitude;
     }
 
     /// <summary>
-    /// 
+    /// Give the score depending the remaining waypoints/hooks
     /// </summary>
     /// <returns></returns>
     protected override int GetScoreFromWaypoints()

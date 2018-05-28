@@ -13,8 +13,6 @@ public class Music : MonoBehaviour {
 
 	#region Private Attributes
 	private AudioSource aS;
-	//protected GameObject gameManager;
-	//protected GameManager gmScript;
     protected GameManagerSingleton gameManagerSingleton;
 	#endregion
 
@@ -22,23 +20,19 @@ public class Music : MonoBehaviour {
 	#region MonoDevelop Methods
 	// Use this for initialization
 	protected virtual void Start () {
-        //gameManager = GameObject.Find ("GameManager");
-        //gmScript = gameManager.GetComponent<GameManager> ();
         gameManagerSingleton = GameManagerSingleton.instance;
 		aS = GetComponent<AudioSource> ();
         aS.volume = gameManagerSingleton.Volume;
         PlayMusic();
 	}
-
-	// Update is called once per frame
-	protected virtual void Update () 
-	{
-
-	}
+    
 	#endregion
 
 	#region User Methods
 
+    /// <summary>
+    /// Play the music clip assigned to the scene
+    /// </summary>
     void PlayMusic()
     {
         switch (SceneManager.GetActiveScene().name)
