@@ -101,7 +101,7 @@ public abstract class HUD : MonoBehaviour {
                 break;
             case "Español":
                 scoreText = "Puntuacion";
-                finalScoreText = "Puntuacion total";
+                finalScoreText = "Total";
                 levelText = "Nivel";
                 break;
             case "Français":
