@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ColissionManagerSpaceship : MonoBehaviour {
     #region Public Attributes
-    public GameObject explosion;
     #endregion
 
     #region Private Attributes
@@ -17,26 +16,19 @@ public class ColissionManagerSpaceship : MonoBehaviour {
         levelMgr = FindObjectOfType<BaseLevelManager>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-	}
 	#endregion
 
 	#region User Methods
     private void OnCollisionEnter(Collision collision)
     {
+        // If the collision has a rigibody
+        // is an asteroid
+        // so we damage the spaceship
         Rigidbody otherRigid = collision.rigidbody;
         if(otherRigid != null)
         // Usamos la velocidad relativa de la colisión para determinar el daño
         levelMgr.DamageSpaceShip(collision.relativeVelocity.magnitude * otherRigid.mass);
 
-        //
-        //explosion.SetActive(true);
-
-        //
-        /*if (particleSystem != null)
-            particleSystem.Play();*/
 
     }
 	#endregion

@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class AlienToRescue : MonoBehaviour {
 
+    #region Public Attributes
+    public float catchDistance = 10;
+    #endregion
+
+    #region Private Attributes
     private StoryMovementSpaceship playerShip;
     private StoryLevelManager levelManager;
+    #endregion
+
+    #region Monobehaviour Methods
 
     // Use this for initialization
     void Start()
@@ -19,14 +27,16 @@ public class AlienToRescue : MonoBehaviour {
     {
         Vector3 directionToLook = playerShip.transform.position - transform.position;
         transform.rotation = Quaternion.LookRotation(directionToLook);
-        // Tener en cuenta que usamos sqrmagnitude
-        // Para hacer menos pesado en el update
-        // Distancia al cuadrado
+        // Have in mind that we use sqrmagnitude
+        // To lighten the update
+        // Square distance
         float distanceToPlayer = (transform.position - playerShip.transform.position).sqrMagnitude;
-        if (distanceToPlayer < 25)
+        if (distanceToPlayer < Mathf.Pow(catchDistance, 2))
         {
             levelManager.GetAlien();
             gameObject.SetActive(false);
         }
     }
+
+    #endregion
 }
